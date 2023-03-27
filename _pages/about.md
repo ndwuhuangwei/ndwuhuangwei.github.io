@@ -10,6 +10,8 @@ redirect_from:
 
 I am currently a Phd student at Shanghai Jiao Tong University, Shanghai, advised by Prof. Meng jin. My research interests mainly include **wireless sensing/communication**, **acoustics** and **machine learning**. 
 
+**Email**: wuhuangwei@sjtu.edu.cn
+
 
 Eduation
 ======
