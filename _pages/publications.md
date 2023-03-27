@@ -15,4 +15,4 @@ author_profile: true
   {% include archive-single.html %}
 {% endfor %} -->
 
-To be soon.
+Comming Soon.
