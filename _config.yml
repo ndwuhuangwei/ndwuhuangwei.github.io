@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Welcome to Huangwei's Homepage"
+title                    : "Huangwei's Homepage"
 title_separator          : "-"
 name                     : &name "Huangwei Wu"
 description              : &description "Phd Student from SJTU"
