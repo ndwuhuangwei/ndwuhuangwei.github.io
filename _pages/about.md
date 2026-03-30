@@ -26,10 +26,11 @@ Eduation
 Publication
 ======
 
-- [[**Mobicom'23**](https://sigmobile.org/mobicom/2023/)] "Towards Spatial Selection Transmission for Low-end IoT devices with SpotSound" <br>
-Tingchao Fan, **Huangwei Wu**, Meng Jin, Tao Chen, Longfei Shangguan, Xinbing Wang, Chenghu Zhou
+- [**CCF-A**] **Huangwei Wu**, Weiguo Wang, Meng Jin, Zhuxuan He, Qi Cao, Xinbing Wang, Chenghu Zhou. "[Enabling 'See-and-Point' Communication between Robots](https://doi.org/10.1109/TMC.2026.3665613)," ***IEEE Transactions on Mobile Computing***, 2026. (Sole first author)
 
-More to be expected ~
+- [**CCF-A**] **Huangwei Wu**\*, Tingchao Fan\*, Meng Jin, Tao Chen, Xinbing Wang, Chenghu Zhou. "[Neural-Enhanced Modulation for Spatial Selective Transmission on Low-End IoT Devices](https://doi.org/10.1109/TON.2025.3650658)," ***IEEE/ACM Transactions on Networking***, 2026. (Co-first author, ranked 1st)
+
+- [**CCF-A**] Tingchao Fan\*, **Huangwei Wu**\*, Meng Jin, Tao Chen, Longfei Shangguan, Xinbing Wang, Chenghu Zhou. "[Towards Spatial Selection Transmission for Low-end IoT Devices with SpotSound](https://doi.org/10.1145/3570361.3592496)," ***ACM MobiCom***, 2023. (Co-first author, ranked 2nd)
 
 
 
