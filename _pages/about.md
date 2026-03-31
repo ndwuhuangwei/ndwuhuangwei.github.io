@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am currently a Phd student at Shanghai Jiao Tong University, Shanghai, advised by Prof. Meng jin. My research interests mainly include **acoustics** and **wireless system + AI**. 
+I am currently a Phd student at Shanghai Jiao Tong University, Shanghai, advised by Prof. Meng jin. My research interests mainly focus on: **acoustics**, **wireless system + AI**. 
 
 **Email**: wuhuangwei@sjtu.edu.cn, whw0315@gmail.com
 
