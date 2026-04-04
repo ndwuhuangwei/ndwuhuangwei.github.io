@@ -12,6 +12,8 @@ I am currently a Phd student at Shanghai Jiao Tong University, Shanghai, advised
 
 **Email**: wuhuangwei@sjtu.edu.cn, whw0315@gmail.com
 
+*\u201CThe art of systems research is crafting graceful trade-offs among competing objectives.\u201D*
+
 
 Eduation
 ======
