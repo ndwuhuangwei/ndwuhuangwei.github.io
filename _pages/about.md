@@ -13,7 +13,7 @@ I am currently a Phd student at Shanghai Jiao Tong University, Shanghai, advised
 Please feel free to reach out: wuhuangwei@sjtu.edu.cn, whw0315@gmail.com
 
 <div style="background-color: #f0f4f8; padding: 16px 20px; border-radius: 6px; margin: 20px 0;">
-  <em>“The art of systems research is crafting graceful trade-offs among competing objectives.”</em>
+  <em>The art of systems research is crafting graceful trade-offs among competing objectives.</em>
 </div>
 
 
