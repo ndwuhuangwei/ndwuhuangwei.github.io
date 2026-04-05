@@ -12,7 +12,7 @@ I am currently a Phd student at Shanghai Jiao Tong University, Shanghai, advised
 
 Please feel free to reach out: wuhuangwei@sjtu.edu.cn, whw0315@gmail.com
 
-*\u201cThe art of systems research is crafting graceful trade-offs among competing objectives.\u201d*
+*“The art of systems research is crafting graceful trade-offs among competing objectives.”*
 
 
 Eduation
