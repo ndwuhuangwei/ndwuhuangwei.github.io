@@ -10,14 +10,10 @@ redirect_from:
 
 I am currently a Phd student at Shanghai Jiao Tong University, Shanghai, advised by Prof. Meng jin. My research interests mainly focus on: **acoustics**, **wireless system**, **on-device AI**. 
 
-Please feel free to reach out: wuhuangwei@sjtu.edu.cn, whw0315@gmail.com
-
-<div style="background-color: #f0f4f8; padding: 16px 20px; border-radius: 6px; margin: 20px 0;">
-  <em>The art of systems research is crafting graceful trade-offs among competing objectives.</em>
-</div>
+Feel free to reach out: wuhuangwei@sjtu.edu.cn, whw0315@gmail.com
 
 
-Eduation
+Education
 ======
 
 - **School of Electronic Information and Electrical Engineering, Shanghai Jiao Tong University** (September 2022 - present) <br>
@@ -37,4 +33,6 @@ Publication
 - [**CCF-A**] Tingchao Fan\*, **Huangwei Wu**\*, Meng Jin, Tao Chen, Longfei Shangguan, Xinbing Wang, Chenghu Zhou. "[Towards Spatial Selection Transmission for Low-end IoT Devices with SpotSound](https://doi.org/10.1145/3570361.3592496)," ***ACM MobiCom***, 2023. 
 
 
-
+<div style="background-color: #f0f4f8; padding: 16px 20px; border-radius: 6px; margin: 20px 0;">
+  <em>The art of systems research is crafting graceful trade-offs among competing objectives.</em>
+</div>
