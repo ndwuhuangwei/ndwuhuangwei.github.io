@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Welcome!"
+title: "Huangwei Wu"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -35,8 +35,10 @@ Publication
   <em>The art of systems research is crafting graceful trade-offs among competing objectives.</em>
 </div>
 
-- [**CCF-A**] **Huangwei Wu**, Weiguo Wang, Meng Jin, Zhuxuan He, Qi Cao, Xinbing Wang, Chenghu Zhou. "[Enabling 'See-and-Point' Communication between Robots](https://doi.org/10.1109/TMC.2026.3665613)," ***IEEE Transactions on Mobile Computing***, 2026. 
+<sup>*</sup> represents first authors, <sup>†</sup> represents corresponding authors
 
-- [**CCF-A**] **Huangwei Wu**\*, Tingchao Fan\*, Meng Jin, Tao Chen, Xinbing Wang, Chenghu Zhou. "[Neural-Enhanced Modulation for Spatial Selective Transmission on Low-End IoT Devices](https://doi.org/10.1109/TON.2025.3650658)," ***IEEE/ACM Transactions on Networking***, 2026. 
+- [**CCF-A**] **Huangwei Wu**<sup>*</sup>, Weiguo Wang<sup>†</sup>, Meng Jin<sup>†</sup>, Zhuxuan He, Qi Cao, Xinbing Wang, Chenghu Zhou. "[Enabling 'See-and-Point' Communication between Robots](https://doi.org/10.1109/TMC.2026.3665613)," ***IEEE Transactions on Mobile Computing***, 2026. 
 
-- [**CCF-A**] Tingchao Fan\*, **Huangwei Wu**\*, Meng Jin, Tao Chen, Longfei Shangguan, Xinbing Wang, Chenghu Zhou. "[Towards Spatial Selection Transmission for Low-end IoT Devices with SpotSound](https://doi.org/10.1145/3570361.3592496)," ***ACM MobiCom***, 2023. 
+- [**CCF-A**] **Huangwei Wu**<sup>*</sup>, Tingchao Fan<sup>*</sup>, Meng Jin<sup>†</sup>, Tao Chen, Xinbing Wang, Chenghu Zhou. "[Neural-Enhanced Modulation for Spatial Selective Transmission on Low-End IoT Devices](https://doi.org/10.1109/TON.2025.3650658)," ***IEEE/ACM Transactions on Networking***, 2026. 
+
+- [**CCF-A**] Tingchao Fan<sup>*</sup>, **Huangwei Wu**<sup>*</sup>, Meng Jin<sup>†</sup>, Tao Chen, Longfei Shangguan, Xinbing Wang, Chenghu Zhou. "[Towards Spatial Selection Transmission for Low-end IoT Devices with SpotSound](https://doi.org/10.1145/3570361.3592496)," ***ACM MobiCom***, 2023. 
