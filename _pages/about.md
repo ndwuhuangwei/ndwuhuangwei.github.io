@@ -9,7 +9,11 @@ redirect_from:
 ---
 
 I am currently a Ph.D. student at Shanghai Jiao Tong University, Shanghai, advised by Prof. Meng Jin. 
-My research focuses on how to **push the limits of resource-constrained intelligent systems** with advanced mobile computing technologies, including acoustic signal processing, on-device AI, and embedded system orchestration.
+My research focuses on how to **push the limits of resource-constrained intelligent systems** with advanced mobile computing technologies, including:
+
+- Acoustic signal processing
+- On-device AI
+- Embedded system orchestration
 
 Feel free to reach out: wuhuangwei@sjtu.edu.cn, whw0315@gmail.com
 
