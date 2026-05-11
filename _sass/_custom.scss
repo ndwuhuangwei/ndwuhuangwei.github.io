@@ -1,0 +1,402 @@
+/* ==========================================================================
+   Custom styles for Huangwei Wu's homepage
+   Option C palette: deep navy + sky blue + teal on cool white
+   ========================================================================== */
+
+/* ---------- Headings ----------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  color: $heading-color;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  margin-top: 2.2em;
+  margin-bottom: 0.8em;
+  padding-bottom: 0.35em;
+  border-bottom: 2px solid $border-color;
+  font-size: 1.55em;
+}
+
+h3 {
+  font-size: 1.15em;
+}
+
+/* Suppress empty page__title h1 leftover from layout (the front-matter title is removed) */
+.page__title:empty {
+  display: none;
+}
+
+/* ---------- Sidebar avatar: rounded ------------------------------------- */
+.author__avatar img {
+  border-radius: 50%;
+  border: 3px solid $card-bg-color;
+  box-shadow: 0 4px 14px rgba(16, 42, 67, 0.12);
+}
+
+.author__name {
+  color: $heading-color;
+  font-weight: 700;
+}
+
+.author__bio {
+  color: mix($text-color, #fff, 80%);
+  font-size: 0.95em;
+}
+
+/* ---------- Hero section ------------------------------------------------ */
+.hero {
+  margin: 0 0 2.5em;
+  padding: 2em 0 1.5em;
+
+  .hero__name {
+    margin: 0 0 0.2em;
+    padding: 0;
+    border: none;
+    font-size: 2.6em;
+    font-weight: 800;
+    color: $heading-color;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .hero__role {
+    margin: 0.1em 0;
+    font-size: 1.15em;
+    color: $heading-color;
+    font-weight: 600;
+  }
+
+  .hero__affiliation {
+    margin: 0.1em 0 0.9em;
+    font-size: 1em;
+    color: mix($text-color, #fff, 75%);
+  }
+
+  .hero__identity {
+    margin: 0.9em 0 1.4em;
+    padding: 0.8em 1em;
+    background: $section-bg-color;
+    border-left: 3px solid $accent-color;
+    border-radius: 4px;
+    font-size: 1.02em;
+    line-height: 1.6;
+    color: $text-color;
+  }
+
+  .hero__links {
+    margin: 1em 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+}
+
+/* ---------- Pill buttons ------------------------------------------------ */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.42em 0.95em;
+  border-radius: 999px;
+  border: 1px solid $border-color;
+  background: $card-bg-color;
+  color: $heading-color;
+  font-size: 0.92em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.18s ease;
+
+  &:hover {
+    background: $heading-color;
+    border-color: $heading-color;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(16, 42, 67, 0.18);
+    text-decoration: none;
+  }
+
+  i { color: $accent-color; }
+
+  &:hover i { color: #fff; }
+}
+
+/* ---------- Research interests grid ------------------------------------ */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  margin: 1em 0 1.5em;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.research-card {
+  background: $card-bg-color;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  padding: 1.1em 1.1em 1.2em;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(16, 42, 67, 0.08);
+    border-color: $accent-color;
+  }
+
+  .research-card__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, $accent-color, $accent-secondary-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15em;
+    margin-bottom: 0.7em;
+  }
+
+  h3 {
+    margin: 0 0 0.4em;
+    font-size: 1.02em;
+    color: $heading-color;
+    border: none;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.92em;
+    line-height: 1.55;
+    color: mix($text-color, #fff, 85%);
+  }
+}
+
+/* ---------- Education cards -------------------------------------------- */
+.edu-card {
+  background: $card-bg-color;
+  border: 1px solid $border-color;
+  border-left: 3px solid $accent-color;
+  border-radius: 6px;
+  padding: 0.9em 1.1em;
+  margin: 0.7em 0;
+
+  .edu-card__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.4em;
+
+    strong { color: $heading-color; font-size: 1.02em; }
+  }
+
+  .edu-card__date {
+    font-size: 0.85em;
+    color: mix($text-color, #fff, 65%);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .edu-card__sub {
+    margin-top: 0.25em;
+    color: $text-color;
+    font-size: 0.95em;
+  }
+
+  .edu-card__meta {
+    margin-top: 0.2em;
+    color: mix($text-color, #fff, 65%);
+    font-size: 0.85em;
+  }
+}
+
+/* ---------- Publication legend ---------------------------------------- */
+.pub-legend {
+  font-size: 0.85em;
+  color: mix($text-color, #fff, 60%);
+  margin: 0 0 1em;
+}
+
+/* ---------- Publication cards ----------------------------------------- */
+.pub-card {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1.1em;
+  background: $card-bg-color;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 1em 0;
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+
+  &:hover {
+    box-shadow: 0 10px 28px rgba(16, 42, 67, 0.08);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pub-card__thumb {
+  width: 110px;
+  height: 110px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 2.4em;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 80px;
+    font-size: 2em;
+  }
+}
+
+.pub-card__thumb--robot    { background: linear-gradient(135deg, #102a43, #0ea5e9); }
+.pub-card__thumb--wireless { background: linear-gradient(135deg, #0ea5e9, #14b8a6); }
+.pub-card__thumb--acoustic { background: linear-gradient(135deg, #14b8a6, #2c7a7b); }
+
+.pub-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  min-width: 0;
+}
+
+.pub-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  margin-bottom: 0.1em;
+}
+
+.pub-card__title {
+  margin: 0.1em 0 0.2em;
+  font-size: 1.05em;
+  line-height: 1.35;
+  color: $heading-color;
+  border: none;
+
+  a {
+    color: $heading-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $accent-color;
+      text-decoration: underline;
+    }
+  }
+}
+
+.pub-card__authors {
+  margin: 0;
+  font-size: 0.88em;
+  color: mix($text-color, #fff, 75%);
+  line-height: 1.5;
+
+  strong { color: $heading-color; }
+}
+
+.pub-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+  margin: 0.25em 0;
+}
+
+.pub-card__summary {
+  margin: 0.2em 0 0.3em;
+  font-size: 0.93em;
+  line-height: 1.55;
+  color: $text-color;
+}
+
+.pub-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin-top: 0.2em;
+
+  a {
+    display: inline-block;
+    padding: 0.25em 0.7em;
+    border: 1px solid $accent-color;
+    border-radius: 4px;
+    background: transparent;
+    color: $accent-color;
+    font-size: 0.82em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.15s ease;
+
+    &:hover {
+      background: $accent-color;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+
+/* ---------- Badges & tags --------------------------------------------- */
+.badge {
+  display: inline-block;
+  padding: 0.18em 0.55em;
+  border-radius: 4px;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.badge--venue {
+  background: $heading-color;
+  color: #fff;
+}
+
+.badge--rank {
+  background: $accent-secondary-color;
+  color: #fff;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.15em 0.55em;
+  border-radius: 12px;
+  background: $section-bg-color;
+  border: 1px solid $border-color;
+  color: mix($heading-color, #fff, 75%);
+  font-size: 0.74em;
+  font-weight: 600;
+}
+
+/* ---------- Quote callout --------------------------------------------- */
+.quote-callout {
+  margin: 2.2em 0 1em;
+  padding: 1em 1.4em;
+  background: linear-gradient(135deg, $section-bg-color, lighten($section-bg-color, 1%));
+  border-left: 3px solid $accent-secondary-color;
+  border-radius: 6px;
+  color: mix($heading-color, #fff, 80%);
+  font-style: italic;
+  font-size: 1em;
+  line-height: 1.55;
+}
+
+/* ---------- Footer minor polish --------------------------------------- */
+.page__footer {
+  background-color: $section-bg-color;
+  border-top: 1px solid $border-color;
+}
+
+.page__footer-copyright {
+  color: mix($text-color, #fff, 55%);
+  font-size: 0.78em;
+  text-align: center;
+  padding: 0.5em 0;
+}
