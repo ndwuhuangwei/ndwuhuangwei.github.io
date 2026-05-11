@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Huangwei's Homepage"
 title_separator          : "-"
 name                     : &name "Huangwei Wu"
-description              : &description "Ph.D. Student at Shanghai Jiao Tong University, working on acoustic and wireless systems for resource-constrained intelligent devices."
+description              : &description "Phd Student from SJTU"
 url                      : https://ndwuhuangwei.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "https://github.com/ndwuhuangwei/ndwuhuangwei.github.io"
@@ -82,12 +82,12 @@ analytics:
 author:
   name             : "Huangwei Wu"
   avatar           : "whw_profile_3.png"
-  bio              : "Ph.D. Student, AIoT Group, SJTU"
-  location         : "Shanghai, China"
+  bio              : "AIoT Group | Shanghai Jiao Tong University"
+  location         : "Shanghai"
   employer         :
   pubmed           : # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
-  googlescholar    : https://scholar.google.com/citations?user=GlopaFAAAAAJ&hl=zh-CN # TODO: Master-wei fill in, e.g. "https://scholar.google.com/citations?user=YOUR_ID"
-  email            : "wuhuangwei@sjtu.edu.cn"
+  googlescholar    : # "http://yourfullgooglescholarurl.com"
+  email            : # "wuhuangwei@sjtu.edu.cn"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
