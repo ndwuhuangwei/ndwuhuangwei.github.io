@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Huangwei Wu"
+title: "Huangwei Wu (吴黄巍)"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am currently a Ph.D. candidate at Shanghai Jiao Tong University, advised by Prof. Meng Jin. 
+I am currently a Ph.D. candidate at Shanghai Jiao Tong University, advised by Prof. [Meng Jin](https://yume-sjtu.github.io/). 
 
 My research focuses on **pushing the limits of resource-constrained intelligence** by building acoustic-empowered systems for mobile/low-end devices to enable novel applications
 
