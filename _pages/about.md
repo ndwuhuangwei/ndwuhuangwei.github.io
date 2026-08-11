@@ -42,14 +42,14 @@ Projects
 
 <div style="display: flex; gap: 18px; align-items: flex-start; border: 1px solid #e1e4e8; border-radius: 10px; padding: 16px 18px; margin: 16px 0;">
   <a href="/projects/call-proxy-assistant/" style="flex-shrink: 0;">
-    <img src="/images/callproxy/intro.jpg" alt="「代接助手」APP 主界面" style="width: 92px; border-radius: 8px; display: block;" loading="lazy">
+    <img src="/images/callproxy/intro.jpg" alt="Call-answering assistant app home screen" style="width: 92px; border-radius: 8px; display: block;" loading="lazy">
   </a>
   <div>
-    <a href="/projects/call-proxy-assistant/" style="font-weight: bold;">On-Device Call Answering Assistant｜端侧智能通话代接系统「代接助手」</a>
-    <p style="margin: 6px 0 10px; font-size: 0.92em; line-height: 1.55;">一个跑在 6 GB 内存低端安卓机上的全离线通话代接 App。用「把无限动作空间压成有限选择」的设计，让 0.8B 的小模型在代接这件事上做到可靠。</p>
+    <a href="/projects/call-proxy-assistant/" style="font-weight: bold;">On-Device Call Answering Assistant</a>
+    <p style="margin: 6px 0 10px; font-size: 0.92em; line-height: 1.55;">A fully offline call-answering assistant running on a 6 GB entry-level Android phone. Compressing the open-ended call into a finite action space is what makes its 0.8B on-device model reliable at taking calls.</p>
     <div>
-      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">端侧</span>
-      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">全离线</span>
+      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">On-device</span>
+      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">Fully offline</span>
       <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">LLM</span>
       <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">ASR</span>
     </div>
