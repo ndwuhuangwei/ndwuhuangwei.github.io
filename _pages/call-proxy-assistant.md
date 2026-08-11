@@ -210,8 +210,11 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
 
 ### <span class="cpa-zh-only">关键指标</span><span class="cpa-en-only" lang="en">Key Numbers</span>
 
-<div class="cpa-zh-only" markdown="1">
 > 端侧数字均实测于 OPPO K13x 5G（天玑 6300，6 GB RAM，Android 16）。
+{: .cpa-zh-only}
+
+> All on-device numbers were measured on an OPPO K13x 5G (Dimensity 6300, 6 GB RAM, Android 16).
+{: .cpa-en-only lang="en"}
 
 | 维度 | 指标 | 数值 |
 |---|---|---|
@@ -225,10 +228,7 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
 | 资源 | 通话中 CPU | **≈1.33 核**（整机 16.6%） |
 | 资源 | 模型总体积 | **≈590 MB**（LLM 529 + ASR 60 + 词典 0.5） |
 | 稳定性 | 满负荷热测 | **17 min 无降频**（Thermal Status 全程 NONE，CPU 峰 60.2 °C） |
-</div>
-
-<div class="cpa-en-only" lang="en" markdown="1">
-> All on-device numbers were measured on an OPPO K13x 5G (Dimensity 6300, 6 GB RAM, Android 16).
+{: .cpa-zh-only}
 
 | Dimension | Metric | Value |
 |---|---|---|
@@ -242,7 +242,7 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
 | Resources | In-call CPU | **≈1.33 cores** (16.6% of the whole device) |
 | Resources | Total model footprint | **≈590 MB** (LLM 529 + ASR 60 + lexicon 0.5) |
 | Stability | Full-load thermal test | **17 min with zero throttling** (Thermal Status NONE throughout, CPU peak 60.2 °C) |
-</div>
+{: .cpa-en-only lang="en"}
 
 ## <span class="cpa-zh-only">整体介绍</span><span class="cpa-en-only" lang="en">App Overview</span>
 
