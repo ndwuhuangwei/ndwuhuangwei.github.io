@@ -230,9 +230,10 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
 
 | 维度 | 指标 | 数值 |
 |---|---|---|
-| NLU | 逐字正确率<br><span class="cpa-metric-note">AI 记下的关键信息与标准答案逐字比对，对上的比例</span> | **96.31%**（597 轮 / 198 通；Q4_K_M 量化出货件端侧实测 93.80%） |
-| NLU | 结构合法率 / 异常兜底<br><span class="cpa-metric-note">输出格式从没出过错，保底纠错机制一次都没用上</span> | **100% / 0 次** |
-| ASR | 字错误率 CER（加权）<br><span class="cpa-metric-note">语音转文字每 100 个字错几个，越低越好</span> | **6.29%** |
+| NLU | 逐字正确率<br><span class="cpa-metric-note">输出的 JSON 内容与人工标注 ground truth 逐字段逐字比对，完全对上的比例</span> | **96.31%**（597 轮 / 198 通；Q4_K_M 量化出货件端侧实测 93.80%） |
+| NLU | 渲染话术一致率<br><span class="cpa-metric-note">确定性规则引擎根据 LLM 输出的 schema 渲染出的最终回复话术，与预期话术完全一致的比例</span> | **99.66%** |
+| NLU | 结构合法率 / 异常兜底<br><span class="cpa-metric-note">输出 JSON 的 schema 格式正确率 —— 全部可解析且符合约定结构，保底纠错一次没用上</span> | **100% / 0 次** |
+| ASR | 字错误率 CER<br><span class="cpa-metric-note">语音转文字每 100 个字错几个，越低越好；在干净语音与两种真实通话信道音质下分别实测取平均</span> | **7.49%**（AISHELL-1 干净集 5.92% · AMR-NB 窄带 9.79% · AMR-WB 宽带 6.76%，三者平均） |
 | ASR | 专名字错误率 NE-CER<br><span class="cpa-metric-note">人名、地名这类专有词最容易听错，优化后错误率砍掉一半多</span> | **15.75% → 6.67%**（拼音吸附 + 热词偏置） |
 | 时延 | 首 token p50<br><span class="cpa-metric-note">对方说完话到 AI 开始回话的等待时间（中位数）</span> | **2948 → 447 ms**（−85%，前缀 KV 快照复用） |
 | 时延 | 单轮 p50<br><span class="cpa-metric-note">一问一答完整一轮的耗时（中位数）</span> | **4842 → 2423 ms**（−50%） |
@@ -244,9 +245,10 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
 
 | Dimension | Metric | Value |
 |---|---|---|
-| NLU | Word-level accuracy<br><span class="cpa-metric-note">How much of what the AI writes down matches the human answer key, character by character</span> | **96.31%** (597 turns / 198 calls; 93.80% on device with the shipped Q4_K_M quantization) |
-| NLU | Structural validity / fallback triggers<br><span class="cpa-metric-note">Output format never broke; the safety-net repair never had to fire</span> | **100% / 0** |
-| ASR | CER, weighted<br><span class="cpa-metric-note">Out of every 100 characters transcribed, roughly how many are wrong — lower is better</span> | **6.29%** |
+| NLU | Word-level accuracy<br><span class="cpa-metric-note">Output JSON compared with human-labeled ground truth, field by field and character by character</span> | **96.31%** (597 turns / 198 calls; 93.80% on device with the shipped Q4_K_M quantization) |
+| NLU | Rendered-utterance consistency<br><span class="cpa-metric-note">Final replies rendered by the deterministic rule engine from the LLM's schema output — share that exactly matches the expected utterance</span> | **99.66%** |
+| NLU | Structural validity / fallback triggers<br><span class="cpa-metric-note">Schema validity of the output JSON — all parseable and well-formed; the fallback repair never fired</span> | **100% / 0** |
+| ASR | Character error rate (CER)<br><span class="cpa-metric-note">Out of every 100 characters transcribed, roughly how many are wrong — lower is better; averaged over clean speech and two real telephone-channel codecs</span> | **7.49%** (mean of AISHELL-1 clean 5.92% · AMR-NB narrowband 9.79% · AMR-WB wideband 6.76%) |
 | ASR | Named-entity CER<br><span class="cpa-metric-note">Names and places are the easiest to mishear; optimizations cut the error rate by more than half</span> | **15.75% → 6.67%** (pinyin snapping + hotword biasing) |
 | Latency | First-token p50<br><span class="cpa-metric-note">Median wait from the caller finishing speaking to the AI starting to answer</span> | **2948 → 447 ms** (−85%, prefix KV-snapshot reuse) |
 | Latency | Per-turn p50<br><span class="cpa-metric-note">Median time for one full ask-and-answer round</span> | **4842 → 2423 ms** (−50%) |
