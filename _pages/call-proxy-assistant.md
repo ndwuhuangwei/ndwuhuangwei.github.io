@@ -37,6 +37,16 @@ author_profile: false
 /* 语言可见性：默认（无 body 类，含 JS 被禁）显示中文；body.cpa-en 时显示英文 */
 body.cpa-en .cpa-zh-only { display: none !important; }
 body:not(.cpa-en) .cpa-en-only { display: none !important; }
+/* front-matter 标题不支持语言切换：隐藏主题渲染的 h1，正文内自绘双语标题（复用 page__title 类保持样式一致） */
+h1.page__title[itemprop="headline"] { display: none; }
+.page__content .cpa-title { margin-top: 0; }
+.cpa-metric-note {
+  display: block;
+  font-weight: normal;
+  font-size: 0.82em;
+  color: #90a4ae;
+  margin-top: 2px;
+}
 .cpa-chips { margin: 0.2em 0 1.4em; }
 .cpa-chip {
   display: inline-block;
@@ -143,6 +153,8 @@ body:not(.cpa-en) .cpa-en-only { display: none !important; }
 }
 </style>
 
+<h1 class="page__title cpa-title"><span class="cpa-zh-only">端侧智能通话代接系统「代接助手」</span><span class="cpa-en-only" lang="en">On-Device Call Answering Assistant</span></h1>
+
 <div class="cpa-topbar">
   <p class="cpa-back"><a href="/"><span class="cpa-zh-only">← 返回主页</span><span class="cpa-en-only" lang="en">← Back to Home</span></a></p>
   <div class="cpa-langswitch" role="group" aria-label="语言 / Language">
@@ -218,30 +230,30 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
 
 | 维度 | 指标 | 数值 |
 |---|---|---|
-| NLU | 逐字正确率 | **96.31%**（597 轮 / 198 通；Q4_K_M 量化出货件端侧实测 93.80%） |
-| NLU | 结构合法率 / 异常兜底 | **100% / 0 次** |
-| ASR | 字错误率 CER（加权） | **6.29%** |
-| ASR | 专名字错误率 NE-CER | **15.75% → 6.67%**（拼音吸附 + 热词偏置） |
-| 时延 | 首 token p50 | **2948 → 447 ms**（−85%，前缀 KV 快照复用） |
-| 时延 | 单轮 p50 | **4842 → 2423 ms**（−50%） |
-| 资源 | 通话中内存 PSS | **≈1.40 GB** |
-| 资源 | 通话中 CPU | **≈1.33 核**（整机 16.6%） |
-| 资源 | 模型总体积 | **≈590 MB**（LLM 529 + ASR 60 + 词典 0.5） |
-| 稳定性 | 满负荷热测 | **17 min 无降频**（Thermal Status 全程 NONE，CPU 峰 60.2 °C） |
+| NLU | 逐字正确率<br><span class="cpa-metric-note">AI 记下的关键信息与标准答案逐字比对，对上的比例</span> | **96.31%**（597 轮 / 198 通；Q4_K_M 量化出货件端侧实测 93.80%） |
+| NLU | 结构合法率 / 异常兜底<br><span class="cpa-metric-note">输出格式从没出过错，保底纠错机制一次都没用上</span> | **100% / 0 次** |
+| ASR | 字错误率 CER（加权）<br><span class="cpa-metric-note">语音转文字每 100 个字错几个，越低越好</span> | **6.29%** |
+| ASR | 专名字错误率 NE-CER<br><span class="cpa-metric-note">人名、地名这类专有词最容易听错，优化后错误率砍掉一半多</span> | **15.75% → 6.67%**（拼音吸附 + 热词偏置） |
+| 时延 | 首 token p50<br><span class="cpa-metric-note">对方说完话到 AI 开始回话的等待时间（中位数）</span> | **2948 → 447 ms**（−85%，前缀 KV 快照复用） |
+| 时延 | 单轮 p50<br><span class="cpa-metric-note">一问一答完整一轮的耗时（中位数）</span> | **4842 → 2423 ms**（−50%） |
+| 资源 | 通话中内存 PSS<br><span class="cpa-metric-note">通话时 App 实际占用的手机内存</span> | **≈1.40 GB** |
+| 资源 | 通话中 CPU<br><span class="cpa-metric-note">通话时占用的算力，约一又三分之一个核心</span> | **≈1.33 核**（整机 16.6%） |
+| 资源 | 模型总体积<br><span class="cpa-metric-note">随 App 装进手机的全部 AI 模型加起来的大小</span> | **≈590 MB**（LLM 529 + ASR 60 + 词典 0.5） |
+| 稳定性 | 满负荷热测<br><span class="cpa-metric-note">连续高强度跑 17 分钟，手机没有因过热降速</span> | **17 min 无降频**（Thermal Status 全程 NONE，CPU 峰 60.2 °C） |
 {: .cpa-zh-only}
 
 | Dimension | Metric | Value |
 |---|---|---|
-| NLU | Word-level accuracy | **96.31%** (597 turns / 198 calls; 93.80% on device with the shipped Q4_K_M quantization) |
-| NLU | Structural validity / fallback triggers | **100% / 0** |
-| ASR | CER, weighted | **6.29%** |
-| ASR | Named-entity CER | **15.75% → 6.67%** (pinyin snapping + hotword biasing) |
-| Latency | First-token p50 | **2948 → 447 ms** (−85%, prefix KV-snapshot reuse) |
-| Latency | Per-turn p50 | **4842 → 2423 ms** (−50%) |
-| Resources | In-call memory, PSS | **≈1.40 GB** |
-| Resources | In-call CPU | **≈1.33 cores** (16.6% of the whole device) |
-| Resources | Total model footprint | **≈590 MB** (LLM 529 + ASR 60 + lexicon 0.5) |
-| Stability | Full-load thermal test | **17 min with zero throttling** (Thermal Status NONE throughout, CPU peak 60.2 °C) |
+| NLU | Word-level accuracy<br><span class="cpa-metric-note">How much of what the AI writes down matches the human answer key, character by character</span> | **96.31%** (597 turns / 198 calls; 93.80% on device with the shipped Q4_K_M quantization) |
+| NLU | Structural validity / fallback triggers<br><span class="cpa-metric-note">Output format never broke; the safety-net repair never had to fire</span> | **100% / 0** |
+| ASR | CER, weighted<br><span class="cpa-metric-note">Out of every 100 characters transcribed, roughly how many are wrong — lower is better</span> | **6.29%** |
+| ASR | Named-entity CER<br><span class="cpa-metric-note">Names and places are the easiest to mishear; optimizations cut the error rate by more than half</span> | **15.75% → 6.67%** (pinyin snapping + hotword biasing) |
+| Latency | First-token p50<br><span class="cpa-metric-note">Median wait from the caller finishing speaking to the AI starting to answer</span> | **2948 → 447 ms** (−85%, prefix KV-snapshot reuse) |
+| Latency | Per-turn p50<br><span class="cpa-metric-note">Median time for one full ask-and-answer round</span> | **4842 → 2423 ms** (−50%) |
+| Resources | In-call memory, PSS<br><span class="cpa-metric-note">RAM the app actually occupies during a call</span> | **≈1.40 GB** |
+| Resources | In-call CPU<br><span class="cpa-metric-note">Compute used during a call — about one and a third cores</span> | **≈1.33 cores** (16.6% of the whole device) |
+| Resources | Total model footprint<br><span class="cpa-metric-note">Combined size of all AI models shipped inside the app</span> | **≈590 MB** (LLM 529 + ASR 60 + lexicon 0.5) |
+| Stability | Full-load thermal test<br><span class="cpa-metric-note">17 minutes flat out with no heat-induced slowdown</span> | **17 min with zero throttling** (Thermal Status NONE throughout, CPU peak 60.2 °C) |
 {: .cpa-en-only lang="en"}
 
 ## <span class="cpa-zh-only">整体介绍</span><span class="cpa-en-only" lang="en">App Overview</span>
