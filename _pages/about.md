@@ -37,6 +37,26 @@ Publication
 - [**CCF-A**] Tingchao Fan<sup>*</sup>, **Huangwei Wu**<sup>*</sup>, Meng Jin<sup>†</sup>, Tao Chen, Longfei Shangguan, Xinbing Wang, Chenghu Zhou. "[Towards Spatial Selection Transmission for Low-end IoT Devices with SpotSound](https://doi.org/10.1145/3570361.3592496)," **ACM MobiCom**, 2023. 
 
 
+Projects
+======
+
+<div style="display: flex; gap: 18px; align-items: flex-start; border: 1px solid #e1e4e8; border-radius: 10px; padding: 16px 18px; margin: 16px 0;">
+  <a href="/projects/call-proxy-assistant/" style="flex-shrink: 0;">
+    <img src="/images/callproxy/intro.jpg" alt="「代接助手」APP 主界面" style="width: 92px; border-radius: 8px; display: block;" loading="lazy">
+  </a>
+  <div>
+    <a href="/projects/call-proxy-assistant/" style="font-weight: bold;">On-Device Call Answering Assistant｜端侧智能通话代接系统「代接助手」</a>
+    <p style="margin: 6px 0 10px; font-size: 0.92em; line-height: 1.55;">一个跑在 6 GB 内存低端安卓机上的全离线通话代接 App。用「把无限动作空间压成有限选择」的设计，让 0.8B 的小模型在代接这件事上做到可靠。</p>
+    <div>
+      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">端侧</span>
+      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">全离线</span>
+      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">LLM</span>
+      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">ASR</span>
+    </div>
+  </div>
+</div>
+
+
 <div style="background-color: #f0f4f8; padding: 16px 20px; border-radius: 6px; margin: 20px 0;">
   <em>The art of systems research is crafting graceful trade-offs among competing objectives.</em>
 </div>
