@@ -48,6 +48,36 @@ h1.page__title[itemprop="headline"] { display: none; }
   font-size: 0.72em;
   color: #546e7a;
 }
+.rs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 1.2em 0 1.8em;
+}
+.rs-action {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid #263238;
+  border-radius: 8px;
+  font-size: 0.88em;
+  font-weight: 600;
+  text-decoration: none;
+}
+.rs-action-primary {
+  color: #fff !important;
+  background: #263238;
+}
+.rs-context {
+  border-left: 4px solid #1565c0;
+  background: #f5f9ff;
+  border-radius: 0 10px 10px 0;
+  padding: 16px 20px;
+  margin: 1em 0 1.8em;
+}
+.rs-context > :first-child,
+.rs-pending > :first-child { margin-top: 0; }
+.rs-context > :last-child,
+.rs-pending > :last-child { margin-bottom: 0; }
 .page__content .rs-intro {
   max-width: 880px;
   margin: 1.6em auto;
@@ -74,25 +104,9 @@ h1.page__title[itemprop="headline"] { display: none; }
   font-size: 0.92em;
   line-height: 1.6;
 }
-.rs-overview {
-  margin: 1.6em 0;
-}
-.rs-overview img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid #e1e4e8;
-  border-radius: 12px;
-  background: #fff;
-}
-.rs-overview figcaption {
-  font-size: 0.78em;
-  color: #607d8b;
-  margin-top: 8px;
-  line-height: 1.5;
-}
 .rs-langswitch button:focus-visible,
 .rs-back a:focus-visible,
+.rs-action:focus-visible,
 .rs-intro video:focus-visible {
   outline: 3px solid #1565c0;
   outline-offset: 3px;
@@ -113,82 +127,114 @@ h1.page__title[itemprop="headline"] { display: none; }
 </div>
 
 <div class="rs-chips">
-  <span class="rs-chip">Agent</span><span class="rs-chip">Workflow</span><span class="rs-chip">HITL</span><span class="rs-chip"><span class="rs-zh-only">可视化</span><span class="rs-en-only" lang="en">Visualization</span></span>
+  <span class="rs-chip">Multi-Agent</span><span class="rs-chip">Agentic RAG</span><span class="rs-chip">LangGraph</span><span class="rs-chip">HITL</span><span class="rs-chip">DeepSeek</span>
 </div>
 
 <div class="rs-zh-only" markdown="1">
-面向白皮书、科研综述等长篇报告，已上线网页端产品 **DIRC·Report Studio**。
+**Report Studio** 是 [DeepX 平台](https://deepx.acemap.cn/)面向科研综述、白皮书等长篇学术报告的智能体功能，目前正在服务真实学术合作内测。
 
-> 流程可预定义处走定制 Workflow；开放式讨论与成稿编辑处走 ReAct、Multi-Agent 与 Human-in-the-loop。用户给一个主题，系统产出带图表与可追溯引用的结构化报告。
+> 系统从研究主题出发，完成需求澄清、专家研讨、证据检索、逻辑规划、并行写作、图表与引用装配，并支持在关键节点由领域专家介入和修改。
 </div>
 
 <div class="rs-en-only" lang="en" markdown="1">
-A shipped web product — **DIRC·Report Studio** — for long-form reports such as white papers and literature reviews.
+**Report Studio** is the review-writing agent inside the [DeepX platform](https://deepx.acemap.cn/), built for literature reviews, white papers, and other long-form academic reports. It is currently being used in a real journal collaboration and internal pilot.
 
-> Custom workflow where the process can be predefined; ReAct, multi-agent orchestration, and human-in-the-loop where it cannot. Give it a topic; it returns a structured report with charts and traceable citations.
+> Starting from a research topic, it handles requirement clarification, expert deliberation, evidence retrieval, logic planning, parallel writing, figures, and citations, while keeping domain experts in control at critical gates.
 </div>
 
-## <span class="rs-zh-only">亮点</span><span class="rs-en-only" lang="en">Highlights</span>
+<div class="rs-actions">
+  <a class="rs-action rs-action-primary" href="https://deepx.acemap.cn/report-studio/" target="_blank" rel="noopener noreferrer"><span class="rs-zh-only">打开 Report Studio ↗</span><span class="rs-en-only" lang="en">Open Report Studio ↗</span></a>
+  <a class="rs-action" href="https://deepx.acemap.cn/" target="_blank" rel="noopener noreferrer"><span class="rs-zh-only">访问 DeepX 平台 ↗</span><span class="rs-en-only" lang="en">Visit DeepX Platform ↗</span></a>
+</div>
+
+## <span class="rs-zh-only">研发背景与合作内测</span><span class="rs-en-only" lang="en">R&amp;D Background &amp; Journal Pilot</span>
+
+<div class="rs-context rs-zh-only" markdown="1">
+《地球科学地平线》是面向人工智能时代新创办的地球与行星科学领域期刊，目标是识别未来方向、引领学科发展；创办前期将以邀请领域专家撰写综述论文为主。
+
+Report Studio 目前正与《地球科学地平线》开展综述智能体合作内测。双方依托真实文献数据库与 DeepSeek 系列模型，检验智能体能否真正帮助学科专家把综述写出来、写得好，并融入真实的研究写作流程。期刊方不仅愿意发表 AI 辅助完成的综述，也愿意推广这类工具，并欢迎作者将人机协同写作过程整理成文章。
+</div>
+
+<div class="rs-context rs-en-only" lang="en" markdown="1">
+**地球科学地平线** is a newly founded journal for Earth and planetary sciences in the AI era. It aims to identify future directions and help lead disciplinary development, beginning primarily with invited review articles from domain experts.
+
+Report Studio is now in a collaborative pilot with the journal. Backed by a real literature database and DeepSeek models, the pilot asks a practical question: can an agent genuinely help domain experts produce high-quality reviews and fit into a real research-writing workflow? The journal is open not only to publishing AI-assisted reviews, but also to promoting such tools and articles that document the human–AI writing process.
+</div>
+
+## <span class="rs-zh-only">技术亮点</span><span class="rs-en-only" lang="en">Technical Highlights</span>
 
 <div class="rs-zh-only" markdown="1">
-1. **先划自治边界，再谈能力。**<br>
-   依据各环节的任务不确定性划分 Agent 能自主做到哪一步。检索、分章写作、图表装配这类流程可预定义的环节，用定制 Workflow 做任务拆解、分阶段规划与工具调用；开放式讨论与成稿编辑则交给 ReAct 式工具循环、Multi-Agent 编排，并在关键闸门上留出 Human-in-the-loop。
+1. **Agent 编排与 Human-in-the-loop。**<br>
+   主链路由自研 DAG Workflow 驱动，包含拓扑校验、内容寻址 JSON Checkpoint 与断点恢复；开放环节使用 Multi-Agent 学术沙龙、ReAct 和原生 Function Calling，成稿后由 LangGraph 报告编辑 Agent 接管。需求问询、专家名单确认、逻辑拓扑编辑与计划审阅均保留 HITL 闸门。
 
-2. **主路径是可执行计划，不是一次生成。**<br>
-   意图澄清 → 证据装载 → 大纲规划与评审 → 分章写作与图表装配 → Markdown / PDF / DOCX。用户在意图确认与大纲评审两道闸门上可以多轮介入，后续生成跟着改，而不是生成完再从头重来。
+2. **真实文献库上的 Agentic RAG。**<br>
+   AceMap 学术文献库与用户知识库可独立或混合使用；通过 PyMuPDF、python-docx 等解析 PDF、DOCX、Markdown、TXT，并进行结构感知的上下文化分块。检索链采用 BM25 + BGE-M3 稠密向量、RRF 融合和 BGE Cross-Encoder 重排，并支持模型驱动的多轮定向检索、Tavily 联网搜索及显式降级。
 
-3. **交付的是完整网页产品。**<br>
-   会话可恢复、阶段进度可见、报告可下载。不是 notebook 里的 demo 脚本。
+3. **证据约束的规划、写作与引用。**<br>
+   Planner 将研究需求转换为可执行、可编辑的报告拓扑；结构化抽取为每条论断保留来源 ID、来源类型与混合语料出处。Writer 按证据分章写作，引用按正文首次出现排序并保留 DOI，同时用 Matplotlib、NetworkX、Squarify 生成数据驱动图表，降低“有结论、无出处”的风险。
+
+4. **面向长任务的生成工程。**<br>
+   DeepSeek 系列模型通过 OpenAI-compatible API 按阶段路由快/深思模型，并设模型降级、上下文预算与分层压缩。论文抽取采用自适应并发，独立章节并行写作；分阶段缓存、局部 Checkpoint 和恢复机制避免单点失败导致整份报告重跑。
+
+5. **从生成到修改、交付的产品闭环。**<br>
+   SQLite 持久化账户、会话与任务状态，用户知识库支持跨会话复用；可编辑预览和 LangGraph 编辑 Agent 通过 diff、修订号与写锁保护并发修改。产品提供中英双语界面、明暗主题，以及 Markdown / DOCX 导出，而不是停留在 notebook demo。
 </div>
 
 <div class="rs-en-only" lang="en" markdown="1">
-1. **Draw the autonomy boundary first.**<br>
-   How much the agent may decide on its own is fixed per stage, by how uncertain that stage is. Retrieval, section writing, and figure assembly follow a custom workflow — task decomposition, staged planning, tool calls. Open-ended discussion and manuscript editing use a ReAct tool loop and multi-agent orchestration, with human-in-the-loop at the gates that matter.
+1. **Agent orchestration with human control.**<br>
+   A custom DAG workflow drives the main path with topology validation, content-addressed JSON checkpoints, and recovery. Open-ended stages use a multi-agent academic salon, ReAct, and native function calling; a LangGraph report agent handles post-draft edits. HITL gates cover intake, expert-roster confirmation, editable logic topology, and plan review.
 
-2. **The main path is an executable plan, not one-shot generation.**<br>
-   Intake → evidence loading → outline planning and review → section writing and figure assembly → Markdown / PDF / DOCX. The user can intervene for multiple rounds at intent confirmation and outline review; later stages follow the revised plan instead of starting over.
+2. **Agentic RAG over real literature.**<br>
+   AceMap scholarly data and a user-owned corpus can be used separately or together. PyMuPDF and python-docx parse PDF, DOCX, Markdown, and TXT into structure-aware contextual chunks. Retrieval combines BM25, BGE-M3 dense embeddings, Reciprocal Rank Fusion (RRF), and a BGE Cross-Encoder reranker, with model-directed multi-round retrieval, Tavily web search, and explicit degradation.
 
-3. **What shipped is a complete web product.**<br>
-   Sessions resume, stage progress is visible, reports download. Not a notebook demo.
+3. **Evidence-grounded planning, writing, and citations.**<br>
+   The planner converts research intent into an executable, editable report topology. Structured extraction preserves source IDs, source types, and mixed-corpus provenance for claims. The writer works section by section from evidence, numbers citations by first appearance, retains DOI metadata, and builds data-driven figures with Matplotlib, NetworkX, and Squarify.
+
+4. **Engineering for long-running generation.**<br>
+   DeepSeek models are routed by stage through an OpenAI-compatible API with fast/reasoning modes, model fallback, context budgets, and layered compaction. Adaptive extraction concurrency, parallel section writing, staged caches, and partial checkpoints prevent a single failure from restarting the entire report.
+
+5. **A product loop from generation to revision and delivery.**<br>
+   SQLite persists accounts, sessions, and task state, while user corpora can be reused across sessions. Editable preview and the LangGraph editing agent protect concurrent changes with diffs, revision IDs, and write locks. The product includes Chinese/English UI, light/dark themes, and Markdown / DOCX export—not a notebook-only demo.
 </div>
 
 ## <span class="rs-zh-only">演示视频</span><span class="rs-en-only" lang="en">Demo</span>
 
 <div class="rs-zh-only" markdown="1">
-现有演示约 46 秒，覆盖已上线主流程：从一句话主题，经意图澄清、专家沙龙与逻辑规划，进入报告生成。
+现有视频是一段 **45.5 秒的早期流程片段**，只覆盖从创建任务，经需求澄清、专家沙龙与逻辑规划，到进入报告生成的前半段；它不是当前系统的完整能力清单。
 </div>
 
 <div class="rs-en-only" lang="en" markdown="1">
-The current walkthrough is about 46 seconds and covers the shipped main pipeline: a one-line topic, through intake, expert salon and logic planning, into report generation.
+This is a **45.5-second early workflow excerpt**. It covers only the first half of the journey—from task creation through intake, expert salon, and logic planning to the start of report generation. It is not a complete inventory of the current system.
 </div>
 
 <div class="rs-intro">
   <video controls preload="none" playsinline poster="/images/report-studio/intro.jpg" src="/papers/report-agent-intro.mp4" aria-label="Report Studio 演示视频 / demo video"></video>
-  <p class="rs-video-note"><span class="rs-zh-only">横屏 1920×1080 · 46″ · 22.0 MB · 点击播放才开始加载</span><span class="rs-en-only" lang="en">Landscape 1920×1080 · 46″ · 22.0 MB · nothing loads until you press play</span></p>
+  <p class="rs-video-note"><span class="rs-zh-only">横屏 1920×1080 · 45.5″ · 22.0 MB · 点击播放才开始加载</span><span class="rs-en-only" lang="en">Landscape 1920×1080 · 45.5″ · 22.0 MB · nothing loads until you press play</span></p>
 </div>
 
-<div class="rs-pending">
-  <span class="rs-zh-only"><strong>更多新功能待展示。</strong> 本视频只覆盖主流程。此后迭代的能力——包括用户知识库、成稿编辑 Agent、沙龙流程增强等——演示将另行补充，当前页暂不展开。</span>
-  <span class="rs-en-only" lang="en"><strong>More features awaiting a demo.</strong> This video covers the main pipeline only. Later capabilities — including the user knowledge base, a post-draft editing agent, and salon-flow upgrades — will be demonstrated separately; they are not shown on this page yet.</span>
+<div class="rs-pending rs-zh-only" markdown="1">
+**更多新功能待展示——视频尚未展示：**
+
+- 用户知识库、混合 RAG 与模型驱动的多轮检索；
+- 专家名单确认、智能跳过已回答问题，以及可编辑、可讨论的逻辑拓扑；
+- 完整章节并行生成、证据引用、数据图表与参考文献装配；
+- 报告完成后的 LangGraph 编辑 Agent；
+- Markdown / DOCX 导出与跨会话知识库复用。
+
+以上属于当前开发/合作内测能力，后续将补充分段演示。
 </div>
 
-## <span class="rs-zh-only">系统总览</span><span class="rs-en-only" lang="en">System Overview</span>
+<div class="rs-pending rs-en-only" lang="en" markdown="1">
+**More features await dedicated demos—this video does not yet show:**
 
-<div class="rs-zh-only" markdown="1">
-主流程按三阶段编排，并在意图确认、大纲评审两处设人工闸门。
+- the user knowledge base, hybrid RAG, and model-directed multi-round retrieval;
+- expert-roster confirmation, intelligent question skipping, and editable/discussable logic topology;
+- full parallel section generation, evidence citations, data figures, and reference assembly;
+- the post-draft LangGraph editing agent;
+- Markdown / DOCX export and cross-session corpus reuse.
+
+These are current development/collaborative-pilot capabilities. Focused walkthroughs will be added later.
 </div>
-
-<div class="rs-en-only" lang="en" markdown="1">
-The main pipeline is arranged in three stages, with human gates at intent confirmation and outline review.
-</div>
-
-<figure class="rs-overview">
-  <img src="/images/report-studio/overview.png" alt="Report Studio Agent system overview: Data Load, Planner, Writer" loading="lazy">
-  <figcaption>
-    <span class="rs-zh-only">取数 → 规划 → 写作。虚线框为人工确认闸门；写作阶段按可执行 DAG 跑抽取、分章写作、引用编号、图表装配与导出。</span>
-    <span class="rs-en-only" lang="en">Data load → planner → writer. Dashed boxes are human confirmation gates. The writer stage runs extraction, section writing, citation numbering, figure assembly and export over an executable DAG.</span>
-  </figcaption>
-</figure>
 
 <p class="rs-back"><a href="/"><span class="rs-zh-only">← 返回主页</span><span class="rs-en-only" lang="en">← Back to Home</span></a></p>
 
