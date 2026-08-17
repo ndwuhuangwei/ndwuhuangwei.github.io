@@ -186,36 +186,36 @@ Report Studio is now in a collaborative pilot with the journal. Backed by a real
 
 <div class="rs-zh-only" markdown="1">
 1. **Agent 编排与 Human-in-the-loop。**<br>
-   主链路由自研 DAG Workflow 驱动，包含拓扑校验、内容寻址 JSON Checkpoint 与断点恢复；开放环节使用 Multi-Agent 学术沙龙、ReAct 和原生 Function Calling，成稿后由 LangGraph 报告编辑 Agent 接管。需求问询、专家名单确认、逻辑拓扑编辑与计划审阅均保留 HITL 闸门。
+   主链路由自研 DAG Workflow 驱动，包含拓扑校验、内容寻址 JSON Checkpoint 与断点恢复；开放环节使用 Multi-Agent 学术沙龙、ReAct 和原生 Function Calling，成稿后由基于 LangGraph 架构开发的报告编辑 Agent 接管。需求问询、专家名单确认、逻辑拓扑编辑与计划审阅均保留 Human-in-the-loop (HITL) 闸门。
 
 2. **真实文献库上的 Agentic RAG。**<br>
-   AceMap 学术文献库与用户知识库可独立或混合使用；通过 PyMuPDF、python-docx 等解析 PDF、DOCX、Markdown、TXT，并进行结构感知的上下文化分块。检索链采用 BM25 + BGE-M3 稠密向量、RRF 融合和 BGE Cross-Encoder 重排，并支持模型驱动的多轮定向检索、Tavily 联网搜索及显式降级。
+   AceMap 学术文献库（[www.acemap.info](https://www.acemap.info/)）与用户知识库可独立或混合使用；通过 PyMuPDF、python-docx 等解析 PDF、DOCX、Markdown、TXT，并进行结构感知的上下文化分块。检索链采用 BM25 + BGE-M3 稠密向量、RRF 融合和 BGE Cross-Encoder 重排，并支持模型驱动的多轮定向检索和 Tavily 联网搜索。
 
 3. **证据约束的规划、写作与引用。**<br>
-   Planner 将研究需求转换为可执行、可编辑的报告拓扑；结构化抽取为每条论断保留来源 ID、来源类型与混合语料出处。Writer 按证据分章写作，引用按正文首次出现排序并保留 DOI，同时用 Matplotlib、NetworkX、Squarify 生成数据驱动图表，降低“有结论、无出处”的风险。
+   Planner 将研究需求转换为可执行、可编辑的报告拓扑；结构化抽取为每条论断保留来源 ID、来源类型与混合语料出处。Writer 按证据分章写作，引用按正文首次出现排序并保留 DOI，同时基于 Matplotlib、NetworkX、Squarify 构建 Agent 可调用的数据图表生成工具，降低“有结论、无出处”的风险。
 
 4. **面向长任务的生成工程。**<br>
-   DeepSeek 系列模型通过 OpenAI-compatible API 按阶段路由快/深思模型，并设模型降级、上下文预算与分层压缩。论文抽取采用自适应并发，独立章节并行写作；分阶段缓存、局部 Checkpoint 和恢复机制避免单点失败导致整份报告重跑。
+   DeepSeek 系列模型通过 OpenAI-compatible API 按阶段路由快/深思模型，并设模型降级、上下文预算与分层压缩。论文抽取采用自适应并发，独立章节并行写作；采用分阶段缓存、局部 Checkpoint 和恢复机制避免单点失败导致整份报告重跑。
 
 5. **从生成到修改、交付的产品闭环。**<br>
-   SQLite 持久化账户、会话与任务状态，用户知识库支持跨会话复用；可编辑预览和 LangGraph 编辑 Agent 通过 diff、修订号与写锁保护并发修改。产品提供中英双语界面、明暗主题，以及 Markdown / DOCX 导出，而不是停留在 notebook demo。
+   SQLite 持久化账户、会话与任务状态，用户知识库支持跨会话复用；用户可直接编辑报告预览，与此同时，编辑助手 Agent 通过 diff、修订号与写锁保护并发修改。产品提供中英双语界面、明暗主题，以及 Markdown / DOCX 导出，而不是停留在 notebook demo。
 </div>
 
 <div class="rs-en-only" lang="en" markdown="1">
 1. **Agent orchestration with human control.**<br>
-   A custom DAG workflow drives the main path with topology validation, content-addressed JSON checkpoints, and recovery. Open-ended stages use a multi-agent academic salon, ReAct, and native function calling; a LangGraph report agent handles post-draft edits. HITL gates cover intake, expert-roster confirmation, editable logic topology, and plan review.
+   A custom DAG workflow drives the main path with topology validation, content-addressed JSON checkpoints, and recovery. Open-ended stages use a multi-agent academic salon, ReAct, and native function calling; a report-editing agent built on LangGraph handles post-draft edits. Human-in-the-loop (HITL) gates cover intake, expert-roster confirmation, editable logic topology, and plan review.
 
 2. **Agentic RAG over real literature.**<br>
-   AceMap scholarly data and a user-owned corpus can be used separately or together. PyMuPDF and python-docx parse PDF, DOCX, Markdown, and TXT into structure-aware contextual chunks. Retrieval combines BM25, BGE-M3 dense embeddings, Reciprocal Rank Fusion (RRF), and a BGE Cross-Encoder reranker, with model-directed multi-round retrieval, Tavily web search, and explicit degradation.
+   The AceMap scholarly database ([www.acemap.info](https://www.acemap.info/)) and a user-owned corpus can be used separately or together. PyMuPDF and python-docx parse PDF, DOCX, Markdown, and TXT into structure-aware contextual chunks. Retrieval combines BM25, BGE-M3 dense embeddings, Reciprocal Rank Fusion (RRF), and a BGE Cross-Encoder reranker, with model-directed multi-round retrieval and Tavily web search.
 
 3. **Evidence-grounded planning, writing, and citations.**<br>
-   The planner converts research intent into an executable, editable report topology. Structured extraction preserves source IDs, source types, and mixed-corpus provenance for claims. The writer works section by section from evidence, numbers citations by first appearance, retains DOI metadata, and builds data-driven figures with Matplotlib, NetworkX, and Squarify.
+   The planner converts research intent into an executable, editable report topology. Structured extraction preserves source IDs, source types, and mixed-corpus provenance for claims. The writer works section by section from evidence, numbers citations by first appearance, retains DOI metadata, and builds agent-callable chart-generation tools with Matplotlib, NetworkX, and Squarify to place data-driven figures in the report.
 
 4. **Engineering for long-running generation.**<br>
-   DeepSeek models are routed by stage through an OpenAI-compatible API with fast/reasoning modes, model fallback, context budgets, and layered compaction. Adaptive extraction concurrency, parallel section writing, staged caches, and partial checkpoints prevent a single failure from restarting the entire report.
+   DeepSeek models are routed by stage through an OpenAI-compatible API with fast/reasoning modes, model fallback, context budgets, and layered compaction. The pipeline uses adaptive extraction concurrency, parallel section writing, staged caches, partial checkpoints, and recovery so that a single failure does not restart the entire report.
 
 5. **A product loop from generation to revision and delivery.**<br>
-   SQLite persists accounts, sessions, and task state, while user corpora can be reused across sessions. Editable preview and the LangGraph editing agent protect concurrent changes with diffs, revision IDs, and write locks. The product includes Chinese/English UI, light/dark themes, and Markdown / DOCX export—not a notebook-only demo.
+   SQLite persists accounts, sessions, and task state, while user corpora can be reused across sessions. Users can edit the report preview directly, while an editing-assistant agent protects concurrent changes with diffs, revision IDs, and write locks. The product includes Chinese/English UI, light/dark themes, and Markdown / DOCX export—not a notebook-only demo.
 </div>
 
 ## <span class="rs-zh-only">演示视频</span><span class="rs-en-only" lang="en">Demo</span>

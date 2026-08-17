@@ -20,6 +20,14 @@ $required = @(
     'Tavily',
     'DeepSeek',
     'OpenAI-compatible',
+    'Human-in-the-loop (HITL)',
+    'https://www.acemap.info/',
+    '基于 LangGraph 架构开发',
+    '数据图表生成工具',
+    '编辑助手 Agent',
+    'built on LangGraph',
+    'chart-generation tools',
+    'editing-assistant agent',
     '45.5 秒',
     '早期流程片段',
     '视频尚未展示',
@@ -34,7 +42,12 @@ $forbidden = @(
     'Markdown / PDF / DOCX',
     '覆盖已上线主流程',
     'covers the shipped main pipeline',
-    'deepx.acemap.cn'
+    'deepx.acemap.cn',
+    '{XXX, 完整英文全称}',
+    '{给出链接}',
+    '和Tavily',
+    '同时， 编辑助手',
+    'explicit degradation'
 )
 
 $failures = [System.Collections.Generic.List[string]]::new()
