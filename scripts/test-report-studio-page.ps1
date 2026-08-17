@@ -4,8 +4,11 @@ $pagePath = Join-Path $PSScriptRoot '..\_pages\report-studio.md'
 $content = Get-Content -Raw -LiteralPath $pagePath
 
 $required = @(
-    'https://deepx.acemap.cn/',
-    'https://deepx.acemap.cn/report-studio/',
+    'https://deepx.acemap.info/',
+    'https://deepx.acemap.info/report-studio/',
+    '内测阶段实行邀请制',
+    '只有被邀请的专家才能使用',
+    'mailto:wuhuangwei@sjtu.edu.cn',
     '地球科学地平线',
     '合作内测',
     'LangGraph',
@@ -30,7 +33,8 @@ $forbidden = @(
     'overview.png',
     'Markdown / PDF / DOCX',
     '覆盖已上线主流程',
-    'covers the shipped main pipeline'
+    'covers the shipped main pipeline',
+    'deepx.acemap.cn'
 )
 
 $failures = [System.Collections.Generic.List[string]]::new()

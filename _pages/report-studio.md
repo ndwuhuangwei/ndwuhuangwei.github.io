@@ -51,8 +51,17 @@ h1.page__title[itemprop="headline"] { display: none; }
 .rs-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 10px;
   margin: 1.2em 0 1.8em;
+}
+.rs-primary-action {
+  display: flex;
+  flex: 1 1 380px;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
 }
 .rs-action {
   display: inline-block;
@@ -67,6 +76,14 @@ h1.page__title[itemprop="headline"] { display: none; }
   color: #fff !important;
   background: #263238;
 }
+.rs-access-note {
+  max-width: 520px;
+  margin: 0;
+  color: #607d8b;
+  font-size: 0.76em;
+  line-height: 1.55;
+}
+.rs-access-note a { font-weight: 600; }
 .rs-context {
   border-left: 4px solid #1565c0;
   background: #f5f9ff;
@@ -107,6 +124,7 @@ h1.page__title[itemprop="headline"] { display: none; }
 .rs-langswitch button:focus-visible,
 .rs-back a:focus-visible,
 .rs-action:focus-visible,
+.rs-access-note a:focus-visible,
 .rs-intro video:focus-visible {
   outline: 3px solid #1565c0;
   outline-offset: 3px;
@@ -131,20 +149,23 @@ h1.page__title[itemprop="headline"] { display: none; }
 </div>
 
 <div class="rs-zh-only" markdown="1">
-**Report Studio** 是 [DeepX 平台](https://deepx.acemap.cn/)面向科研综述、白皮书等长篇学术报告的智能体功能，目前正在服务真实学术合作内测。
+**Report Studio** 是 [DeepX 平台](https://deepx.acemap.info/)面向科研综述、白皮书等长篇学术报告的智能体功能，目前正在服务真实学术合作内测。
 
 > 系统从研究主题出发，完成需求澄清、专家研讨、证据检索、逻辑规划、并行写作、图表与引用装配，并支持在关键节点由领域专家介入和修改。
 </div>
 
 <div class="rs-en-only" lang="en" markdown="1">
-**Report Studio** is the review-writing agent inside the [DeepX platform](https://deepx.acemap.cn/), built for literature reviews, white papers, and other long-form academic reports. It is currently being used in a real journal collaboration and internal pilot.
+**Report Studio** is the review-writing agent inside the [DeepX platform](https://deepx.acemap.info/), built for literature reviews, white papers, and other long-form academic reports. It is currently being used in a real journal collaboration and internal pilot.
 
 > Starting from a research topic, it handles requirement clarification, expert deliberation, evidence retrieval, logic planning, parallel writing, figures, and citations, while keeping domain experts in control at critical gates.
 </div>
 
 <div class="rs-actions">
-  <a class="rs-action rs-action-primary" href="https://deepx.acemap.cn/report-studio/" target="_blank" rel="noopener noreferrer"><span class="rs-zh-only">打开 Report Studio ↗</span><span class="rs-en-only" lang="en">Open Report Studio ↗</span></a>
-  <a class="rs-action" href="https://deepx.acemap.cn/" target="_blank" rel="noopener noreferrer"><span class="rs-zh-only">访问 DeepX 平台 ↗</span><span class="rs-en-only" lang="en">Visit DeepX Platform ↗</span></a>
+  <div class="rs-primary-action">
+    <a class="rs-action rs-action-primary" href="https://deepx.acemap.info/report-studio/" target="_blank" rel="noopener noreferrer"><span class="rs-zh-only">打开 Report Studio ↗</span><span class="rs-en-only" lang="en">Open Report Studio ↗</span></a>
+    <p class="rs-access-note"><span class="rs-zh-only">内测阶段实行邀请制，只有被邀请的专家才能使用；如想试用，请<a href="mailto:wuhuangwei@sjtu.edu.cn?subject=Report%20Studio%20Trial%20Request">联系 Huangwei</a>（wuhuangwei@sjtu.edu.cn）。</span><span class="rs-en-only" lang="en">The pilot is invitation-only and currently limited to invited experts. To request access, <a href="mailto:wuhuangwei@sjtu.edu.cn?subject=Report%20Studio%20Trial%20Request">email Huangwei</a> (wuhuangwei@sjtu.edu.cn).</span></p>
+  </div>
+  <a class="rs-action" href="https://deepx.acemap.info/" target="_blank" rel="noopener noreferrer"><span class="rs-zh-only">访问 DeepX 平台 ↗</span><span class="rs-en-only" lang="en">Visit DeepX Platform ↗</span></a>
 </div>
 
 ## <span class="rs-zh-only">研发背景与合作内测</span><span class="rs-en-only" lang="en">R&amp;D Background &amp; Journal Pilot</span>
