@@ -28,8 +28,9 @@ $required = @(
     'built on LangGraph',
     'chart-generation tools',
     'editing-assistant agent',
-    '45.5 秒',
     '早期流程片段',
+    '以下展示一段早期流程片段，只覆盖从创建任务，经需求澄清、专家沙龙与逻辑规划，到进入报告生成的前半段；新功能的演示视频将陆续放出。',
+    'The following is an early workflow excerpt. It covers only the first half of the journey—from task creation through requirement clarification, expert salon, and logic planning to the start of report generation. Walkthroughs of new features will be released progressively.',
     '视频尚未展示',
     'Markdown / DOCX'
 )
@@ -47,7 +48,9 @@ $forbidden = @(
     '{给出链接}',
     '和Tavily',
     '同时， 编辑助手',
-    'explicit degradation'
+    'explicit degradation',
+    '现有视频是一段 **45.5 秒的早期流程片段**',
+    'This is a **45.5-second early workflow excerpt**'
 )
 
 $failures = [System.Collections.Generic.List[string]]::new()

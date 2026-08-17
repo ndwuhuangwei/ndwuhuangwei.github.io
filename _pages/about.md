@@ -42,7 +42,7 @@ Projects
 
 <div style="display: flex; gap: 18px; align-items: flex-start; border: 1px solid #e1e4e8; border-radius: 10px; padding: 16px 18px; margin: 16px 0;">
   <a href="/projects/call-proxy-assistant/" style="flex-shrink: 0;">
-    <img src="/images/callproxy/intro.jpg" alt="Call-answering assistant app home screen" style="width: 92px; border-radius: 8px; display: block;" loading="lazy">
+    <img src="/images/callproxy/project-cover-v1.webp" alt="Editorial illustration of an on-device call-answering system" style="width: 168px; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; display: block;" loading="lazy">
   </a>
   <div>
     <a href="/projects/call-proxy-assistant/" style="font-weight: bold;">On-Device Call Answering Assistant</a>
@@ -58,7 +58,7 @@ Projects
 
 <div style="display: flex; gap: 18px; align-items: flex-start; border: 1px solid #e1e4e8; border-radius: 10px; padding: 16px 18px; margin: 16px 0;">
   <a href="/projects/report-studio/" style="flex-shrink: 0;">
-    <img src="/images/report-studio/intro.jpg" alt="DIRC Report Studio landing screen" style="width: 200px; border-radius: 8px; display: block;" loading="lazy">
+    <img src="/images/report-studio/project-cover-v1.webp" alt="Editorial illustration of Report Studio research orchestration" style="width: 168px; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; display: block;" loading="lazy">
   </a>
   <div>
     <a href="/projects/report-studio/" style="font-weight: bold;">Deep Research Report Agent</a>

@@ -221,11 +221,11 @@ Report Studio is now in a collaborative pilot with the journal. Backed by a real
 ## <span class="rs-zh-only">演示视频</span><span class="rs-en-only" lang="en">Demo</span>
 
 <div class="rs-zh-only" markdown="1">
-现有视频是一段 **45.5 秒的早期流程片段**，只覆盖从创建任务，经需求澄清、专家沙龙与逻辑规划，到进入报告生成的前半段；它不是当前系统的完整能力清单。
+以下展示一段早期流程片段，只覆盖从创建任务，经需求澄清、专家沙龙与逻辑规划，到进入报告生成的前半段；新功能的演示视频将陆续放出。
 </div>
 
 <div class="rs-en-only" lang="en" markdown="1">
-This is a **45.5-second early workflow excerpt**. It covers only the first half of the journey—from task creation through intake, expert salon, and logic planning to the start of report generation. It is not a complete inventory of the current system.
+The following is an early workflow excerpt. It covers only the first half of the journey—from task creation through requirement clarification, expert salon, and logic planning to the start of report generation. Walkthroughs of new features will be released progressively.
 </div>
 
 <div class="rs-intro">
