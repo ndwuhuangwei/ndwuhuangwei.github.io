@@ -56,6 +56,22 @@ Projects
   </div>
 </div>
 
+<div style="display: flex; gap: 18px; align-items: flex-start; border: 1px solid #e1e4e8; border-radius: 10px; padding: 16px 18px; margin: 16px 0;">
+  <a href="/projects/report-studio/" style="flex-shrink: 0;">
+    <img src="/images/report-studio/intro.jpg" alt="DIRC Report Studio landing screen" style="width: 200px; border-radius: 8px; display: block;" loading="lazy">
+  </a>
+  <div>
+    <a href="/projects/report-studio/" style="font-weight: bold;">Deep Research Report Agent</a>
+    <p style="margin: 6px 0 10px; font-size: 0.92em; line-height: 1.55;">A web-based agent for white papers and literature reviews. Custom workflow where the process is known; ReAct, multi-agent orchestration, and human-in-the-loop where it is not.</p>
+    <div>
+      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">Agent</span>
+      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">Workflow</span>
+      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">HITL</span>
+      <span style="display: inline-block; padding: 1px 10px; margin-right: 6px; border: 1px solid #d0d7de; border-radius: 999px; font-size: 0.72em; color: #57606a;">Visualization</span>
+    </div>
+  </div>
+</div>
+
 
 <div style="background-color: #f0f4f8; padding: 16px 20px; border-radius: 6px; margin: 20px 0;">
   <em>The art of systems research is crafting graceful trade-offs among competing objectives.</em>
