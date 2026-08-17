@@ -40,6 +40,22 @@ if ([regex]::Matches($content, [regex]::Escape($uniformStyle)).Count -ne 2) {
     $failures.Add('Both project covers must use the same 168px-wide 3:2 crop.')
 }
 
+if ([regex]::Matches($content, 'class="project-card"').Count -ne 2) {
+    $failures.Add('Both homepage projects must use the responsive project-card class.')
+}
+
+foreach ($responsiveRule in @(
+    '@media (max-width: 600px)',
+    'flex-direction: column;',
+    '.project-card > a',
+    '.project-card img',
+    'width: 100% !important;'
+)) {
+    if (-not $content.Contains($responsiveRule)) {
+        $failures.Add("Missing mobile project-card rule: $responsiveRule")
+    }
+}
+
 if ($failures.Count -gt 0) {
     $failures | ForEach-Object { Write-Error $_ -ErrorAction Continue }
     exit 1

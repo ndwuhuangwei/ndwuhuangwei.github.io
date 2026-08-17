@@ -8,6 +8,14 @@ redirect_from:
   - /about.html
 ---
 
+<style>
+@media (max-width: 600px) {
+  .project-card { flex-direction: column; }
+  .project-card > a { width: 100%; }
+  .project-card img { width: 100% !important; }
+}
+</style>
+
 I am currently a Ph.D. candidate at Shanghai Jiao Tong University, advised by Prof. [Meng Jin](https://yume-sjtu.github.io/). 
 
 My research focuses on **pushing the limits of resource-constrained intelligence** by building acoustic-empowered systems for mobile/low-end devices to enable novel applications
@@ -40,7 +48,7 @@ Publication
 Projects
 ======
 
-<div style="display: flex; gap: 18px; align-items: flex-start; border: 1px solid #e1e4e8; border-radius: 10px; padding: 16px 18px; margin: 16px 0;">
+<div class="project-card" style="display: flex; gap: 18px; align-items: flex-start; border: 1px solid #e1e4e8; border-radius: 10px; padding: 16px 18px; margin: 16px 0;">
   <a href="/projects/call-proxy-assistant/" style="flex-shrink: 0;">
     <img src="/images/callproxy/project-cover-v1.webp" alt="Editorial illustration of an on-device call-answering system" style="width: 168px; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; display: block;" loading="lazy">
   </a>
@@ -56,7 +64,7 @@ Projects
   </div>
 </div>
 
-<div style="display: flex; gap: 18px; align-items: flex-start; border: 1px solid #e1e4e8; border-radius: 10px; padding: 16px 18px; margin: 16px 0;">
+<div class="project-card" style="display: flex; gap: 18px; align-items: flex-start; border: 1px solid #e1e4e8; border-radius: 10px; padding: 16px 18px; margin: 16px 0;">
   <a href="/projects/report-studio/" style="flex-shrink: 0;">
     <img src="/images/report-studio/project-cover-v1.webp" alt="Editorial illustration of Report Studio research orchestration" style="width: 168px; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; display: block;" loading="lazy">
   </a>
