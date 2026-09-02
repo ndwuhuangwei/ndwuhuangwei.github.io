@@ -1,5 +1,5 @@
 ---
-title: "Deep Research Report Agent｜深度报告生成智能体系统"
+title: "Deep Research Report Agent (DeepX - Report Studio)｜深度报告生成智能体系统「DeepX - Report Studio」"
 permalink: /projects/report-studio/
 author_profile: false
 ---
@@ -144,7 +144,7 @@ h1.page__title[itemprop="headline"] { display: none; }
 }
 </style>
 
-<h1 class="page__title rs-title"><span class="rs-zh-only">深度报告生成智能体系统「DeepX - Report Studio」</span><span class="rs-en-only" lang="en">Deep Research Report Agent</span></h1>
+<h1 class="page__title rs-title"><span class="rs-zh-only">深度报告生成智能体系统「DeepX - Report Studio」</span><span class="rs-en-only" lang="en">Deep Research Report Agent (DeepX - Report Studio)</span></h1>
 
 <div class="rs-topbar">
   <p class="rs-back"><a href="/"><span class="rs-zh-only">← 返回主页</span><span class="rs-en-only" lang="en">← Back to Home</span></a></p>

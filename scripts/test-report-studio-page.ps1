@@ -27,6 +27,8 @@ $required = @(
     'chart-generation tools',
     'editing-assistant agent',
     'DeepX - Report Studio',
+    '深度报告生成智能体系统「DeepX - Report Studio」',
+    'Deep Research Report Agent (DeepX - Report Studio)',
     'DIRC',
     '上海交通大学数据智能研究所',
     'Data Intelligence Research Center at Shanghai Jiao Tong University',
