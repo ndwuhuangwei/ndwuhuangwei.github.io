@@ -188,16 +188,16 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
    不在旗舰机上开发再理论外推。内存驻留、线程调度、热稳定、上下文预算，每一项工程决策都基于低端机上的实际测试。
 
 3. **把 0.8B 钉在「观察者」位置。**<br>
-   实测划出小模型的可靠域：自由生成不可靠、提示工程救不动，但结构化的状态观察可以靠微调变可靠。生成交给模板，业务规范内化进权重。同一评测集上，微调后的 0.8B **在全部七项指标上都大幅超过同族 397B 旗舰** —— 而这不是因为旗舰笨：我们把契约校验器强制的每一条规则、连同遵守它所需的全部信息都写进提示词，397B 的契约合规率升到 **92.81%**，但剩下的违约里绝大多数是**提示已明写「本轮无字段可写」却照写不误**；挂上语法约束的 0.8B 则是 **522/522 全过**。把规则说清楚，和让规则不可能被违反，是两件事。
+   实测划出小模型的可靠域：自由生成不可靠、提示工程救不动，但结构化的状态观察可以靠微调变可靠。生成交给模板，业务规范内化进权重。同一评测集上，微调后的 0.8B **在垂直任务精度上大幅超过同族 397B 旗舰**。
 
 4. **三条正交的延迟优化，不加硬件、不换更小的模型、不牺牲精度。**<br>
    *提前算* —— system prompt 作为静态前缀，在来电者说话的窗口内完成预填（前缀 KV 快照复用）；<br>
-   *少算* —— LLM 只输出本轮变化的schema字段（稀疏增量），解码长度大幅缩短；<br>
+   *少算* —— LLM 只输出本轮变化的 schema 字段（稀疏增量），解码长度大幅缩短；<br>
    *不白算* —— GBNF 语法约束让每个生成 token 都落在合法空间，无效输出在解码层就不存在。<br>
    实测：首 token p50 **2948 → 447 ms（−85%）**，单轮 p50 **4842 → 2423 ms（−50%）**。
 
 5. **交付的是完整产品。**<br>
-   授权引导 → 自动代接 → 清晰记录（摘要 / 整通录音 / 逐句转写）→ 通知留痕（代接、拦截、转接均入系统消息列表）。代接边界由机主在接起之前划定：生效时段、接管时机、白名单、黑名单，判定顺序黑名单 → 白名单 → 时段 → 时机（按人设的例外压过按时间设的默认）。这一层是纯确定性逻辑，不过 ASR、不过 LLM —— 模型看到任何东西之前就已裁决完毕。产品判断：代接的信任来自可核查 —— 每通电话留下完整证据，用户才敢把电话交出去。
+   授权引导 → 自动代接 → 清晰记录（摘要 / 整通录音 / 逐句转写）→ 通知留痕（代接、拦截、转接均入系统消息列表）。代接边界由机主在接起之前划定：生效时段、接管时机、白名单、黑名单。产品判断：代接的信任来自可核查 —— 每通电话留下完整证据，用户才敢把电话交出去。
 </div>
 
 <div class="cpa-en-only" lang="en" markdown="1">
@@ -208,7 +208,7 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
    No developing on a flagship and extrapolating on paper. Memory residency, thread scheduling, thermal stability, context budget — every engineering decision rests on measurements taken on a low-end phone.
 
 3. **Pinning the 0.8B model to the observer seat.**<br>
-   Measurements mapped the small model's reliable domain: free-form generation is unreliable and prompt engineering cannot rescue it, but structured state observation becomes reliable through fine-tuning. So generation is delegated to templates while business rules are baked into the weights. On the same evaluation set the fine-tuned 0.8B **beats its 397B flagship sibling on all seven metrics** — and not because the flagship is dim: we wrote every rule the contract validator enforces, together with all the information needed to obey them, into the prompt, and the 397B’s contract compliance rose to **92.81%** — yet most of the remaining violations are turns where the prompt said in so many words that no field may be written, and it wrote one anyway. The 0.8B under grammar constraints is **522/522**. Stating a rule clearly and making it impossible to break are two different things.
+   Measurements mapped the small model's reliable domain: free-form generation is unreliable and prompt engineering cannot rescue it, but structured state observation becomes reliable through fine-tuning. So generation is delegated to templates while business rules are baked into the weights. On the same evaluation set the fine-tuned 0.8B **far outperforms its 397B flagship sibling on the accuracy of this vertical task**.
 
 4. **Three orthogonal latency optimizations — no extra hardware, no smaller model, no accuracy loss.**<br>
    *Compute earlier* — the system prompt is a static prefix, prefilled while the caller is still speaking (prefix KV-snapshot reuse);<br>
@@ -217,7 +217,7 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
    Measured: first-token p50 **2948 → 447 ms (−85%)**, per-turn p50 **4842 → 2423 ms (−50%)**.
 
 5. **What ships is a complete product.**<br>
-   Permission onboarding → automatic answering → clear records (summary / full recording / per-utterance transcript) → a notification trail (answered, blocked and transferred calls all enter the system notification list). The owner draws the line before a call is ever picked up: active hours, takeover timing, allowlist, blocklist — evaluated blocklist → allowlist → hours → timing, so an exception set per person overrides a default set per clock. That layer is pure deterministic logic; it touches neither ASR nor the LLM, and has already decided before the model sees anything. The product judgment: trust in call answering comes from verifiability — only when every call leaves complete evidence do users dare hand their phone line over.
+   Permission onboarding → automatic answering → clear records (summary / full recording / per-utterance transcript) → a notification trail (answered, blocked and transferred calls all enter the system notification list). The owner draws the line before a call is ever picked up: active hours, takeover timing, allowlist, blocklist. The product judgment: trust in call answering comes from verifiability — only when every call leaves complete evidence do users dare hand their phone line over.
 </div>
 
 ### <span class="cpa-zh-only">关键指标</span><span class="cpa-en-only" lang="en">Key Numbers</span>
@@ -229,57 +229,47 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
 {: .cpa-en-only lang="en"}
 
 <div class="cpa-zh-only" markdown="1">
-**NLU 精度：三条路线对照**
+**NLU 精度：三条路线对照（使用 Qwen3.5 系列 LLM）**
 </div>
 
 <div class="cpa-en-only" lang="en" markdown="1">
-**NLU accuracy: three approaches side by side**
+**NLU accuracy: three approaches side by side (Qwen3.5 family)**
 </div>
 
-| 指标 | 0.8B 微调（出货件） | 397B ＋完整说明书 | 0.8B 基座 ＋完整说明书 |
+| 指标 | 0.8B 微调模型 ＋ 精简 system prompt | 397B Baseline ＋ system prompt 加入完整 schema 说明书 | 0.8B Baseline ＋ system prompt 加入完整 schema 说明书 |
 |---|---|---|---|
 | **Schema validity · JSON 可解析**<br><span class="cpa-metric-note">输出能不能被解析成 JSON</span> | **100%** | **100%** | 69.96% |
 | **Schema validity · 契约合规**<br><span class="cpa-metric-note">解析出来之后，字段、枚举、摘录是否全部符合约定</span> | **100%** | 92.81% | 17.28% |
 | **Active Intent Accuracy**<br><span class="cpa-metric-note">这通电话属于哪种场景，判断对了没有</span> | **98.12%** | 69.74% | 4.89% |
 | **Slot-Event F1**<br><span class="cpa-metric-note">从原话里抽出的每一条（字段值、待办事项、候选操作）准不准</span> | **0.9288** | 0.2224 | 0.0097 |
 | **Average Goal Accuracy**<br><span class="cpa-metric-note">该记下来的东西有没有记对，不追究多记</span> | **91.85%** | 34.04% | 0.84% |
-| **Joint Goal Accuracy**<br><span class="cpa-metric-note">整份累积记录一字不差才算对，多记一条即归零；本评测集地板 33.08%</span> | **84.21%** | 10.34% | 29.51% |
+| **Joint Goal Accuracy**<br><span class="cpa-metric-note">整份累积记录一字不差才算对，多记一条即归零</span> | **84.21%** | 10.34% | 29.51% |
 | **Sentence-level Frame Accuracy**<br><span class="cpa-metric-note">这一轮输出的 11 个字段全部正确的比例</span> | **90.23%** | 11.28% | 0.00% |
 | **回复正确率**<br><span class="cpa-metric-note">经规则引擎渲染后，来电者实际听到的那句话对不对</span> | **93.23%** | 60.15% | 0.75% |
 {: .cpa-zh-only}
 
-| Metric | 0.8B fine-tuned (shipped) | 397B + full spec sheet | 0.8B base + full spec sheet |
+| Metric | 0.8B fine-tuned + compact system prompt | 397B baseline + full schema spec in the system prompt | 0.8B baseline + full schema spec in the system prompt |
 |---|---|---|---|
 | **Schema validity · JSON parseable**<br><span class="cpa-metric-note">Can the output be parsed as JSON at all</span> | **100%** | **100%** | 69.96% |
 | **Schema validity · contract compliant**<br><span class="cpa-metric-note">Once parsed: are all fields, enum values and excerpts within the contract</span> | **100%** | 92.81% | 17.28% |
 | **Active Intent Accuracy**<br><span class="cpa-metric-note">Which scenario this call belongs to — was it identified correctly</span> | **98.12%** | 69.74% | 4.89% |
 | **Slot-Event F1**<br><span class="cpa-metric-note">Accuracy of each item extracted from what the caller said (field values, to-dos, candidate actions)</span> | **0.9288** | 0.2224 | 0.0097 |
 | **Average Goal Accuracy**<br><span class="cpa-metric-note">Of what should have been recorded, how much was recorded correctly — over-recording not penalized</span> | **91.85%** | 34.04% | 0.84% |
-| **Joint Goal Accuracy**<br><span class="cpa-metric-note">The whole accumulated record must match exactly; one spurious entry zeroes the turn. Floor on this set: 33.08%</span> | **84.21%** | 10.34% | 29.51% |
+| **Joint Goal Accuracy**<br><span class="cpa-metric-note">The whole accumulated record must match exactly; one spurious entry zeroes the turn</span> | **84.21%** | 10.34% | 29.51% |
 | **Sentence-level Frame Accuracy**<br><span class="cpa-metric-note">Share of turns where all 11 output fields are correct</span> | **90.23%** | 11.28% | 0.00% |
 | **Reply correctness**<br><span class="cpa-metric-note">After the rule engine renders it, is the sentence the caller actually hears correct</span> | **93.23%** | 60.15% | 0.75% |
 {: .cpa-en-only lang="en"}
 
-<div class="cpa-zh-only" markdown="1">
-冻结评测集 532 轮，free-running 口径（模型自己累积状态，不喂标准答案历史）。除 Joint Goal Accuracy 外各项地板均为 0。第一列为 OPPO K13x 真机实测。两条基线的提示词经三轮补完，已覆盖契约校验器强制的全部规则。
-</div>
-
-<div class="cpa-en-only" lang="en" markdown="1">
-Frozen evaluation set, 532 turns, free-running (the model accumulates its own state; no gold history is fed back). Every metric has a floor of 0 except Joint Goal Accuracy. The first column is measured on a real OPPO K13x. Both baselines’ prompts went through three rounds of completion and now cover every rule the contract validator enforces.
-</div>
-
 <details class="cpa-zh-only">
 <summary>口径说明</summary>
-<p><strong>为什么先判场景。</strong>代接不是一个通用问答任务。不同来电的观测重点不一样：外卖骑手要问的是放置地点，中介、保险要记的是转告事项，快递到楼下要处理的是到达通知。所以系统先判定这通电话属于哪种场景（放置协商 / 留言记录 / 到达通知 / 尚未确定），再按该场景激活对应的字段集 —— LLM 在这一轮只被允许写入属于该场景的字段，这个收窄由语法约束在解码层强制执行，结构上不可能越界。因此场景判断是上游闸门：判错了，后面整轮的字段空间就是错的。一个实测旁证 —— 在把「场景 → 允许字段」的对应表补进提示词之前，397B 的契约违规里 88% 都是「写了不属于该场景的字段」，且全部落在场景尚未锁定的轮次上；出货件在真正需要做场景决策的 158 轮上是 158/158 全对。</p>
-<p><strong>为什么 Joint Goal Accuracy 这一行，基座反而比 397B 高。</strong>这一行要求整份累积记录一字不差，惩罚的是「多说」—— 多记一条本不该记的待办，这一轮就归零。于是一个什么都不输出的模型，在「本来就没什么可记」的轮次上自动全对，能拿 33.08%；397B 会积极地填写内容，填错就扣，反而落到 10.34%。所以它必须和上一行 Average Goal Accuracy 一起看：后者只看该记的有没有记对、不追究多记，地板是 0。<strong>AGA 看漏没漏，JGA 看多没多。</strong></p>
-<p><strong>端侧口径。</strong>OPPO K13x（PKV110）实测，出货权重（SHA <code>b403184f…</code>，从出货 APK 中抽出、设备侧复核），与出货同源的 llama.cpp（提交 <code>32beb24</code>），逐轮动态 GBNF 约束解码，<code>n_ctx=2048 / n_threads=2 / temp=0</code>。推理经命令行工具驱动，未经出货 APK 的 JNI 封装层。</p>
+<p><strong>为什么先判场景。</strong>代接不是一个通用问答任务。不同来电的观测重点不一样：外卖骑手要问的是放置地点，中介、保险要记的是转告事项，快递到楼下要处理的是到达通知。所以系统先判定这通电话属于哪种场景（放置协商 / 留言记录 / 到达通知 / 尚未确定），再按该场景激活对应的 schema 模板 —— LLM 在这一轮只被允许写入属于该场景的字段，这个收窄由语法约束在解码层强制执行（GBNF），结构上不可能越界。因此场景判断是上游闸门：判错了，后面整轮的字段空间就是错的。</p>
+<p><strong>为什么 Joint Goal Accuracy 这一项，0.8B Baseline 反而比 397B Baseline 高。</strong>这一项要求整份累积记录一字不差，惩罚的是「多说」—— 多记一条本不该记的待办，这一轮就归零。于是它有个副作用：输出越少的模型，在「本来就没什么可记」的轮次上越容易蒙对。0.8B Baseline 大多数时候根本吐不出合规的结果，等于什么都没记，反而躲过了扣分；397B 会积极地填写内容，填错就扣。所以这一项必须和上一项 Average Goal Accuracy 一起看：后者只看该记的有没有记对，不追究多记。<strong>AGA 看漏没漏，JGA 看多没多。</strong></p>
 </details>
 
 <details class="cpa-en-only" lang="en">
 <summary>How these were measured</summary>
-<p><strong>Why the scenario is decided first.</strong> Answering a call is not a generic QA task. What matters differs by caller: a food-delivery rider needs a drop-off location, an agency or insurer leaves a message to relay, a parcel courier reports an arrival. So the system first decides which scenario the call belongs to (drop-off negotiation / message capture / arrival notice / not yet determined), then activates the field set for that scenario — within a turn the LLM may only write fields belonging to that scenario, and the narrowing is enforced by the grammar at the decoding layer, so going out of bounds is structurally impossible. Scenario identification is therefore an upstream gate: get it wrong and the whole turn's field space is wrong. One measured corroboration — before the scenario-to-field mapping was written into the prompt, 88% of the 397B's contract violations were "wrote a field that does not belong to this scenario", all of them on turns where the scenario was not yet locked; the shipped model is 158/158 on the turns that actually require a scenario decision.</p>
-<p><strong>Why the base model beats the 397B on Joint Goal Accuracy.</strong> That row demands the entire accumulated record match exactly, so it punishes over-recording — one to-do that should not have been written zeroes the turn. A model that outputs nothing at all is therefore automatically correct on turns where there was nothing to record, and scores 33.08%; the 397B fills things in eagerly and pays for every mistake, landing at 10.34%. Read it together with the row above: Average Goal Accuracy only asks whether what should have been recorded was recorded, with a floor of 0. <strong>AGA catches what was missed, JGA catches what was invented.</strong></p>
-<p><strong>On-device measurement.</strong> Measured on an OPPO K13x (PKV110) with the shipped weights (SHA <code>b403184f…</code>, extracted from the shipped APK and re-verified on the device), against a llama.cpp build from the same tree as the shipped one (commit <code>32beb24</code>), with per-turn dynamic GBNF constrained decoding, <code>n_ctx=2048 / n_threads=2 / temp=0</code>. Inference was driven through a command-line tool rather than the shipped APK's JNI wrapper.</p>
+<p><strong>Why the scenario is decided first.</strong> Answering a call is not a generic QA task. What matters differs by caller: a food-delivery rider needs a drop-off location, an agency or insurer leaves a message to relay, a parcel courier reports an arrival. So the system first decides which scenario the call belongs to (drop-off negotiation / message capture / arrival notice / not yet determined), then activates the schema template for that scenario — within a turn the LLM may only write fields belonging to that scenario, and the narrowing is enforced by the grammar at the decoding layer (GBNF), so going out of bounds is structurally impossible. Scenario identification is therefore an upstream gate: get it wrong and the whole turn’s field space is wrong.</p>
+<p><strong>Why the 0.8B baseline beats the 397B baseline on Joint Goal Accuracy.</strong> This metric demands that the entire accumulated record match exactly, so it punishes over-recording — one to-do that should not have been written zeroes the turn. That has a side effect: the less a model produces, the more often it is right by default on turns where there was nothing to record. The 0.8B baseline mostly fails to produce anything the contract accepts, which amounts to recording nothing and so dodges the penalty; the 397B fills things in eagerly and pays for every mistake. So read this metric together with the one above it: Average Goal Accuracy only asks whether what should have been recorded was recorded, and does not hold over-recording against the model. <strong>AGA catches what was missed, JGA catches what was invented.</strong></p>
 </details>
 
 <div class="cpa-zh-only" markdown="1">
@@ -339,11 +329,11 @@ Frozen evaluation set, 532 turns, free-running (the model accumulates its own st
 {: .cpa-en-only lang="en"}
 
 <div class="cpa-zh-only" markdown="1">
-同一份出货 APK、同一份剧本、同样 42 轮，不改一字不调参数。对照机的线程数按目标档钉死为 2，未用满其大核 —— 这一列不是那台机器的上限。
+因为 OPPO K13x 只用了两个线程，所以 Xiaomi 14 的线程数也钉死为 2，未用满其大核 —— 这一列不是 Xiaomi 14 的上限。
 </div>
 
 <div class="cpa-en-only" lang="en" markdown="1">
-The same shipped APK, the same script, the same 42 turns — not one line changed, not one parameter tuned. The reference phone runs with the thread count pinned to 2 for the target tier, so its big cores are not fully used: this column is not that phone’s ceiling.
+Because the OPPO K13x only uses two threads, the Xiaomi 14 is pinned to 2 threads as well and does not use its big cores fully — this column is not the Xiaomi 14’s ceiling.
 </div>
 ## <span class="cpa-zh-only">整体介绍</span><span class="cpa-en-only" lang="en">App Overview</span>
 
