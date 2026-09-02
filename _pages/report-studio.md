@@ -130,12 +130,6 @@ h1.page__title[itemprop="headline"] { display: none; }
   color: #607d8b;
   margin-top: 3px;
 }
-.rs-video-note {
-  text-align: center;
-  font-size: 0.75em;
-  color: #90a4ae;
-  margin-top: 8px;
-}
 .rs-langswitch button:focus-visible,
 .rs-back a:focus-visible,
 .rs-action:focus-visible,
@@ -150,7 +144,7 @@ h1.page__title[itemprop="headline"] { display: none; }
 }
 </style>
 
-<h1 class="page__title rs-title"><span class="rs-zh-only">深度报告生成智能体系统「Report Studio」</span><span class="rs-en-only" lang="en">Deep Research Report Agent</span></h1>
+<h1 class="page__title rs-title"><span class="rs-zh-only">深度报告生成智能体系统「DeepX - Report Studio」</span><span class="rs-en-only" lang="en">Deep Research Report Agent</span></h1>
 
 <div class="rs-topbar">
   <p class="rs-back"><a href="/"><span class="rs-zh-only">← 返回主页</span><span class="rs-en-only" lang="en">← Back to Home</span></a></p>
@@ -160,17 +154,17 @@ h1.page__title[itemprop="headline"] { display: none; }
 </div>
 
 <div class="rs-chips">
-  <span class="rs-chip">Multi-Agent</span><span class="rs-chip">Agentic RAG</span><span class="rs-chip">LangGraph</span><span class="rs-chip">HITL</span><span class="rs-chip">DeepSeek</span>
+  <span class="rs-chip">Multi-Agent</span><span class="rs-chip">Agentic RAG</span><span class="rs-chip">HITL</span>
 </div>
 
 <div class="rs-zh-only" markdown="1">
-**Report Studio** 是 [DeepX 平台](https://deepx.acemap.info/)面向科研综述、白皮书等长篇学术报告的智能体功能，目前正在服务真实学术合作内测。
+**DeepX - Report Studio** 是 DIRC（上海交通大学数据智能研究所）的 [DeepX 平台](https://deepx.acemap.info/)面向科研综述、白皮书等长篇学术报告的智能体功能，目前正在服务真实学术合作内测。
 
 > 系统从研究主题出发，完成需求澄清、专家研讨、证据检索、逻辑规划、并行写作、图表与引用装配，并支持在关键节点由领域专家介入和修改。
 </div>
 
 <div class="rs-en-only" lang="en" markdown="1">
-**Report Studio** is the review-writing agent inside the [DeepX platform](https://deepx.acemap.info/), built for literature reviews, white papers, and other long-form academic reports. It is currently being used in a real journal collaboration and internal pilot.
+**DeepX - Report Studio** is the review-writing agent inside the [DeepX platform](https://deepx.acemap.info/), built by DIRC (the Data Intelligence Research Center at Shanghai Jiao Tong University) for literature reviews, white papers, and other long-form academic reports. It is currently being used in a real journal collaboration and internal pilot.
 
 > Starting from a research topic, it handles requirement clarification, expert deliberation, evidence retrieval, logic planning, parallel writing, figures, and citations, while keeping domain experts in control at critical gates.
 </div>
@@ -188,59 +182,59 @@ h1.page__title[itemprop="headline"] { display: none; }
 <div class="rs-context rs-zh-only" markdown="1">
 《地球科学地平线》是面向人工智能时代新创办的地球与行星科学领域期刊，目标是识别未来方向、引领学科发展；创办前期将以邀请领域专家撰写综述论文为主。
 
-Report Studio 目前正与《地球科学地平线》开展综述智能体合作内测。双方依托真实文献数据库与 DeepSeek 系列模型，检验智能体能否真正帮助学科专家把综述写出来、写得好，并融入真实的研究写作流程。期刊方不仅愿意发表 AI 辅助完成的综述，也愿意推广这类工具，并欢迎作者将人机协同写作过程整理成文章。
+DIRC 目前正与《地球科学地平线》开展综述智能体合作内测。双方依托真实文献数据库，检验智能体能否真正帮助学科专家把综述写出来、写得好，并融入真实的研究写作流程。期刊方不仅愿意发表 AI 辅助完成的综述，也愿意推广这类工具，并欢迎作者将人机协同写作过程整理成文章。
 </div>
 
 <div class="rs-context rs-en-only" lang="en" markdown="1">
 **地球科学地平线** is a newly founded journal for Earth and planetary sciences in the AI era. It aims to identify future directions and help lead disciplinary development, beginning primarily with invited review articles from domain experts.
 
-Report Studio is now in a collaborative pilot with the journal. Backed by a real literature database and DeepSeek models, the pilot asks a practical question: can an agent genuinely help domain experts produce high-quality reviews and fit into a real research-writing workflow? The journal is open not only to publishing AI-assisted reviews, but also to promoting such tools and articles that document the human–AI writing process.
+DIRC is now in a collaborative pilot with the journal. Backed by a real literature database, the pilot asks a practical question: can an agent genuinely help domain experts produce high-quality reviews and fit into a real research-writing workflow? The journal is open not only to publishing AI-assisted reviews, but also to promoting such tools and articles that document the human–AI writing process.
 </div>
 
 ## <span class="rs-zh-only">技术亮点</span><span class="rs-en-only" lang="en">Technical Highlights</span>
 
 <div class="rs-zh-only" markdown="1">
 1. **Agent 编排与 Human-in-the-loop。**<br>
-   主链路由自研 DAG Workflow 驱动，包含拓扑校验、内容寻址 JSON Checkpoint 与断点恢复；开放环节使用 Multi-Agent 学术沙龙、ReAct 和原生 Function Calling，成稿后由基于 LangGraph 架构开发的报告编辑 Agent 接管。需求问询、专家名单确认、逻辑拓扑编辑与计划审阅均保留 Human-in-the-loop (HITL) 闸门。
+   主链路由自研 DAG Workflow 驱动；针对交叉学科报告进行了特别优化，通过 Multi-Agent 编排推出学术沙龙功能，由一批各自专注于某一学科视角的 Agent 组成集群，尽可能拓宽报告视野、丰富框架；成稿后由基于 LangGraph 架构开发的报告编辑 Agent 接管，用户提出修改意见，Agent 会进行 ReAct 式工具调用循环，对报告中的指定部分进行修改。需求问询、专家名单确认、逻辑拓扑编辑与计划审阅均保留 Human-in-the-loop (HITL) 闸门。
 
 2. **真实文献库上的 Agentic RAG。**<br>
-   AceMap 学术文献库（[www.acemap.info](https://www.acemap.info/)）与用户知识库可独立或混合使用；通过 PyMuPDF、python-docx 等解析 PDF、DOCX、Markdown、TXT，并进行结构感知的上下文化分块。检索链采用 BM25 + BGE-M3 稠密向量、RRF 融合和 BGE Cross-Encoder 重排，并支持模型驱动的多轮定向检索和 Tavily 联网搜索。
+   AceMap 学术文献库（[www.acemap.info](https://www.acemap.info/)）与用户知识库可独立或混合使用；支持上传 PDF 格式的文献或用户资料，并进行结构感知的上下文化分块。检索链采用 BM25 + BGE-M3 稠密向量、RRF 融合和 BGE Cross-Encoder 重排，并支持模型驱动的多轮定向检索和 Tavily 联网搜索。
 
 3. **证据约束的规划、写作与引用。**<br>
-   Planner 将研究需求转换为可执行、可编辑的报告拓扑；结构化抽取为每条论断保留来源 ID、来源类型与混合语料出处。Writer 按证据分章写作，引用按正文首次出现排序并保留 DOI，同时基于 Matplotlib、NetworkX、Squarify 构建 Agent 可调用的数据图表生成工具，降低“有结论、无出处”的风险。
+   一个 Planner 将研究需求转换为可执行、可编辑的报告拓扑；Agent 解析论文时做结构化抽取，为每条 Claim 保留来源 ID、来源类型与语料出处。Writer 按证据分章写作，引用按正文首次出现排序并保留 DOI，同时基于 Matplotlib、NetworkX、Squarify 构建 Agent 可调用的数据图表生成工具，降低“有结论、无出处”的幻觉风险。
 
 4. **面向长任务的生成工程。**<br>
-   DeepSeek 系列模型通过 OpenAI-compatible API 按阶段路由快/深思模型，并设模型降级、上下文预算与分层压缩。论文抽取采用自适应并发，独立章节并行写作；采用分阶段缓存、局部 Checkpoint 和恢复机制避免单点失败导致整份报告重跑。
+   设有完善的模型降级策略、上下文管理与分层压缩机制。论文抽取采用自适应并发（根据网络状况实时调整向 model provider 请求的并发调用数），独立章节并行写作；采用分阶段缓存、局部 Checkpoint 和恢复机制避免单点失败导致整份报告重跑。
 
 5. **从生成到修改、交付的产品闭环。**<br>
-   SQLite 持久化账户、会话与任务状态，用户知识库支持跨会话复用；用户可直接编辑报告预览，与此同时，编辑助手 Agent 通过 diff、修订号与写锁保护并发修改。产品提供中英双语界面、明暗主题，以及 Markdown / DOCX 导出，而不是停留在 notebook demo。
+   SQLite 持久化账户、会话与任务状态，同一个账号的用户知识库支持跨会话复用；用户可直接编辑报告预览，与此同时，编辑助手 Agent 可通过 diff、修订号与写锁保护并发修改。产品提供中英双语界面、明暗主题，以及 DOCX 导出。
 </div>
 
 <div class="rs-en-only" lang="en" markdown="1">
 1. **Agent orchestration with human control.**<br>
-   A custom DAG workflow drives the main path with topology validation, content-addressed JSON checkpoints, and recovery. Open-ended stages use a multi-agent academic salon, ReAct, and native function calling; a report-editing agent built on LangGraph handles post-draft edits. Human-in-the-loop (HITL) gates cover intake, expert-roster confirmation, editable logic topology, and plan review.
+   A custom DAG workflow drives the main path, with a specific optimization for interdisciplinary reports: multi-agent orchestration powers an academic salon in which a cluster of agents, each focused on one disciplinary perspective, widens the report's scope and enriches its framework. Once the draft is complete, a report-editing agent built on LangGraph takes over — the user asks for a change and the agent runs a ReAct-style tool-calling loop to revise the specified part of the report. Human-in-the-loop (HITL) gates cover intake, expert-roster confirmation, editable logic topology, and plan review.
 
 2. **Agentic RAG over real literature.**<br>
-   The AceMap scholarly database ([www.acemap.info](https://www.acemap.info/)) and a user-owned corpus can be used separately or together. PyMuPDF and python-docx parse PDF, DOCX, Markdown, and TXT into structure-aware contextual chunks. Retrieval combines BM25, BGE-M3 dense embeddings, Reciprocal Rank Fusion (RRF), and a BGE Cross-Encoder reranker, with model-directed multi-round retrieval and Tavily web search.
+   The AceMap scholarly database ([www.acemap.info](https://www.acemap.info/)) and a user-owned corpus can be used separately or together. Literature and user documents are uploaded as PDFs and split into structure-aware contextual chunks. Retrieval combines BM25, BGE-M3 dense embeddings, Reciprocal Rank Fusion (RRF), and a BGE Cross-Encoder reranker, with model-directed multi-round retrieval and Tavily web search.
 
 3. **Evidence-grounded planning, writing, and citations.**<br>
-   The planner converts research intent into an executable, editable report topology. Structured extraction preserves source IDs, source types, and mixed-corpus provenance for claims. The writer works section by section from evidence, numbers citations by first appearance, retains DOI metadata, and builds agent-callable chart-generation tools with Matplotlib, NetworkX, and Squarify to place data-driven figures in the report.
+   A planner converts research intent into an executable, editable report topology. When the agent parses a paper it performs structured extraction, preserving the source ID, source type, and corpus provenance behind every claim. The writer works section by section from evidence, numbers citations by first appearance, retains DOI metadata, and builds agent-callable chart-generation tools with Matplotlib, NetworkX, and Squarify to place data-driven figures in the report — lowering the risk of a hallucinated conclusion with no source behind it.
 
 4. **Engineering for long-running generation.**<br>
-   DeepSeek models are routed by stage through an OpenAI-compatible API with fast/reasoning modes, model fallback, context budgets, and layered compaction. The pipeline uses adaptive extraction concurrency, parallel section writing, staged caches, partial checkpoints, and recovery so that a single failure does not restart the entire report.
+   Model fallback, context management, and layered compaction are all in place. Paper extraction runs with adaptive concurrency — the number of parallel calls to the model provider is tuned in real time to network conditions — and independent sections are written in parallel; staged caches, partial checkpoints, and recovery keep a single failure from restarting the entire report.
 
 5. **A product loop from generation to revision and delivery.**<br>
-   SQLite persists accounts, sessions, and task state, while user corpora can be reused across sessions. Users can edit the report preview directly, while an editing-assistant agent protects concurrent changes with diffs, revision IDs, and write locks. The product includes Chinese/English UI, light/dark themes, and Markdown / DOCX export—not a notebook-only demo.
+   SQLite persists accounts, sessions, and task state, and a user corpus can be reused across sessions within the same account. Users can edit the report preview directly, while an editing-assistant agent protects concurrent changes with diffs, revision IDs, and write locks. The product includes a Chinese/English UI, light/dark themes, and DOCX export.
 </div>
 
 ## <span class="rs-zh-only">演示视频</span><span class="rs-en-only" lang="en">Demo</span>
 
 <div class="rs-zh-only" markdown="1">
-四段实录，按产品旅程排列：先备料（文献知识库），再澄清需求、开专家沙龙，然后审阅大纲并生成正文，最后是成稿后的编辑 Agent。中文字幕已烧录在画面里。
+四段实录，按用户使用时的 pipeline 先后顺序排列：先备料（文献知识库），再澄清需求、开专家沙龙，然后审阅大纲并生成正文，最后是成稿后的交互式 Agent 修订。中文字幕已烧录在画面里。
 </div>
 
 <div class="rs-en-only" lang="en" markdown="1">
-Four screen recordings, ordered along the product journey: preparing source material in the literature knowledge base, clarifying the request and convening the expert salon, reviewing the outline and generating the draft, and finally the post-draft editing agent. Chinese subtitles are burned into the picture.
+Four screen recordings, ordered by the pipeline a user actually walks through: preparing source material in the literature knowledge base, clarifying the request and convening the expert salon, reviewing the outline and generating the draft, and finally revising the finished draft interactively with the agent. Chinese subtitles are burned into the picture.
 </div>
 
 <div class="rs-grid">
@@ -277,8 +271,6 @@ Four screen recordings, ordered along the product journey: preparing source mate
     <video controls preload="none" playsinline poster="/images/report-studio/v1-agent.jpg" src="/files/report-studio/v1-agent.mp4" aria-label="Demo 4 视频：成稿后的编辑 Agent / Demo 4 video: post-draft editing agent"></video>
   </figure>
 </div>
-
-<p class="rs-video-note"><span class="rs-zh-only">四段均为 1440×900 · 中文字幕已烧录 · 点击播放才开始加载</span><span class="rs-en-only" lang="en">All four are 1440×900 · burned-in Chinese subtitles · nothing loads until you press play</span></p>
 
 <p class="rs-back"><a href="/"><span class="rs-zh-only">← 返回主页</span><span class="rs-en-only" lang="en">← Back to Home</span></a></p>
 

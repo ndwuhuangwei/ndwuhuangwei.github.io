@@ -18,8 +18,6 @@ $required = @(
     'RRF',
     'Cross-Encoder',
     'Tavily',
-    'DeepSeek',
-    'OpenAI-compatible',
     'Human-in-the-loop (HITL)',
     'https://www.acemap.info/',
     '基于 LangGraph 架构开发',
@@ -28,9 +26,12 @@ $required = @(
     'built on LangGraph',
     'chart-generation tools',
     'editing-assistant agent',
-    'Markdown / DOCX',
-    '四段实录，按产品旅程排列',
-    'Four screen recordings, ordered along the product journey',
+    'DeepX - Report Studio',
+    'DIRC',
+    '上海交通大学数据智能研究所',
+    'Data Intelligence Research Center at Shanghai Jiao Tong University',
+    '四段实录，按用户使用时的 pipeline 先后顺序排列',
+    'Four screen recordings, ordered by the pipeline a user actually walks through',
     '中文字幕已烧录',
     'Chinese subtitles are burned into the picture',
     'rs-grid',
@@ -73,7 +74,13 @@ $forbidden = @(
     '45.5',
     'rs-pending',
     '这四段尚未覆盖',
-    'Not yet covered by these four videos'
+    'Not yet covered by these four videos',
+    'Deepx',
+    'DeepSeek',
+    'rs-video-note',
+    '按产品旅程排列',
+    'ordered along the product journey',
+    'Markdown / DOCX'
 )
 
 $failures = [System.Collections.Generic.List[string]]::new()
