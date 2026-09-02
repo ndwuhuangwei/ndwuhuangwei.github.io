@@ -153,7 +153,7 @@ h1.page__title[itemprop="headline"] { display: none; }
 }
 </style>
 
-<h1 class="page__title cpa-title"><span class="cpa-zh-only">端侧智能通话代接系统「代接助手」</span><span class="cpa-en-only" lang="en">On-Device Call Answering Assistant</span></h1>
+<h1 class="page__title cpa-title"><span class="cpa-zh-only">端侧智能通话代接系统</span><span class="cpa-en-only" lang="en">On-Device Call Answering Assistant</span></h1>
 
 <div class="cpa-topbar">
   <p class="cpa-back"><a href="/"><span class="cpa-zh-only">← 返回主页</span><span class="cpa-en-only" lang="en">← Back to Home</span></a></p>
@@ -167,15 +167,15 @@ h1.page__title[itemprop="headline"] { display: none; }
 </div>
 
 <div class="cpa-zh-only" markdown="1">
-全链路离线：ASR → NLU → TTS 全部本地执行，**零联网**。实测机 **OPPO K13x 5G**（天玑 6300，6 GB RAM，Android 16）。
+全链路离线：ASR → NLU → TTS 全部本地执行，**零联网**。实测机 **OPPO K13x**（天玑 6300，6 GB RAM，Android 16，真正的“百元机”）。
 
-> 一个跑在 6 GB 内存低端安卓机上的全离线通话代接 App。用「把无限动作空间压成有限选择」的设计，让 0.8B 的小模型在代接这件事上做到可靠。
+> 把无限动作空间压成有限选择，让 0.8B 的小模型在代接这件事上做到可靠。
 </div>
 
 <div class="cpa-en-only" lang="en" markdown="1">
-Fully offline, end to end: ASR → NLU → TTS all run on device — **zero network access**. Benchmark device: **OPPO K13x 5G** (Dimensity 6300, 6 GB RAM, Android 16).
+Fully offline, end to end: ASR → NLU → TTS all run on device — **zero network access**. Benchmark device: **OPPO K13x** (Dimensity 6300, 6 GB RAM, Android 16 — a genuine budget phone, RMB 799 at launch).
 
-> A fully offline call-answering app that runs on a 6 GB entry-level Android phone. Its core design — compressing an unbounded action space into a finite set of choices — is what makes a 0.8B model reliable at taking calls.
+> Compressing an unbounded action space into a finite set of choices is what makes a 0.8B model reliable at taking calls.
 </div>
 
 ## <span class="cpa-zh-only">亮点</span><span class="cpa-en-only" lang="en">Highlights</span>
@@ -185,19 +185,19 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
    代接是机主的受托记录者，可靠性优先 —— AI 绝不替机主擅自做决策。据此把开放式通话压缩成有限动作空间：话术全部出自人工审定的模板闭集，LLM 无权自由生成回复；挂断、转接这类不可逆动作由确定性规则与状态机裁决。明确了「不做什么」，0.8B 这种量级的模型才能在「做什么」上做到可靠。
 
 2. **全部结论在真低端机上闭环。**<br>
-   不在旗舰机上开发再理论外推。内存驻留、线程调度、热稳定、上下文预算，每一项工程决策都在 6 GB 内存的 OPPO K13x 上实测定案。低端机上的结果是本系统的下限。
+   不在旗舰机上开发再理论外推。内存驻留、线程调度、热稳定、上下文预算，每一项工程决策都基于低端机上的实际测试。
 
 3. **把 0.8B 钉在「观察者」位置。**<br>
-   实测划出小模型的可靠域：自由生成不可靠、提示工程救不动，但结构化的状态观察可以靠微调变可靠。生成交给模板，业务规范内化进权重。微调后的 0.8B 在业务规范遵循上**反超同族 397B 旗舰**。
+   实测划出小模型的可靠域：自由生成不可靠、提示工程救不动，但结构化的状态观察可以靠微调变可靠。生成交给模板，业务规范内化进权重。同一评测集上，微调后的 0.8B **在全部七项指标上都大幅超过同族 397B 旗舰** —— 而这不是因为旗舰笨：我们把契约校验器强制的每一条规则、连同遵守它所需的全部信息都写进提示词，397B 的契约合规率升到 **92.81%**，但剩下的违约里绝大多数是**提示已明写「本轮无字段可写」却照写不误**；挂上语法约束的 0.8B 则是 **522/522 全过**。把规则说清楚，和让规则不可能被违反，是两件事。
 
 4. **三条正交的延迟优化，不加硬件、不换更小的模型、不牺牲精度。**<br>
-   *提前算* —— 系统提示作为静态前缀，在来电者说话的窗口内完成预填（前缀 KV 快照复用）；<br>
-   *少算* —— LLM 只输出本轮变化（稀疏增量），解码长度大幅缩短；<br>
+   *提前算* —— system prompt 作为静态前缀，在来电者说话的窗口内完成预填（前缀 KV 快照复用）；<br>
+   *少算* —— LLM 只输出本轮变化的schema字段（稀疏增量），解码长度大幅缩短；<br>
    *不白算* —— GBNF 语法约束让每个生成 token 都落在合法空间，无效输出在解码层就不存在。<br>
    实测：首 token p50 **2948 → 447 ms（−85%）**，单轮 p50 **4842 → 2423 ms（−50%）**。
 
-5. **交付的是完整产品，不是 demo。**<br>
-   授权引导 → 自动代接 → 清晰记录（摘要 / 整通录音 / 逐句转写）→ 通知留痕（代接、拦截、转接均入系统消息列表）。产品判断：代接的信任来自可核查 —— 每通电话留下完整证据，用户才敢把电话交出去。
+5. **交付的是完整产品。**<br>
+   授权引导 → 自动代接 → 清晰记录（摘要 / 整通录音 / 逐句转写）→ 通知留痕（代接、拦截、转接均入系统消息列表）。代接边界由机主在接起之前划定：生效时段、接管时机、白名单、黑名单，判定顺序黑名单 → 白名单 → 时段 → 时机（按人设的例外压过按时间设的默认）。这一层是纯确定性逻辑，不过 ASR、不过 LLM —— 模型看到任何东西之前就已裁决完毕。产品判断：代接的信任来自可核查 —— 每通电话留下完整证据，用户才敢把电话交出去。
 </div>
 
 <div class="cpa-en-only" lang="en" markdown="1">
@@ -205,38 +205,97 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
    The assistant is the owner's entrusted note-taker, so reliability comes first — the AI never makes decisions on the owner's behalf. The open-ended call is therefore compressed into a finite action space: every spoken line comes from a closed, human-reviewed template set (the LLM is never allowed to free-generate replies), and irreversible actions such as hanging up or transferring are arbitrated by deterministic rules and a state machine. Only after fixing what the system must *not* do can a 0.8B-class model be reliable at what it *does*.
 
 2. **Every conclusion closed the loop on a genuinely low-end phone.**<br>
-   No developing on a flagship and extrapolating on paper. Memory residency, thread scheduling, thermal stability, context budget — every engineering decision was settled by measurement on the 6 GB OPPO K13x. Low-end results are this system's floor.
+   No developing on a flagship and extrapolating on paper. Memory residency, thread scheduling, thermal stability, context budget — every engineering decision rests on measurements taken on a low-end phone.
 
 3. **Pinning the 0.8B model to the observer seat.**<br>
-   Measurements mapped the small model's reliable domain: free-form generation is unreliable and prompt engineering cannot rescue it, but structured state observation becomes reliable through fine-tuning. So generation is delegated to templates while business rules are baked into the weights. The fine-tuned 0.8B **beats its 397B flagship sibling** at business-rule compliance.
+   Measurements mapped the small model's reliable domain: free-form generation is unreliable and prompt engineering cannot rescue it, but structured state observation becomes reliable through fine-tuning. So generation is delegated to templates while business rules are baked into the weights. On the same evaluation set the fine-tuned 0.8B **beats its 397B flagship sibling on all seven metrics** — and not because the flagship is dim: we wrote every rule the contract validator enforces, together with all the information needed to obey them, into the prompt, and the 397B’s contract compliance rose to **92.81%** — yet most of the remaining violations are turns where the prompt said in so many words that no field may be written, and it wrote one anyway. The 0.8B under grammar constraints is **522/522**. Stating a rule clearly and making it impossible to break are two different things.
 
 4. **Three orthogonal latency optimizations — no extra hardware, no smaller model, no accuracy loss.**<br>
    *Compute earlier* — the system prompt is a static prefix, prefilled while the caller is still speaking (prefix KV-snapshot reuse);<br>
-   *Compute less* — the LLM emits only what changed this turn (sparse deltas), sharply shortening decode length;<br>
+   *Compute less* — the LLM emits only the schema fields that changed this turn (sparse deltas), sharply shortening decode length;<br>
    *Waste nothing* — GBNF grammar constraints keep every generated token inside the legal space, so invalid output cannot exist at the decoding layer.<br>
    Measured: first-token p50 **2948 → 447 ms (−85%)**, per-turn p50 **4842 → 2423 ms (−50%)**.
 
-5. **What ships is a complete product, not a demo.**<br>
-   Permission onboarding → automatic answering → clear records (summary / full recording / per-utterance transcript) → a notification trail (answered, blocked and transferred calls all enter the system notification list). The product judgment: trust in call answering comes from verifiability — only when every call leaves complete evidence do users dare hand their phone line over.
+5. **What ships is a complete product.**<br>
+   Permission onboarding → automatic answering → clear records (summary / full recording / per-utterance transcript) → a notification trail (answered, blocked and transferred calls all enter the system notification list). The owner draws the line before a call is ever picked up: active hours, takeover timing, allowlist, blocklist — evaluated blocklist → allowlist → hours → timing, so an exception set per person overrides a default set per clock. That layer is pure deterministic logic; it touches neither ASR nor the LLM, and has already decided before the model sees anything. The product judgment: trust in call answering comes from verifiability — only when every call leaves complete evidence do users dare hand their phone line over.
 </div>
 
 ### <span class="cpa-zh-only">关键指标</span><span class="cpa-en-only" lang="en">Key Numbers</span>
 
-> 端侧数字均实测于 OPPO K13x 5G（天玑 6300，6 GB RAM，Android 16）。
+> 端侧数字均实测于 OPPO K13x（天玑 6300，6 GB RAM，Android 16）。
 {: .cpa-zh-only}
 
-> All on-device numbers were measured on an OPPO K13x 5G (Dimensity 6300, 6 GB RAM, Android 16).
+> All on-device numbers were measured on an OPPO K13x (Dimensity 6300, 6 GB RAM, Android 16).
 {: .cpa-en-only lang="en"}
+
+<div class="cpa-zh-only" markdown="1">
+**NLU 精度：三条路线对照**
+</div>
+
+<div class="cpa-en-only" lang="en" markdown="1">
+**NLU accuracy: three approaches side by side**
+</div>
+
+| 指标 | 0.8B 微调（出货件） | 397B ＋完整说明书 | 0.8B 基座 ＋完整说明书 |
+|---|---|---|---|
+| **Schema validity · JSON 可解析**<br><span class="cpa-metric-note">输出能不能被解析成 JSON</span> | **100%** | **100%** | 69.96% |
+| **Schema validity · 契约合规**<br><span class="cpa-metric-note">解析出来之后，字段、枚举、摘录是否全部符合约定</span> | **100%** | 92.81% | 17.28% |
+| **Active Intent Accuracy**<br><span class="cpa-metric-note">这通电话属于哪种场景，判断对了没有</span> | **98.12%** | 69.74% | 4.89% |
+| **Slot-Event F1**<br><span class="cpa-metric-note">从原话里抽出的每一条（字段值、待办事项、候选操作）准不准</span> | **0.9288** | 0.2224 | 0.0097 |
+| **Average Goal Accuracy**<br><span class="cpa-metric-note">该记下来的东西有没有记对，不追究多记</span> | **91.85%** | 34.04% | 0.84% |
+| **Joint Goal Accuracy**<br><span class="cpa-metric-note">整份累积记录一字不差才算对，多记一条即归零；本评测集地板 33.08%</span> | **84.21%** | 10.34% | 29.51% |
+| **Sentence-level Frame Accuracy**<br><span class="cpa-metric-note">这一轮输出的 11 个字段全部正确的比例</span> | **90.23%** | 11.28% | 0.00% |
+| **回复正确率**<br><span class="cpa-metric-note">经规则引擎渲染后，来电者实际听到的那句话对不对</span> | **93.23%** | 60.15% | 0.75% |
+{: .cpa-zh-only}
+
+| Metric | 0.8B fine-tuned (shipped) | 397B + full spec sheet | 0.8B base + full spec sheet |
+|---|---|---|---|
+| **Schema validity · JSON parseable**<br><span class="cpa-metric-note">Can the output be parsed as JSON at all</span> | **100%** | **100%** | 69.96% |
+| **Schema validity · contract compliant**<br><span class="cpa-metric-note">Once parsed: are all fields, enum values and excerpts within the contract</span> | **100%** | 92.81% | 17.28% |
+| **Active Intent Accuracy**<br><span class="cpa-metric-note">Which scenario this call belongs to — was it identified correctly</span> | **98.12%** | 69.74% | 4.89% |
+| **Slot-Event F1**<br><span class="cpa-metric-note">Accuracy of each item extracted from what the caller said (field values, to-dos, candidate actions)</span> | **0.9288** | 0.2224 | 0.0097 |
+| **Average Goal Accuracy**<br><span class="cpa-metric-note">Of what should have been recorded, how much was recorded correctly — over-recording not penalized</span> | **91.85%** | 34.04% | 0.84% |
+| **Joint Goal Accuracy**<br><span class="cpa-metric-note">The whole accumulated record must match exactly; one spurious entry zeroes the turn. Floor on this set: 33.08%</span> | **84.21%** | 10.34% | 29.51% |
+| **Sentence-level Frame Accuracy**<br><span class="cpa-metric-note">Share of turns where all 11 output fields are correct</span> | **90.23%** | 11.28% | 0.00% |
+| **Reply correctness**<br><span class="cpa-metric-note">After the rule engine renders it, is the sentence the caller actually hears correct</span> | **93.23%** | 60.15% | 0.75% |
+{: .cpa-en-only lang="en"}
+
+<div class="cpa-zh-only" markdown="1">
+冻结评测集 532 轮，free-running 口径（模型自己累积状态，不喂标准答案历史）。除 Joint Goal Accuracy 外各项地板均为 0。第一列为 OPPO K13x 真机实测。两条基线的提示词经三轮补完，已覆盖契约校验器强制的全部规则。
+</div>
+
+<div class="cpa-en-only" lang="en" markdown="1">
+Frozen evaluation set, 532 turns, free-running (the model accumulates its own state; no gold history is fed back). Every metric has a floor of 0 except Joint Goal Accuracy. The first column is measured on a real OPPO K13x. Both baselines’ prompts went through three rounds of completion and now cover every rule the contract validator enforces.
+</div>
+
+<details class="cpa-zh-only">
+<summary>口径说明</summary>
+<p><strong>为什么先判场景。</strong>代接不是一个通用问答任务。不同来电的观测重点不一样：外卖骑手要问的是放置地点，中介、保险要记的是转告事项，快递到楼下要处理的是到达通知。所以系统先判定这通电话属于哪种场景（放置协商 / 留言记录 / 到达通知 / 尚未确定），再按该场景激活对应的字段集 —— LLM 在这一轮只被允许写入属于该场景的字段，这个收窄由语法约束在解码层强制执行，结构上不可能越界。因此场景判断是上游闸门：判错了，后面整轮的字段空间就是错的。一个实测旁证 —— 在把「场景 → 允许字段」的对应表补进提示词之前，397B 的契约违规里 88% 都是「写了不属于该场景的字段」，且全部落在场景尚未锁定的轮次上；出货件在真正需要做场景决策的 158 轮上是 158/158 全对。</p>
+<p><strong>为什么 Joint Goal Accuracy 这一行，基座反而比 397B 高。</strong>这一行要求整份累积记录一字不差，惩罚的是「多说」—— 多记一条本不该记的待办，这一轮就归零。于是一个什么都不输出的模型，在「本来就没什么可记」的轮次上自动全对，能拿 33.08%；397B 会积极地填写内容，填错就扣，反而落到 10.34%。所以它必须和上一行 Average Goal Accuracy 一起看：后者只看该记的有没有记对、不追究多记，地板是 0。<strong>AGA 看漏没漏，JGA 看多没多。</strong></p>
+<p><strong>端侧口径。</strong>OPPO K13x（PKV110）实测，出货权重（SHA <code>b403184f…</code>，从出货 APK 中抽出、设备侧复核），与出货同源的 llama.cpp（提交 <code>32beb24</code>），逐轮动态 GBNF 约束解码，<code>n_ctx=2048 / n_threads=2 / temp=0</code>。推理经命令行工具驱动，未经出货 APK 的 JNI 封装层。</p>
+</details>
+
+<details class="cpa-en-only" lang="en">
+<summary>How these were measured</summary>
+<p><strong>Why the scenario is decided first.</strong> Answering a call is not a generic QA task. What matters differs by caller: a food-delivery rider needs a drop-off location, an agency or insurer leaves a message to relay, a parcel courier reports an arrival. So the system first decides which scenario the call belongs to (drop-off negotiation / message capture / arrival notice / not yet determined), then activates the field set for that scenario — within a turn the LLM may only write fields belonging to that scenario, and the narrowing is enforced by the grammar at the decoding layer, so going out of bounds is structurally impossible. Scenario identification is therefore an upstream gate: get it wrong and the whole turn's field space is wrong. One measured corroboration — before the scenario-to-field mapping was written into the prompt, 88% of the 397B's contract violations were "wrote a field that does not belong to this scenario", all of them on turns where the scenario was not yet locked; the shipped model is 158/158 on the turns that actually require a scenario decision.</p>
+<p><strong>Why the base model beats the 397B on Joint Goal Accuracy.</strong> That row demands the entire accumulated record match exactly, so it punishes over-recording — one to-do that should not have been written zeroes the turn. A model that outputs nothing at all is therefore automatically correct on turns where there was nothing to record, and scores 33.08%; the 397B fills things in eagerly and pays for every mistake, landing at 10.34%. Read it together with the row above: Average Goal Accuracy only asks whether what should have been recorded was recorded, with a floor of 0. <strong>AGA catches what was missed, JGA catches what was invented.</strong></p>
+<p><strong>On-device measurement.</strong> Measured on an OPPO K13x (PKV110) with the shipped weights (SHA <code>b403184f…</code>, extracted from the shipped APK and re-verified on the device), against a llama.cpp build from the same tree as the shipped one (commit <code>32beb24</code>), with per-turn dynamic GBNF constrained decoding, <code>n_ctx=2048 / n_threads=2 / temp=0</code>. Inference was driven through a command-line tool rather than the shipped APK's JNI wrapper.</p>
+</details>
+
+<div class="cpa-zh-only" markdown="1">
+**ASR / 时延 / 资源 / 稳定性**
+</div>
+
+<div class="cpa-en-only" lang="en" markdown="1">
+**ASR / latency / resources / stability**
+</div>
 
 | 维度 | 指标 | 数值 |
 |---|---|---|
-| NLU | 逐字正确率<br><span class="cpa-metric-note">输出的 JSON 内容与人工标注 ground truth 逐字段逐字比对，完全对上的比例</span> | **96.31%**（597 轮 / 198 通；Q4_K_M 量化出货件端侧实测 93.80%） |
-| NLU | 渲染话术一致率<br><span class="cpa-metric-note">确定性规则引擎根据 LLM 输出的 schema 渲染出的最终回复话术，与预期话术完全一致的比例</span> | **99.66%** |
-| NLU | 结构合法率 / 异常兜底<br><span class="cpa-metric-note">输出 JSON 的 schema 格式正确率 —— 全部可解析且符合约定结构，保底纠错一次没用上</span> | **100% / 0 次** |
 | ASR | 字错误率 CER<br><span class="cpa-metric-note">语音转文字每 100 个字错几个，越低越好；在干净语音与两种真实通话信道音质下分别实测取平均</span> | **7.49%**（AISHELL-1 干净集 5.92% · AMR-NB 窄带 9.79% · AMR-WB 宽带 6.76%，三者平均） |
 | ASR | 专名字错误率 NE-CER<br><span class="cpa-metric-note">人名、地名这类专有词最容易听错，优化后错误率砍掉一半多</span> | **15.75% → 6.67%**（拼音吸附 + 热词偏置） |
-| 时延 | 首 token p50<br><span class="cpa-metric-note">对方说完话到 AI 开始回话的等待时间（中位数）</span> | **2948 → 447 ms**（−85%，前缀 KV 快照复用） |
-| 时延 | 单轮 p50<br><span class="cpa-metric-note">一问一答完整一轮的耗时（中位数）</span> | **4842 → 2423 ms**（−50%） |
+| 时延 | 首 token 时延（优化前 → 优化后）<br><span class="cpa-metric-note">对方说完话到 AI 开始回话的等待时间（中位数）</span> | **2948 → 447 ms**（−85%，前缀 KV 快照复用） |
+| 时延 | 单轮时延（优化前 → 优化后）<br><span class="cpa-metric-note">一问一答完整一轮的耗时（中位数）</span> | **4842 → 2423 ms**（−50%） |
 | 资源 | 通话中内存 PSS<br><span class="cpa-metric-note">通话时 App 实际占用的手机内存</span> | **≈1.40 GB** |
 | 资源 | 通话中 CPU<br><span class="cpa-metric-note">通话时占用的算力，约一又三分之一个核心</span> | **≈1.33 核**（整机 16.6%） |
 | 资源 | 模型总体积<br><span class="cpa-metric-note">随 App 装进手机的全部 AI 模型加起来的大小</span> | **≈590 MB**（LLM 529 + ASR 60 + 词典 0.5） |
@@ -245,27 +304,59 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
 
 | Dimension | Metric | Value |
 |---|---|---|
-| NLU | Word-level accuracy<br><span class="cpa-metric-note">Output JSON compared with human-labeled ground truth, field by field and character by character</span> | **96.31%** (597 turns / 198 calls; 93.80% on device with the shipped Q4_K_M quantization) |
-| NLU | Rendered-utterance consistency<br><span class="cpa-metric-note">Final replies rendered by the deterministic rule engine from the LLM's schema output — share that exactly matches the expected utterance</span> | **99.66%** |
-| NLU | Structural validity / fallback triggers<br><span class="cpa-metric-note">Schema validity of the output JSON — all parseable and well-formed; the fallback repair never fired</span> | **100% / 0** |
 | ASR | Character error rate (CER)<br><span class="cpa-metric-note">Out of every 100 characters transcribed, roughly how many are wrong — lower is better; averaged over clean speech and two real telephone-channel codecs</span> | **7.49%** (mean of AISHELL-1 clean 5.92% · AMR-NB narrowband 9.79% · AMR-WB wideband 6.76%) |
 | ASR | Named-entity CER<br><span class="cpa-metric-note">Names and places are the easiest to mishear; optimizations cut the error rate by more than half</span> | **15.75% → 6.67%** (pinyin snapping + hotword biasing) |
-| Latency | First-token p50<br><span class="cpa-metric-note">Median wait from the caller finishing speaking to the AI starting to answer</span> | **2948 → 447 ms** (−85%, prefix KV-snapshot reuse) |
-| Latency | Per-turn p50<br><span class="cpa-metric-note">Median time for one full ask-and-answer round</span> | **4842 → 2423 ms** (−50%) |
+| Latency | First-token latency (before → after)<br><span class="cpa-metric-note">Median wait from the caller finishing speaking to the AI starting to answer</span> | **2948 → 447 ms** (−85%, prefix KV-snapshot reuse) |
+| Latency | Per-turn latency (before → after)<br><span class="cpa-metric-note">Median time for one full ask-and-answer round</span> | **4842 → 2423 ms** (−50%) |
 | Resources | In-call memory, PSS<br><span class="cpa-metric-note">RAM the app actually occupies during a call</span> | **≈1.40 GB** |
 | Resources | In-call CPU<br><span class="cpa-metric-note">Compute used during a call — about one and a third cores</span> | **≈1.33 cores** (16.6% of the whole device) |
 | Resources | Total model footprint<br><span class="cpa-metric-note">Combined size of all AI models shipped inside the app</span> | **≈590 MB** (LLM 529 + ASR 60 + lexicon 0.5) |
 | Stability | Full-load thermal test<br><span class="cpa-metric-note">17 minutes flat out with no heat-induced slowdown</span> | **17 min with zero throttling** (Thermal Status NONE throughout, CPU peak 60.2 °C) |
 {: .cpa-en-only lang="en"}
 
-## <span class="cpa-zh-only">整体介绍</span><span class="cpa-en-only" lang="en">App Overview</span>
-
 <div class="cpa-zh-only" markdown="1">
-手持实拍真机，4′53″ 完整介绍「代接助手」的核心功能与使用流程。
+**同一份 APK 换机复测**
 </div>
 
 <div class="cpa-en-only" lang="en" markdown="1">
-A 4′53″ walkthrough of the app's core features and flows, shot handheld on a real device.
+**Same APK, re-measured on another phone**
+</div>
+
+| 指标 | OPPO K13x（目标档） | Xiaomi 14（对照机） | 倍数 |
+|---|---|---|---|
+| NLU 整轮时延 | p50 1406 ms | p50 608 ms | 2.31× |
+| ASR 解码 · 裸模型 greedy | p50 472.5 ms | p50 187 ms | 2.53× |
+| ASR 解码 · 出品配置（beam4 ＋ 179 热词） | p50 668.5 ms | p50 295 ms | 2.27× |
+| 冷启到就绪 | 4.5 s | 2.2 s | 2.05× |
+{: .cpa-zh-only}
+
+| Metric | OPPO K13x (target tier) | Xiaomi 14 (reference) | Ratio |
+|---|---|---|---|
+| NLU per-turn latency | p50 1406 ms | p50 608 ms | 2.31× |
+| ASR decode · bare model, greedy | p50 472.5 ms | p50 187 ms | 2.53× |
+| ASR decode · shipped config (beam4 + 179 hotwords) | p50 668.5 ms | p50 295 ms | 2.27× |
+| Cold start to ready | 4.5 s | 2.2 s | 2.05× |
+{: .cpa-en-only lang="en"}
+
+<div class="cpa-zh-only" markdown="1">
+同一份出货 APK、同一份剧本、同样 42 轮，不改一字不调参数。对照机的线程数按目标档钉死为 2，未用满其大核 —— 这一列不是那台机器的上限。
+</div>
+
+<div class="cpa-en-only" lang="en" markdown="1">
+The same shipped APK, the same script, the same 42 turns — not one line changed, not one parameter tuned. The reference phone runs with the thread count pinned to 2 for the target tier, so its big cores are not fully used: this column is not that phone’s ceiling.
+</div>
+## <span class="cpa-zh-only">整体介绍</span><span class="cpa-en-only" lang="en">App Overview</span>
+
+<div class="cpa-zh-only" markdown="1">
+APP 整体设计介绍（具体通话 demo 在下方）。
+
+通话下行采集需要 `CAPTURE_AUDIO_OUTPUT` 权限，官方文档与我们的实测都确认第三方应用拿不到。这只影响 demo 的呈现形式 —— 系统本身在拿到该权限后（例如作为手机厂商系统的一部分）即可直接落地。
+</div>
+
+<div class="cpa-en-only" lang="en" markdown="1">
+An overview of the app's design (call demos are below).
+
+Capturing the downlink audio of a call requires the `CAPTURE_AUDIO_OUTPUT` permission, which both the official documentation and our own measurements confirm is out of reach for third-party apps. That only constrains how the demo can be presented — the system itself is ready to run as soon as the permission is granted, for example as part of a phone vendor’s own system.
 </div>
 
 <div class="cpa-intro">
@@ -355,8 +446,8 @@ Eight real-device recordings covering the full decision boundary: from the short
 <div class="cpa-download">
   <p><a class="cpa-btn" href="https://github.com/ndwuhuangwei/ndwuhuangwei.github.io/releases/download/callproxy-v1/CallProxyAssistant-release.apk"><span class="cpa-zh-only">下载 APK（597.5 MB）</span><span class="cpa-en-only" lang="en">Download APK (597.5 MB)</span></a></p>
   <ul>
-    <li class="cpa-zh-only"><strong>文件</strong>：CallProxyAssistant-release.apk（Color派代接助手 正式安装包）</li>
-    <li class="cpa-en-only" lang="en"><strong>File</strong>: CallProxyAssistant-release.apk (the Color派代接助手 release build)</li>
+    <li class="cpa-zh-only"><strong>文件</strong>：CallProxyAssistant-release.apk</li>
+    <li class="cpa-en-only" lang="en"><strong>File</strong>: CallProxyAssistant-release.apk</li>
     <li class="cpa-zh-only"><strong>大小</strong>：597.5 MB（626,517,343 字节）—— 体积主要来自随包内置的 LLM + ASR 权重，安装后无需联网下载任何模型</li>
     <li class="cpa-en-only" lang="en"><strong>Size</strong>: 597.5 MB (626,517,343 bytes) — mostly the bundled LLM + ASR weights; nothing else to download after install</li>
     <li><strong>SHA-256</strong><span class="cpa-zh-only">：</span><span class="cpa-en-only" lang="en">: </span><code class="cpa-sha">715d18d8dbd0d88bd86126eaf1976286133eb06711d600125ea49cc093494a70</code></li>
