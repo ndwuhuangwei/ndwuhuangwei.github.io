@@ -33,8 +33,6 @@ $required = @(
     'Four screen recordings, ordered along the product journey',
     '中文字幕已烧录',
     'Chinese subtitles are burned into the picture',
-    '这四段尚未覆盖',
-    'Not yet covered by these four videos',
     'rs-grid',
     'rs-card-title',
     '/images/report-studio/v4-library.jpg',
@@ -72,7 +70,10 @@ $forbidden = @(
     '早期流程片段',
     '视频尚未展示',
     '更多新功能待展示',
-    '45.5'
+    '45.5',
+    'rs-pending',
+    '这四段尚未覆盖',
+    'Not yet covered by these four videos'
 )
 
 $failures = [System.Collections.Generic.List[string]]::new()

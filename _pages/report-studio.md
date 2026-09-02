@@ -91,14 +91,12 @@ h1.page__title[itemprop="headline"] { display: none; }
   padding: 16px 20px;
   margin: 1em 0 1.8em;
 }
-.rs-context > :first-child,
-.rs-pending > :first-child { margin-top: 0; }
-.rs-context > :last-child,
-.rs-pending > :last-child { margin-bottom: 0; }
+.rs-context > :first-child { margin-top: 0; }
+.rs-context > :last-child { margin-bottom: 0; }
 .page__content .rs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 30px;
   margin: 1.6em 0;
 }
 .page__content .rs-card {
@@ -137,15 +135,6 @@ h1.page__title[itemprop="headline"] { display: none; }
   font-size: 0.75em;
   color: #90a4ae;
   margin-top: 8px;
-}
-.rs-pending {
-  border: 1px solid #ffe0b2;
-  background: #fff8e1;
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin: 1em 0 1.6em;
-  font-size: 0.92em;
-  line-height: 1.6;
 }
 .rs-langswitch button:focus-visible,
 .rs-back a:focus-visible,
@@ -290,26 +279,6 @@ Four screen recordings, ordered along the product journey: preparing source mate
 </div>
 
 <p class="rs-video-note"><span class="rs-zh-only">四段均为 1440×900 · 中文字幕已烧录 · 点击播放才开始加载</span><span class="rs-en-only" lang="en">All four are 1440×900 · burned-in Chinese subtitles · nothing loads until you press play</span></p>
-
-<div class="rs-pending rs-zh-only" markdown="1">
-**这四段尚未覆盖：**
-
-- 混合检索的内部过程：BM25 与稠密向量融合、重排，以及模型驱动的多轮定向检索；
-- 证据引用与参考文献装配的细节；
-- Markdown 导出（视频里演示的是 DOCX）、中英界面与明暗主题切换。
-
-后续会按功能补充分段演示。
-</div>
-
-<div class="rs-pending rs-en-only" lang="en" markdown="1">
-**Not yet covered by these four videos:**
-
-- the internals of hybrid retrieval — fusing BM25 with dense vectors, reranking, and model-directed multi-round retrieval;
-- the details of evidence citation and reference assembly;
-- Markdown export (the videos show DOCX), the bilingual UI, and the light/dark theme switch.
-
-Focused walkthroughs will be added as they are recorded.
-</div>
 
 <p class="rs-back"><a href="/"><span class="rs-zh-only">← 返回主页</span><span class="rs-en-only" lang="en">← Back to Home</span></a></p>
 
