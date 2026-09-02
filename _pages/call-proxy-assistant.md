@@ -238,26 +238,26 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
 
 | 指标 | 0.8B 微调模型 ＋ 精简 system prompt | 397B Baseline ＋ system prompt 加入完整 schema 说明书 | 0.8B Baseline ＋ system prompt 加入完整 schema 说明书 |
 |---|---|---|---|
-| **Schema validity · JSON 可解析**<br><span class="cpa-metric-note">输出能不能被解析成 JSON</span> | **100%** | **100%** | 69.96% |
-| **Schema validity · 契约合规**<br><span class="cpa-metric-note">解析出来之后，字段、枚举、摘录是否全部符合约定</span> | **100%** | 92.81% | 17.28% |
-| **Active Intent Accuracy**<br><span class="cpa-metric-note">这通电话属于哪种场景，判断对了没有</span> | **98.12%** | 69.74% | 4.89% |
-| **Slot-Event F1**<br><span class="cpa-metric-note">从原话里抽出的每一条（字段值、待办事项、候选操作）准不准</span> | **0.9288** | 0.2224 | 0.0097 |
-| **Average Goal Accuracy**<br><span class="cpa-metric-note">该记下来的东西有没有记对，不追究多记</span> | **91.85%** | 34.04% | 0.84% |
-| **Joint Goal Accuracy**<br><span class="cpa-metric-note">整份累积记录一字不差才算对，多记一条即归零</span> | **84.21%** | 10.34% | 29.51% |
-| **Sentence-level Frame Accuracy**<br><span class="cpa-metric-note">这一轮输出的 11 个字段全部正确的比例</span> | **90.23%** | 11.28% | 0.00% |
-| **回复正确率**<br><span class="cpa-metric-note">经规则引擎渲染后，来电者实际听到的那句话对不对</span> | **93.23%** | 60.15% | 0.75% |
+| **Schema validity · JSON 可解析**<br><span class="cpa-metric-note">输出能不能被解析成 JSON</span> | **100%** | **100%** | 74.49% |
+| **Schema validity · 契约合规**<br><span class="cpa-metric-note">解析出来之后，字段、枚举、摘录是否全部符合约定</span> | **100%** | 92.97% | 12.45% |
+| **Active Intent Accuracy**<br><span class="cpa-metric-note">这通电话属于哪种场景，判断对了没有</span> | **98.12%** | 72.37% | 4.32% |
+| **Slot-Event F1**<br><span class="cpa-metric-note">从原话里抽出的每一条（字段值、待办事项、候选操作）准不准</span> | **0.9288** | 0.2432 | 0.0049 |
+| **Average Goal Accuracy**<br><span class="cpa-metric-note">该记下来的东西有没有记对，不追究多记</span> | **91.85%** | 37.31% | 0.56% |
+| **Joint Goal Accuracy**<br><span class="cpa-metric-note">整份累积记录一字不差才算对，多记一条即归零</span> | **84.21%** | 11.09% | 29.32% |
+| **Sentence-level Frame Accuracy**<br><span class="cpa-metric-note">这一轮输出的 11 个字段全部正确的比例</span> | **90.23%** | 12.22% | 0.00% |
+| **回复正确率**<br><span class="cpa-metric-note">经规则引擎渲染后，来电者实际听到的那句话对不对</span> | **93.23%** | 60.34% | 0.38% |
 {: .cpa-zh-only}
 
 | Metric | 0.8B fine-tuned + compact system prompt | 397B baseline + full schema spec in the system prompt | 0.8B baseline + full schema spec in the system prompt |
 |---|---|---|---|
-| **Schema validity · JSON parseable**<br><span class="cpa-metric-note">Can the output be parsed as JSON at all</span> | **100%** | **100%** | 69.96% |
-| **Schema validity · contract compliant**<br><span class="cpa-metric-note">Once parsed: are all fields, enum values and excerpts within the contract</span> | **100%** | 92.81% | 17.28% |
-| **Active Intent Accuracy**<br><span class="cpa-metric-note">Which scenario this call belongs to — was it identified correctly</span> | **98.12%** | 69.74% | 4.89% |
-| **Slot-Event F1**<br><span class="cpa-metric-note">Accuracy of each item extracted from what the caller said (field values, to-dos, candidate actions)</span> | **0.9288** | 0.2224 | 0.0097 |
-| **Average Goal Accuracy**<br><span class="cpa-metric-note">Of what should have been recorded, how much was recorded correctly — over-recording not penalized</span> | **91.85%** | 34.04% | 0.84% |
-| **Joint Goal Accuracy**<br><span class="cpa-metric-note">The whole accumulated record must match exactly; one spurious entry zeroes the turn</span> | **84.21%** | 10.34% | 29.51% |
-| **Sentence-level Frame Accuracy**<br><span class="cpa-metric-note">Share of turns where all 11 output fields are correct</span> | **90.23%** | 11.28% | 0.00% |
-| **Reply correctness**<br><span class="cpa-metric-note">After the rule engine renders it, is the sentence the caller actually hears correct</span> | **93.23%** | 60.15% | 0.75% |
+| **Schema validity · JSON parseable**<br><span class="cpa-metric-note">Can the output be parsed as JSON at all</span> | **100%** | **100%** | 74.49% |
+| **Schema validity · contract compliant**<br><span class="cpa-metric-note">Once parsed: are all fields, enum values and excerpts within the contract</span> | **100%** | 92.97% | 12.45% |
+| **Active Intent Accuracy**<br><span class="cpa-metric-note">Which scenario this call belongs to — was it identified correctly</span> | **98.12%** | 72.37% | 4.32% |
+| **Slot-Event F1**<br><span class="cpa-metric-note">Accuracy of each item extracted from what the caller said (field values, to-dos, candidate actions)</span> | **0.9288** | 0.2432 | 0.0049 |
+| **Average Goal Accuracy**<br><span class="cpa-metric-note">Of what should have been recorded, how much was recorded correctly — over-recording not penalized</span> | **91.85%** | 37.31% | 0.56% |
+| **Joint Goal Accuracy**<br><span class="cpa-metric-note">The whole accumulated record must match exactly; one spurious entry zeroes the turn</span> | **84.21%** | 11.09% | 29.32% |
+| **Sentence-level Frame Accuracy**<br><span class="cpa-metric-note">Share of turns where all 11 output fields are correct</span> | **90.23%** | 12.22% | 0.00% |
+| **Reply correctness**<br><span class="cpa-metric-note">After the rule engine renders it, is the sentence the caller actually hears correct</span> | **93.23%** | 60.34% | 0.38% |
 {: .cpa-en-only lang="en"}
 
 <details class="cpa-zh-only">
