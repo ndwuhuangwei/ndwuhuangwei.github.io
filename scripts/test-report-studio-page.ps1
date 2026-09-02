@@ -28,11 +28,27 @@ $required = @(
     'built on LangGraph',
     'chart-generation tools',
     'editing-assistant agent',
-    '早期流程片段',
-    '以下展示一段早期流程片段，只覆盖从创建任务，经需求澄清、专家沙龙与逻辑规划，到进入报告生成的前半段；新功能的演示视频将陆续放出。',
-    'The following is an early workflow excerpt. It covers only the first half of the journey—from task creation through requirement clarification, expert salon, and logic planning to the start of report generation. Walkthroughs of new features will be released progressively.',
-    '视频尚未展示',
-    'Markdown / DOCX'
+    'Markdown / DOCX',
+    '四段实录，按产品旅程排列',
+    'Four screen recordings, ordered along the product journey',
+    '中文字幕已烧录',
+    'Chinese subtitles are burned into the picture',
+    '这四段尚未覆盖',
+    'Not yet covered by these four videos',
+    'rs-grid',
+    'rs-card-title',
+    '/images/report-studio/v4-library.jpg',
+    '/images/report-studio/v2-salon.jpg',
+    '/images/report-studio/v3-revise.jpg',
+    '/images/report-studio/v1-agent.jpg',
+    '文献知识库',
+    'Literature knowledge base',
+    '需求澄清与专家沙龙',
+    'Clarification and expert salon',
+    '大纲审阅与正文写作',
+    'Outline review and drafting',
+    '成稿后的编辑 Agent',
+    'Post-draft editing agent'
 )
 
 $forbidden = @(
@@ -50,7 +66,13 @@ $forbidden = @(
     '同时， 编辑助手',
     'explicit degradation',
     '现有视频是一段 **45.5 秒的早期流程片段**',
-    'This is a **45.5-second early workflow excerpt**'
+    'This is a **45.5-second early workflow excerpt**',
+    'report-agent-intro',
+    'rs-intro',
+    '早期流程片段',
+    '视频尚未展示',
+    '更多新功能待展示',
+    '45.5'
 )
 
 $failures = [System.Collections.Generic.List[string]]::new()
@@ -63,6 +85,18 @@ foreach ($needle in $forbidden) {
     if ($content.Contains($needle)) {
         $failures.Add("Forbidden stale content remains: $needle")
     }
+}
+
+# 四支演示视频：必须齐全、按 v4-library -> v2-salon -> v3-revise -> v1-agent 排列、且都不预加载
+$demoOrder = @('v4-library.mp4', 'v2-salon.mp4', 'v3-revise.mp4', 'v1-agent.mp4')
+$positions = @($demoOrder | ForEach-Object { $content.IndexOf("/files/report-studio/$_") })
+if ($positions -contains -1) {
+    $failures.Add('Missing one of the four demo videos under /files/report-studio/.')
+} elseif ((($positions | Sort-Object) -join ',') -ne ($positions -join ',')) {
+    $failures.Add('Demo videos must appear in order: v4-library, v2-salon, v3-revise, v1-agent.')
+}
+if ([regex]::Matches($content, [regex]::Escape('preload="none"')).Count -lt 4) {
+    $failures.Add('Every demo <video> must keep preload="none".')
 }
 
 if ($failures.Count -gt 0) {

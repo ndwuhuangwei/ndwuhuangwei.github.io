@@ -95,16 +95,42 @@ h1.page__title[itemprop="headline"] { display: none; }
 .rs-pending > :first-child { margin-top: 0; }
 .rs-context > :last-child,
 .rs-pending > :last-child { margin-bottom: 0; }
-.page__content .rs-intro {
-  max-width: 880px;
-  margin: 1.6em auto;
+.page__content .rs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 24px;
+  margin: 1.6em 0;
 }
-.rs-intro video {
+.page__content .rs-card {
+  display: block;
+  margin: 0;
+}
+.rs-card video {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10;
   display: block;
   background: #000;
   border-radius: 12px;
+}
+.page__content .rs-card figcaption {
+  padding: 0 2px 8px;
+  line-height: 1.45;
+  color: inherit;
+}
+.rs-card-num {
+  display: block;
+  font-size: 0.7em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #78909c;
+  margin-bottom: 2px;
+}
+.rs-card-title { font-size: 0.95em; font-weight: bold; }
+.rs-card-desc {
+  display: block;
+  font-size: 0.78em;
+  color: #607d8b;
+  margin-top: 3px;
 }
 .rs-video-note {
   text-align: center;
@@ -125,7 +151,7 @@ h1.page__title[itemprop="headline"] { display: none; }
 .rs-back a:focus-visible,
 .rs-action:focus-visible,
 .rs-access-note a:focus-visible,
-.rs-intro video:focus-visible {
+.rs-card video:focus-visible {
   outline: 3px solid #1565c0;
   outline-offset: 3px;
 }
@@ -221,40 +247,68 @@ Report Studio is now in a collaborative pilot with the journal. Backed by a real
 ## <span class="rs-zh-only">演示视频</span><span class="rs-en-only" lang="en">Demo</span>
 
 <div class="rs-zh-only" markdown="1">
-以下展示一段早期流程片段，只覆盖从创建任务，经需求澄清、专家沙龙与逻辑规划，到进入报告生成的前半段；新功能的演示视频将陆续放出。
+四段实录，按产品旅程排列：先备料（文献知识库），再澄清需求、开专家沙龙，然后审阅大纲并生成正文，最后是成稿后的编辑 Agent。中文字幕已烧录在画面里。
 </div>
 
 <div class="rs-en-only" lang="en" markdown="1">
-The following is an early workflow excerpt. It covers only the first half of the journey—from task creation through requirement clarification, expert salon, and logic planning to the start of report generation. Walkthroughs of new features will be released progressively.
+Four screen recordings, ordered along the product journey: preparing source material in the literature knowledge base, clarifying the request and convening the expert salon, reviewing the outline and generating the draft, and finally the post-draft editing agent. Chinese subtitles are burned into the picture.
 </div>
 
-<div class="rs-intro">
-  <video controls preload="none" playsinline poster="/images/report-studio/intro.jpg" src="/papers/report-agent-intro.mp4" aria-label="Report Studio 演示视频 / demo video"></video>
-  <p class="rs-video-note"><span class="rs-zh-only">横屏 1920×1080 · 45.5″ · 22.0 MB · 点击播放才开始加载</span><span class="rs-en-only" lang="en">Landscape 1920×1080 · 45.5″ · 22.0 MB · nothing loads until you press play</span></p>
+<div class="rs-grid">
+  <figure class="rs-card">
+    <figcaption>
+      <span class="rs-card-num">Demo 1 · 1′18″ · 4.3 MB</span>
+      <span class="rs-card-title"><span class="rs-zh-only">文献知识库</span><span class="rs-en-only" lang="en">Literature knowledge base</span></span>
+      <span class="rs-card-desc"><span class="rs-zh-only">打开自定义数据库 → 上传导入 PDF 文献 → 重复上传检测 → 解析结果对照预览 → 账号知识库跨会话复用</span><span class="rs-en-only" lang="en">Open a custom database → upload and import PDFs → duplicate detection → side-by-side parsing preview → corpus reuse across sessions</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/report-studio/v4-library.jpg" src="/files/report-studio/v4-library.mp4" aria-label="Demo 1 视频：文献知识库 / Demo 1 video: literature knowledge base"></video>
+  </figure>
+  <figure class="rs-card">
+    <figcaption>
+      <span class="rs-card-num">Demo 2 · 2′30″ · 11.2 MB</span>
+      <span class="rs-card-title"><span class="rs-zh-only">需求澄清与专家沙龙</span><span class="rs-en-only" lang="en">Clarification and expert salon</span></span>
+      <span class="rs-card-desc"><span class="rs-zh-only">一句话研究请求 → 需求澄清与总结卡编辑 → 专家面板 → 专家提问与发言 → 思维基元与思维链</span><span class="rs-en-only" lang="en">A one-sentence research request → requirement clarification and summary-card editing → the expert panel → experts questioning and speaking → thought primitives and chains</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/report-studio/v2-salon.jpg" src="/files/report-studio/v2-salon.mp4" aria-label="Demo 2 视频：需求澄清与专家沙龙 / Demo 2 video: clarification and expert salon"></video>
+  </figure>
+  <figure class="rs-card">
+    <figcaption>
+      <span class="rs-card-num">Demo 3 · 2′00″ · 27.6 MB</span>
+      <span class="rs-card-title"><span class="rs-zh-only">大纲审阅与正文写作</span><span class="rs-en-only" lang="en">Outline review and drafting</span></span>
+      <span class="rs-card-desc"><span class="rs-zh-only">逻辑拓扑思维导图审阅（拖拽、标注逻辑类型、对话改大纲并给出 diff 卡）→ 写作引擎进度 → 图表落位 → DOCX 导出</span><span class="rs-en-only" lang="en">Reviewing the logic-topology mind map (drag, label logic types, revise the outline by chat with diff cards) → writing-engine progress → figure placement → DOCX export</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/report-studio/v3-revise.jpg" src="/files/report-studio/v3-revise.mp4" aria-label="Demo 3 视频：大纲审阅与正文写作 / Demo 3 video: outline review and drafting"></video>
+  </figure>
+  <figure class="rs-card">
+    <figcaption>
+      <span class="rs-card-num">Demo 4 · 1′34″ · 10.4 MB</span>
+      <span class="rs-card-title"><span class="rs-zh-only">成稿后的编辑 Agent</span><span class="rs-en-only" lang="en">Post-draft editing agent</span></span>
+      <span class="rs-card-desc"><span class="rs-zh-only">用自然语言提出修改 → 工具调用轨迹 → 行内 diff 与撤销 → 上下文占用与 compact</span><span class="rs-en-only" lang="en">Ask for changes in natural language → tool-call trace → inline diffs and undo → context usage and compaction</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/report-studio/v1-agent.jpg" src="/files/report-studio/v1-agent.mp4" aria-label="Demo 4 视频：成稿后的编辑 Agent / Demo 4 video: post-draft editing agent"></video>
+  </figure>
 </div>
+
+<p class="rs-video-note"><span class="rs-zh-only">四段均为 1440×900 · 中文字幕已烧录 · 点击播放才开始加载</span><span class="rs-en-only" lang="en">All four are 1440×900 · burned-in Chinese subtitles · nothing loads until you press play</span></p>
 
 <div class="rs-pending rs-zh-only" markdown="1">
-**更多新功能待展示——视频尚未展示：**
+**这四段尚未覆盖：**
 
-- 用户知识库、混合 RAG 与模型驱动的多轮检索；
-- 专家名单确认、智能跳过已回答问题，以及可编辑、可讨论的逻辑拓扑；
-- 完整章节并行生成、证据引用、数据图表与参考文献装配；
-- 报告完成后的 LangGraph 编辑 Agent；
-- Markdown / DOCX 导出与跨会话知识库复用。
+- 混合检索的内部过程：BM25 与稠密向量融合、重排，以及模型驱动的多轮定向检索；
+- 证据引用与参考文献装配的细节；
+- Markdown 导出（视频里演示的是 DOCX）、中英界面与明暗主题切换。
 
-以上属于当前开发/合作内测能力，后续将补充分段演示。
+后续会按功能补充分段演示。
 </div>
 
 <div class="rs-pending rs-en-only" lang="en" markdown="1">
-**More features await dedicated demos—this video does not yet show:**
+**Not yet covered by these four videos:**
 
-- the user knowledge base, hybrid RAG, and model-directed multi-round retrieval;
-- expert-roster confirmation, intelligent question skipping, and editable/discussable logic topology;
-- full parallel section generation, evidence citations, data figures, and reference assembly;
-- the post-draft LangGraph editing agent;
-- Markdown / DOCX export and cross-session corpus reuse.
+- the internals of hybrid retrieval — fusing BM25 with dense vectors, reranking, and model-directed multi-round retrieval;
+- the details of evidence citation and reference assembly;
+- Markdown export (the videos show DOCX), the bilingual UI, and the light/dark theme switch.
 
-These are current development/collaborative-pilot capabilities. Focused walkthroughs will be added later.
+Focused walkthroughs will be added as they are recorded.
 </div>
 
 <p class="rs-back"><a href="/"><span class="rs-zh-only">← 返回主页</span><span class="rs-en-only" lang="en">← Back to Home</span></a></p>
