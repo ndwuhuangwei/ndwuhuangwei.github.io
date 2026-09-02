@@ -220,7 +220,103 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
    Permission onboarding → automatic answering → clear records (summary / full recording / per-utterance transcript) → a notification trail (answered, blocked and transferred calls all enter the system notification list). The owner draws the line before a call is ever picked up: active hours, takeover timing, allowlist, blocklist. The product judgment: trust in call answering comes from verifiability — only when every call leaves complete evidence do users dare hand their phone line over.
 </div>
 
-### <span class="cpa-zh-only">关键指标</span><span class="cpa-en-only" lang="en">Key Numbers</span>
+## <span class="cpa-zh-only">整体介绍</span><span class="cpa-en-only" lang="en">App Overview</span>
+
+<div class="cpa-zh-only" markdown="1">
+APP 整体设计介绍（具体通话 demo 在下方）。
+
+通话下行采集需要 `CAPTURE_AUDIO_OUTPUT` 权限，官方文档与我们的实测都确认第三方应用拿不到。这只影响 demo 的呈现形式 —— 系统本身在拿到该权限后（例如作为手机厂商系统的一部分）即可直接落地。
+</div>
+
+<div class="cpa-en-only" lang="en" markdown="1">
+An overview of the app's design (call demos are below).
+
+Capturing the downlink audio of a call requires the `CAPTURE_AUDIO_OUTPUT` permission, which both the official documentation and our own measurements confirm is out of reach for third-party apps. That only constrains how the demo can be presented — the system itself is ready to run as soon as the permission is granted, for example as part of a phone vendor’s own system.
+</div>
+
+<div class="cpa-intro">
+  <video controls preload="none" playsinline poster="/images/callproxy/intro.jpg" src="/files/callproxy/intro.mp4" aria-label="APP 整体介绍视频 / App overview video"></video>
+  <p class="cpa-video-note"><span class="cpa-zh-only">竖屏 1080×1920 · 4′53″ · 60.4 MB · 点击播放才开始加载</span><span class="cpa-en-only" lang="en">Portrait 1080×1920 · 4′53″ · 60.4 MB · nothing loads until you press play</span></p>
+</div>
+
+## <span class="cpa-zh-only">场景演示</span><span class="cpa-en-only" lang="en">Case Demos</span>
+
+<div class="cpa-zh-only" markdown="1">
+8 个实拍 case，覆盖代接的完整决策边界：从最短闭环、多轮周旋，到超出受托范围时把沟通权交还机主。视频点击播放后才开始加载；对话文字建议全屏观看。
+</div>
+
+<div class="cpa-en-only" lang="en" markdown="1">
+Eight real-device recordings covering the full decision boundary: from the shortest closed loop and multi-turn negotiation to handing the conversation back once a request exceeds the assistant's mandate. Videos load only when played; fullscreen is recommended for reading the on-screen dialogue.
+</div>
+
+<div class="cpa-grid">
+  <figure class="cpa-card">
+    <figcaption>
+      <span class="cpa-card-num">Case 1</span>
+      <span class="cpa-card-title"><span class="cpa-zh-only">正常外卖来电</span><span class="cpa-en-only" lang="en">Regular takeout call</span></span>
+      <span class="cpa-card-desc"><span class="cpa-zh-only">最短闭环：助手询问收货地址、记下、提示对方可以挂断</span><span class="cpa-en-only" lang="en">Shortest closed loop: the assistant asks for the delivery address, notes it down, and tells the caller they may hang up</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/callproxy/case1-takeout.jpg" src="/files/callproxy/case1-takeout.mp4" aria-label="Case 1 视频：正常外卖来电"></video>
+  </figure>
+  <figure class="cpa-card">
+    <figcaption>
+      <span class="cpa-card-num">Case 2</span>
+      <span class="cpa-card-title"><span class="cpa-zh-only">快递员多轮对话</span><span class="cpa-en-only" lang="en">Courier, multi-turn</span></span>
+      <span class="cpa-card-desc"><span class="cpa-zh-only">机主预置的放置地点逐个给出（门口 → 保安室），直到对方接受</span><span class="cpa-en-only" lang="en">Owner-preset drop-off spots are offered one by one (front door → security office) until the courier accepts</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/callproxy/case2-courier-address.jpg" src="/files/callproxy/case2-courier-address.mp4" aria-label="Case 2 视频：快递员多轮对话"></video>
+  </figure>
+  <figure class="cpa-card">
+    <figcaption>
+      <span class="cpa-card-num">Case 3</span>
+      <span class="cpa-card-title"><span class="cpa-zh-only">预置地址被全部否决</span><span class="cpa-en-only" lang="en">All preset spots rejected</span></span>
+      <span class="cpa-card-desc"><span class="cpa-zh-only">机主授权过的选项已用尽 —— 继续谈就等于替机主做主，助手转接机主</span><span class="cpa-en-only" lang="en">The owner-authorized options are exhausted — negotiating further would mean deciding for the owner, so the assistant transfers the call</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/callproxy/case3-address-exhausted.jpg" src="/files/callproxy/case3-address-exhausted.mp4" aria-label="Case 3 视频：预置地址被全部否决"></video>
+  </figure>
+  <figure class="cpa-card">
+    <figcaption>
+      <span class="cpa-card-num">Case 4</span>
+      <span class="cpa-card-title"><span class="cpa-zh-only">骑手找不到地址</span><span class="cpa-en-only" lang="en">Rider can't find the address</span></span>
+      <span class="cpa-card-desc"><span class="cpa-zh-only">超出转述与记录的受托范围，交还沟通权</span><span class="cpa-en-only" lang="en">Beyond the relay-and-record mandate; the assistant hands the conversation back</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/callproxy/case4-rider-lost.jpg" src="/files/callproxy/case4-rider-lost.mp4" aria-label="Case 4 视频：骑手找不到地址"></video>
+  </figure>
+  <figure class="cpa-card">
+    <figcaption>
+      <span class="cpa-card-num">Case 5</span>
+      <span class="cpa-card-title"><span class="cpa-zh-only">威胁辱骂场景</span><span class="cpa-en-only" lang="en">Threats and abuse</span> <span class="cpa-warn"><span class="cpa-zh-only">⚠ 请不要在公众场合外放</span><span class="cpa-en-only" lang="en">⚠ Do not play out loud in public</span></span></span>
+      <span class="cpa-card-desc"><span class="cpa-zh-only">命中安全词表：即刻郑重回应，且刻意不垫语气词</span><span class="cpa-en-only" lang="en">Safety wordlist hit: an immediate, stern response with deliberately no softening filler</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/callproxy/case5-abuse.jpg" src="/files/callproxy/case5-abuse.mp4" aria-label="Case 5 视频：威胁辱骂场景"></video>
+  </figure>
+  <figure class="cpa-card">
+    <figcaption>
+      <span class="cpa-card-num">Case 6</span>
+      <span class="cpa-card-title"><span class="cpa-zh-only">来电者要求转告机主</span><span class="cpa-en-only" lang="en">Caller asks to relay a message</span></span>
+      <span class="cpa-card-desc"><span class="cpa-zh-only">先把事情收下来，转告事项进入摘要</span><span class="cpa-en-only" lang="en">The matter is taken down first; relay items go into the summary</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/callproxy/case6-message-relay.jpg" src="/files/callproxy/case6-message-relay.mp4" aria-label="Case 6 视频：来电者要求转告机主"></video>
+  </figure>
+  <figure class="cpa-card">
+    <figcaption>
+      <span class="cpa-card-num">Case 7</span>
+      <span class="cpa-card-title"><span class="cpa-zh-only">物业有多件事要转告</span><span class="cpa-en-only" lang="en">Property office, several matters</span></span>
+      <span class="cpa-card-desc"><span class="cpa-zh-only">多条待办逐条记录（交物业费、周三停水）</span><span class="cpa-en-only" lang="en">Multiple to-dos recorded item by item (pay the property fee; water outage on Wednesday)</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/callproxy/case7-property-multi.jpg" src="/files/callproxy/case7-property-multi.mp4" aria-label="Case 7 视频：物业有多件事要转告"></video>
+  </figure>
+  <figure class="cpa-card">
+    <figcaption>
+      <span class="cpa-card-num">Case 8</span>
+      <span class="cpa-card-title"><span class="cpa-zh-only">同事来电后要求转接</span><span class="cpa-en-only" lang="en">Colleague, then a transfer request</span></span>
+      <span class="cpa-card-desc"><span class="cpa-zh-only">先收信息，再识别出「要求机主本人接听」→ 铃声级强提醒并等待接管</span><span class="cpa-en-only" lang="en">Information is collected first; then "the owner must take this call" is recognized → ring-level alert, waiting for takeover</span></span>
+    </figcaption>
+    <video controls preload="none" playsinline poster="/images/callproxy/case8-colleague-transfer.jpg" src="/files/callproxy/case8-colleague-transfer.mp4" aria-label="Case 8 视频：同事来电后要求转接"></video>
+  </figure>
+</div>
+
+## <span class="cpa-zh-only">关键指标</span><span class="cpa-en-only" lang="en">Key Numbers</span>
 
 > 端侧数字均实测于 OPPO K13x（天玑 6300，6 GB RAM，Android 16）。
 {: .cpa-zh-only}
@@ -335,102 +431,6 @@ Fully offline, end to end: ASR → NLU → TTS all run on device — **zero netw
 <div class="cpa-en-only" lang="en" markdown="1">
 Because the OPPO K13x only uses two threads, the Xiaomi 14 is pinned to 2 threads as well and does not use its big cores fully — this column is not the Xiaomi 14’s ceiling.
 </div>
-## <span class="cpa-zh-only">整体介绍</span><span class="cpa-en-only" lang="en">App Overview</span>
-
-<div class="cpa-zh-only" markdown="1">
-APP 整体设计介绍（具体通话 demo 在下方）。
-
-通话下行采集需要 `CAPTURE_AUDIO_OUTPUT` 权限，官方文档与我们的实测都确认第三方应用拿不到。这只影响 demo 的呈现形式 —— 系统本身在拿到该权限后（例如作为手机厂商系统的一部分）即可直接落地。
-</div>
-
-<div class="cpa-en-only" lang="en" markdown="1">
-An overview of the app's design (call demos are below).
-
-Capturing the downlink audio of a call requires the `CAPTURE_AUDIO_OUTPUT` permission, which both the official documentation and our own measurements confirm is out of reach for third-party apps. That only constrains how the demo can be presented — the system itself is ready to run as soon as the permission is granted, for example as part of a phone vendor’s own system.
-</div>
-
-<div class="cpa-intro">
-  <video controls preload="none" playsinline poster="/images/callproxy/intro.jpg" src="/files/callproxy/intro.mp4" aria-label="APP 整体介绍视频 / App overview video"></video>
-  <p class="cpa-video-note"><span class="cpa-zh-only">竖屏 1080×1920 · 4′53″ · 60.4 MB · 点击播放才开始加载</span><span class="cpa-en-only" lang="en">Portrait 1080×1920 · 4′53″ · 60.4 MB · nothing loads until you press play</span></p>
-</div>
-
-## <span class="cpa-zh-only">场景演示</span><span class="cpa-en-only" lang="en">Case Demos</span>
-
-<div class="cpa-zh-only" markdown="1">
-8 个实拍 case，覆盖代接的完整决策边界：从最短闭环、多轮周旋，到超出受托范围时把沟通权交还机主。视频点击播放后才开始加载；对话文字建议全屏观看。
-</div>
-
-<div class="cpa-en-only" lang="en" markdown="1">
-Eight real-device recordings covering the full decision boundary: from the shortest closed loop and multi-turn negotiation to handing the conversation back once a request exceeds the assistant's mandate. Videos load only when played; fullscreen is recommended for reading the on-screen dialogue.
-</div>
-
-<div class="cpa-grid">
-  <figure class="cpa-card">
-    <figcaption>
-      <span class="cpa-card-num">Case 1</span>
-      <span class="cpa-card-title"><span class="cpa-zh-only">正常外卖来电</span><span class="cpa-en-only" lang="en">Regular takeout call</span></span>
-      <span class="cpa-card-desc"><span class="cpa-zh-only">最短闭环：助手询问收货地址、记下、提示对方可以挂断</span><span class="cpa-en-only" lang="en">Shortest closed loop: the assistant asks for the delivery address, notes it down, and tells the caller they may hang up</span></span>
-    </figcaption>
-    <video controls preload="none" playsinline poster="/images/callproxy/case1-takeout.jpg" src="/files/callproxy/case1-takeout.mp4" aria-label="Case 1 视频：正常外卖来电"></video>
-  </figure>
-  <figure class="cpa-card">
-    <figcaption>
-      <span class="cpa-card-num">Case 2</span>
-      <span class="cpa-card-title"><span class="cpa-zh-only">快递员多轮对话</span><span class="cpa-en-only" lang="en">Courier, multi-turn</span></span>
-      <span class="cpa-card-desc"><span class="cpa-zh-only">机主预置的放置地点逐个给出（门口 → 保安室），直到对方接受</span><span class="cpa-en-only" lang="en">Owner-preset drop-off spots are offered one by one (front door → security office) until the courier accepts</span></span>
-    </figcaption>
-    <video controls preload="none" playsinline poster="/images/callproxy/case2-courier-address.jpg" src="/files/callproxy/case2-courier-address.mp4" aria-label="Case 2 视频：快递员多轮对话"></video>
-  </figure>
-  <figure class="cpa-card">
-    <figcaption>
-      <span class="cpa-card-num">Case 3</span>
-      <span class="cpa-card-title"><span class="cpa-zh-only">预置地址被全部否决</span><span class="cpa-en-only" lang="en">All preset spots rejected</span></span>
-      <span class="cpa-card-desc"><span class="cpa-zh-only">机主授权过的选项已用尽 —— 继续谈就等于替机主做主，助手转接机主</span><span class="cpa-en-only" lang="en">The owner-authorized options are exhausted — negotiating further would mean deciding for the owner, so the assistant transfers the call</span></span>
-    </figcaption>
-    <video controls preload="none" playsinline poster="/images/callproxy/case3-address-exhausted.jpg" src="/files/callproxy/case3-address-exhausted.mp4" aria-label="Case 3 视频：预置地址被全部否决"></video>
-  </figure>
-  <figure class="cpa-card">
-    <figcaption>
-      <span class="cpa-card-num">Case 4</span>
-      <span class="cpa-card-title"><span class="cpa-zh-only">骑手找不到地址</span><span class="cpa-en-only" lang="en">Rider can't find the address</span></span>
-      <span class="cpa-card-desc"><span class="cpa-zh-only">超出转述与记录的受托范围，交还沟通权</span><span class="cpa-en-only" lang="en">Beyond the relay-and-record mandate; the assistant hands the conversation back</span></span>
-    </figcaption>
-    <video controls preload="none" playsinline poster="/images/callproxy/case4-rider-lost.jpg" src="/files/callproxy/case4-rider-lost.mp4" aria-label="Case 4 视频：骑手找不到地址"></video>
-  </figure>
-  <figure class="cpa-card">
-    <figcaption>
-      <span class="cpa-card-num">Case 5</span>
-      <span class="cpa-card-title"><span class="cpa-zh-only">威胁辱骂场景</span><span class="cpa-en-only" lang="en">Threats and abuse</span> <span class="cpa-warn"><span class="cpa-zh-only">⚠ 请不要在公众场合外放</span><span class="cpa-en-only" lang="en">⚠ Do not play out loud in public</span></span></span>
-      <span class="cpa-card-desc"><span class="cpa-zh-only">命中安全词表：即刻郑重回应，且刻意不垫语气词</span><span class="cpa-en-only" lang="en">Safety wordlist hit: an immediate, stern response with deliberately no softening filler</span></span>
-    </figcaption>
-    <video controls preload="none" playsinline poster="/images/callproxy/case5-abuse.jpg" src="/files/callproxy/case5-abuse.mp4" aria-label="Case 5 视频：威胁辱骂场景"></video>
-  </figure>
-  <figure class="cpa-card">
-    <figcaption>
-      <span class="cpa-card-num">Case 6</span>
-      <span class="cpa-card-title"><span class="cpa-zh-only">来电者要求转告机主</span><span class="cpa-en-only" lang="en">Caller asks to relay a message</span></span>
-      <span class="cpa-card-desc"><span class="cpa-zh-only">先把事情收下来，转告事项进入摘要</span><span class="cpa-en-only" lang="en">The matter is taken down first; relay items go into the summary</span></span>
-    </figcaption>
-    <video controls preload="none" playsinline poster="/images/callproxy/case6-message-relay.jpg" src="/files/callproxy/case6-message-relay.mp4" aria-label="Case 6 视频：来电者要求转告机主"></video>
-  </figure>
-  <figure class="cpa-card">
-    <figcaption>
-      <span class="cpa-card-num">Case 7</span>
-      <span class="cpa-card-title"><span class="cpa-zh-only">物业有多件事要转告</span><span class="cpa-en-only" lang="en">Property office, several matters</span></span>
-      <span class="cpa-card-desc"><span class="cpa-zh-only">多条待办逐条记录（交物业费、周三停水）</span><span class="cpa-en-only" lang="en">Multiple to-dos recorded item by item (pay the property fee; water outage on Wednesday)</span></span>
-    </figcaption>
-    <video controls preload="none" playsinline poster="/images/callproxy/case7-property-multi.jpg" src="/files/callproxy/case7-property-multi.mp4" aria-label="Case 7 视频：物业有多件事要转告"></video>
-  </figure>
-  <figure class="cpa-card">
-    <figcaption>
-      <span class="cpa-card-num">Case 8</span>
-      <span class="cpa-card-title"><span class="cpa-zh-only">同事来电后要求转接</span><span class="cpa-en-only" lang="en">Colleague, then a transfer request</span></span>
-      <span class="cpa-card-desc"><span class="cpa-zh-only">先收信息，再识别出「要求机主本人接听」→ 铃声级强提醒并等待接管</span><span class="cpa-en-only" lang="en">Information is collected first; then "the owner must take this call" is recognized → ring-level alert, waiting for takeover</span></span>
-    </figcaption>
-    <video controls preload="none" playsinline poster="/images/callproxy/case8-colleague-transfer.jpg" src="/files/callproxy/case8-colleague-transfer.mp4" aria-label="Case 8 视频：同事来电后要求转接"></video>
-  </figure>
-</div>
-
 ## <span class="cpa-zh-only">APK 下载</span><span class="cpa-en-only" lang="en">Download</span>
 
 <div class="cpa-download">
