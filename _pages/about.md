@@ -18,7 +18,9 @@ redirect_from:
 
 I am currently a Ph.D. candidate at Shanghai Jiao Tong University, advised by Prof. [Meng Jin](https://yume-sjtu.github.io/). 
 
-My research focuses on **pushing the limits of resource-constrained intelligence** by building acoustic-empowered systems for mobile/low-end devices to enable novel applications
+My research focuses on **pushing the limits of resource-constrained intelligence** by building acoustic-empowered systems for mobile/low-end devices to enable novel applications.
+
+Recently I have also been building on-device LLM agents, and exploring how agents can accelerate acoustic research and the wider scientific workflow.
 
 Feel free to reach out: wuhuangwei@sjtu.edu.cn, whw0315@gmail.com
 
