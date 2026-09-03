@@ -138,12 +138,6 @@ h1.page__title[itemprop="headline"] { display: none; }
   background: #000;
   border-radius: 12px;
 }
-.rs-film-note {
-  margin: 6px 2px 0;
-  color: #607d8b;
-  font-size: 0.76em;
-  line-height: 1.5;
-}
 .rs-langswitch button:focus-visible,
 .rs-back a:focus-visible,
 .rs-action:focus-visible,
@@ -194,17 +188,8 @@ h1.page__title[itemprop="headline"] { display: none; }
 
 ## <span class="rs-zh-only">总览短片</span><span class="rs-en-only" lang="en">Overview Film</span>
 
-<div class="rs-zh-only" markdown="1">
-55 秒走完整条流程：一句话研究请求 → 文献知识库 → 多专家沙龙 → 可编辑的逻辑结构 → 图表与引用装配 → 成稿后仍可对话式修改。完整实录见本页下方的四段演示视频。
-</div>
-
-<div class="rs-en-only" lang="en" markdown="1">
-A 55-second pass over the whole pipeline: a one-sentence research request → the literature knowledge base → the multi-expert salon → an editable logic structure → figure and citation assembly → conversational revision after the draft is finished. The four full screen recordings are further down this page.
-</div>
-
 <div class="rs-film">
   <video id="rs-film-video" controls muted playsinline preload="none" poster="/images/report-studio/v0-overview.jpg" src="/files/report-studio/v0-overview.mp4" aria-label="总览短片：Report Studio 全流程 / Overview film: the Report Studio pipeline"></video>
-  <p class="rs-film-note"><span class="rs-zh-only">1920×1080 · 55″ · 8.4 MB · 屏幕文字为中文、无旁白 · 桌面端静音自动播放，声音按钮在播放器上</span><span class="rs-en-only" lang="en">1920×1080 · 55″ · 8.4 MB · Chinese on-screen text, no narration · plays muted automatically on desktop; the player's sound button turns audio on</span></p>
 </div>
 
 ## <span class="rs-zh-only">研发背景与合作内测</span><span class="rs-en-only" lang="en">R&amp;D Background &amp; Journal Pilot</span>

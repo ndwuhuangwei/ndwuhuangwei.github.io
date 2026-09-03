@@ -53,8 +53,6 @@ $required = @(
     '总览短片',
     'Overview Film',
     'rs-film',
-    '55 秒走完整条流程',
-    'A 55-second pass over the whole pipeline',
     '/files/report-studio/v0-overview.mp4',
     '/images/report-studio/v0-overview.jpg',
     'id="rs-film-video"'
