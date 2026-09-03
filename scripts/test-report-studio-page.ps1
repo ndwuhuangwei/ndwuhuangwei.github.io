@@ -49,7 +49,15 @@ $required = @(
     '大纲审阅与正文写作',
     'Outline review and drafting',
     '成稿后的编辑 Agent',
-    'Post-draft editing agent'
+    'Post-draft editing agent',
+    '总览短片',
+    'Overview Film',
+    'rs-film',
+    '55 秒走完整条流程',
+    'A 55-second pass over the whole pipeline',
+    '/files/report-studio/v0-overview.mp4',
+    '/images/report-studio/v0-overview.jpg',
+    'id="rs-film-video"'
 )
 
 $forbidden = @(
@@ -105,8 +113,22 @@ if ($positions -contains -1) {
 } elseif ((($positions | Sort-Object) -join ',') -ne ($positions -join ',')) {
     $failures.Add('Demo videos must appear in order: v4-library, v2-salon, v3-revise, v1-agent.')
 }
-if ([regex]::Matches($content, [regex]::Escape('preload="none"')).Count -lt 4) {
-    $failures.Add('Every demo <video> must keep preload="none".')
+if ([regex]::Matches($content, [regex]::Escape('preload="none"')).Count -lt 5) {
+    $failures.Add('Every <video> on the page (overview film plus four demos) must keep preload="none".')
+}
+
+# 总览短片：必须排在「研发背景与合作内测」标题和四支演示视频之前
+$filmPos = $content.IndexOf('/files/report-studio/v0-overview.mp4')
+$backgroundPos = $content.IndexOf('研发背景与合作内测')
+if ($filmPos -lt 0) {
+    $failures.Add('Missing the overview film at /files/report-studio/v0-overview.mp4.')
+} else {
+    if ($backgroundPos -lt 0 -or $filmPos -gt $backgroundPos) {
+        $failures.Add('The overview film must sit above the R&D background section.')
+    }
+    if ($positions[0] -ge 0 -and $filmPos -gt $positions[0]) {
+        $failures.Add('The overview film must come before the four demo videos.')
+    }
 }
 
 if ($failures.Count -gt 0) {

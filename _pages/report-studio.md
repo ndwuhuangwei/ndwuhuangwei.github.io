@@ -130,11 +130,26 @@ h1.page__title[itemprop="headline"] { display: none; }
   color: #607d8b;
   margin-top: 3px;
 }
+.rs-film { margin: 1.6em 0 1.8em; }
+.rs-film video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  background: #000;
+  border-radius: 12px;
+}
+.rs-film-note {
+  margin: 6px 2px 0;
+  color: #607d8b;
+  font-size: 0.76em;
+  line-height: 1.5;
+}
 .rs-langswitch button:focus-visible,
 .rs-back a:focus-visible,
 .rs-action:focus-visible,
 .rs-access-note a:focus-visible,
-.rs-card video:focus-visible {
+.rs-card video:focus-visible,
+.rs-film video:focus-visible {
   outline: 3px solid #1565c0;
   outline-offset: 3px;
 }
@@ -175,6 +190,21 @@ h1.page__title[itemprop="headline"] { display: none; }
     <p class="rs-access-note"><span class="rs-zh-only">内测阶段实行邀请制，只有被邀请的专家才能使用；如想试用，请<a href="mailto:wuhuangwei@sjtu.edu.cn?subject=Report%20Studio%20Trial%20Request">联系 Huangwei</a>（wuhuangwei@sjtu.edu.cn）。</span><span class="rs-en-only" lang="en">The pilot is invitation-only and currently limited to invited experts. To request access, <a href="mailto:wuhuangwei@sjtu.edu.cn?subject=Report%20Studio%20Trial%20Request">email Huangwei</a> (wuhuangwei@sjtu.edu.cn).</span></p>
   </div>
   <a class="rs-action" href="https://deepx.acemap.info/" target="_blank" rel="noopener noreferrer"><span class="rs-zh-only">访问 DeepX 平台 ↗</span><span class="rs-en-only" lang="en">Visit DeepX Platform ↗</span></a>
+</div>
+
+## <span class="rs-zh-only">总览短片</span><span class="rs-en-only" lang="en">Overview Film</span>
+
+<div class="rs-zh-only" markdown="1">
+55 秒走完整条流程：一句话研究请求 → 文献知识库 → 多专家沙龙 → 可编辑的逻辑结构 → 图表与引用装配 → 成稿后仍可对话式修改。完整实录见本页下方的四段演示视频。
+</div>
+
+<div class="rs-en-only" lang="en" markdown="1">
+A 55-second pass over the whole pipeline: a one-sentence research request → the literature knowledge base → the multi-expert salon → an editable logic structure → figure and citation assembly → conversational revision after the draft is finished. The four full screen recordings are further down this page.
+</div>
+
+<div class="rs-film">
+  <video id="rs-film-video" controls muted playsinline preload="none" poster="/images/report-studio/v0-overview.jpg" src="/files/report-studio/v0-overview.mp4" aria-label="总览短片：Report Studio 全流程 / Overview film: the Report Studio pipeline"></video>
+  <p class="rs-film-note"><span class="rs-zh-only">1920×1080 · 55″ · 8.4 MB · 屏幕文字为中文、无旁白 · 桌面端静音自动播放，声音按钮在播放器上</span><span class="rs-en-only" lang="en">1920×1080 · 55″ · 8.4 MB · Chinese on-screen text, no narration · plays muted automatically on desktop; the player's sound button turns audio on</span></p>
 </div>
 
 ## <span class="rs-zh-only">研发背景与合作内测</span><span class="rs-en-only" lang="en">R&amp;D Background &amp; Journal Pilot</span>
@@ -294,5 +324,18 @@ Four screen recordings, ordered by the pipeline a user actually walks through: p
   var saved = null;
   try { saved = localStorage.getItem(KEY); } catch (e) {}
   apply(saved === 'en' ? 'en' : 'zh');
+})();
+(function () {
+  var film = document.getElementById('rs-film-video');
+  if (!film) { return; }
+  var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  var thrifty = !!conn && (conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || ''));
+  var narrow = window.matchMedia('(max-width: 767px)').matches;
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (thrifty || narrow || calm) { return; }
+  film.preload = 'auto';
+  film.muted = true;
+  var started = film.play();
+  if (started && typeof started.catch === 'function') { started.catch(function () {}); }
 })();
 </script>
