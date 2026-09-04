@@ -41,7 +41,6 @@
       speechKey: '话术键',
       noModelLost: '“找不到 / 进不去”命中地址受阻规则。该规则位于 NLU 之前，所以这一轮没有 schema。',
       noModelSafety: '明确威胁命中安全规则。该规则位于 NLU 之前，所以这一轮没有 schema。',
-      provenance: '来电文本逐帧取自对应视频；schema、累计状态、引擎动作和回复来自 2026-09-05 在 OPPO K13x 上执行的同代码路径重放。',
       noExtraState: '本轮没有新增候选或转告事项。'
     },
     en: {
@@ -70,7 +69,6 @@
       speechKey: 'Speech key',
       noModelLost: '“Cannot find / cannot enter” hit the lost-address rule. It runs before NLU, so this turn has no schema.',
       noModelSafety: 'An explicit threat hit the safety rule. It runs before NLU, so this turn has no schema.',
-      provenance: 'Caller text was recovered frame by frame from the matching video. Schema, cumulative state, engine action and reply come from the same-code-path replay run on an OPPO K13x on 2026-09-05.',
       noExtraState: 'This turn added no location candidate or recorded request.'
     }
   };
@@ -338,7 +336,6 @@
     panel.setAttribute('role', 'tabpanel');
     layout.appendChild(panel);
     body.appendChild(layout);
-    body.appendChild(node('p', 'cpa-trace-provenance', text('provenance')));
     renderTurn();
   }
 

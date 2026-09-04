@@ -40,6 +40,7 @@ Assert-True ($page.Contains('id="cpa-trace-dialog"')) 'Missing trace dialog.'
 Assert-True ($page.Contains('/assets/js/callproxy-nlu-traces.js')) 'Trace script is not loaded by the page.'
 Assert-True ($script.Contains('/assets/data/callproxy-nlu-traces.json')) 'Trace script does not load the trace data.'
 Assert-True (-not $page.Contains('预置地址被全部否决')) 'Case 3 still claims every preset location was rejected.'
+Assert-True (-not $script.Contains('来电文本逐帧取自对应视频')) 'Removed trace provenance note is still rendered.'
 
 [pscustomobject]@{
   Cases = @($trace.cases).Count

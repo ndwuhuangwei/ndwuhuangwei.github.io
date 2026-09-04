@@ -261,7 +261,6 @@ h1.page__title[itemprop="headline"] { display: none; }
 .cpa-trace-state--rejected { border-color: #e4b4b4; color: #9b2f2f; background: #fff2f2; }
 .cpa-trace-state--accepted { border-color: #81b9aa; color: #00695c; background: #e8f6f2; }
 .page__content .cpa-trace-requests { margin: 0; padding-left: 1.2em; font-size: 0.84rem; }
-.cpa-trace-provenance { margin: 14px 0 0; color: #78909c; font-size: 0.75rem; line-height: 1.5; }
 .cpa-trace-loading { min-height: 180px; margin: 0; display: grid; place-items: center; color: #607d8b; }
 .cpa-trace-loading--error { color: #a52828; }
 @media (max-width: 720px) {
