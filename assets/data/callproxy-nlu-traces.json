@@ -1,0 +1,274 @@
+{
+  "schema": "callproxy-nlu-trace-display-v1",
+  "capturedAt": "2026-09-05",
+  "device": "OPPO K13x",
+  "sourceCommit": "feebbcf6a60fe6518fe397d3155146acc14f7a93",
+  "candidateLabels": ["订单上的收货地址", "门口", "保安室", "菜鸟驿站"],
+  "summary": {
+    "cases": 8,
+    "turns": 21,
+    "schemaProduced": 17,
+    "schemaSkipped": 4,
+    "schemaInvalid": 0
+  },
+  "cases": [
+    {
+      "id": "case1",
+      "title": {"zh": "正常外卖来电", "en": "Regular takeout call"},
+      "turns": [
+        {
+          "n": 1,
+          "caller": "你好外卖到了",
+          "schemaStatus": "produced",
+          "raw": "{\"profile_hint\":\"dropoff\",\"biz_hint\":\"takeout\"}",
+          "enginePath": "model_nlu",
+          "speechKey": "offer_platform_address",
+          "reply": "请放在订单上的收货地址。",
+          "state": {"modeBefore": "DISCOVER", "modeAfter": "COLLECT", "profile": "dropoff", "candidates": [["订单上的收货地址", "offered"], ["门口", "available"], ["保安室", "available"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 2,
+          "caller": "好的我已经放在这里了",
+          "schemaStatus": "produced",
+          "raw": "{\"candidate_events\":[{\"candidate\":0,\"op\":\"accept\"}]}",
+          "enginePath": "model_nlu",
+          "speechKey": "candidate_accepted",
+          "reply": "好的，地点记下了。请问还有其他事情吗？没有其他事您可以直接挂断电话。",
+          "state": {"modeBefore": "COLLECT", "modeAfter": "WAIT_CALLER_END", "profile": "dropoff", "candidates": [["订单上的收货地址", "accepted"], ["门口", "available"], ["保安室", "available"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        }
+      ]
+    },
+    {
+      "id": "case2",
+      "title": {"zh": "快递员多轮对话", "en": "Courier, multi-turn"},
+      "turns": [
+        {
+          "n": 1,
+          "caller": "你好你的快递到了",
+          "schemaStatus": "produced",
+          "raw": "{\"profile_hint\":\"dropoff\",\"biz_hint\":\"express\"}",
+          "enginePath": "model_nlu",
+          "speechKey": "offer_platform_address",
+          "reply": "请放在订单上的收货地址。",
+          "state": {"modeBefore": "DISCOVER", "modeAfter": "COLLECT", "profile": "dropoff", "candidates": [["订单上的收货地址", "offered"], ["门口", "available"], ["保安室", "available"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 2,
+          "caller": "呃订单上这个地方东西都堆满了呀这不好放吧",
+          "schemaStatus": "produced",
+          "raw": "{\"candidate_events\":[{\"candidate\":0,\"op\":\"reject\"}]}",
+          "enginePath": "model_nlu",
+          "speechKey": "offer_candidate",
+          "reply": "可以放在门口，您看可以吗？",
+          "state": {"modeBefore": "COLLECT", "modeAfter": "COLLECT", "profile": "dropoff", "candidates": [["订单上的收货地址", "rejected"], ["门口", "offered"], ["保安室", "available"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 3,
+          "caller": "门口太脏了而且也不安全还有其他地方吗",
+          "schemaStatus": "produced",
+          "raw": "{\"candidate_events\":[{\"candidate\":1,\"op\":\"reject\"}]}",
+          "enginePath": "model_nlu",
+          "speechKey": "offer_candidate",
+          "reply": "可以放在保安室，您看可以吗？",
+          "state": {"modeBefore": "COLLECT", "modeAfter": "COLLECT", "profile": "dropoff", "candidates": [["订单上的收货地址", "rejected"], ["门口", "rejected"], ["保安室", "offered"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 4,
+          "caller": "行吧我去放在保安室吧",
+          "schemaStatus": "produced",
+          "raw": "{\"candidate_events\":[{\"candidate\":2,\"op\":\"accept\"}]}",
+          "enginePath": "model_nlu",
+          "speechKey": "candidate_accepted",
+          "reply": "好的，地点记下了。请问还有其他事情吗？没有其他事您可以直接挂断电话。",
+          "state": {"modeBefore": "COLLECT", "modeAfter": "WAIT_CALLER_END", "profile": "dropoff", "candidates": [["订单上的收货地址", "rejected"], ["门口", "rejected"], ["保安室", "accepted"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        }
+      ]
+    },
+    {
+      "id": "case3",
+      "title": {"zh": "地址连续受阻后转接", "en": "Transfer after repeated location failures"},
+      "turns": [
+        {
+          "n": 1,
+          "caller": "你好顺丰快递到了",
+          "schemaStatus": "produced",
+          "raw": "{\"profile_hint\":\"dropoff\",\"biz_hint\":\"express\"}",
+          "enginePath": "model_nlu",
+          "speechKey": "offer_platform_address",
+          "reply": "请放在订单上的收货地址。",
+          "state": {"modeBefore": "DISCOVER", "modeAfter": "COLLECT", "profile": "dropoff", "candidates": [["订单上的收货地址", "offered"], ["门口", "available"], ["保安室", "available"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 2,
+          "caller": "这里放不了",
+          "schemaStatus": "produced",
+          "raw": "{\"candidate_events\":[{\"candidate\":0,\"op\":\"reject\"}]}",
+          "enginePath": "model_nlu",
+          "speechKey": "offer_candidate",
+          "reply": "可以放在门口，您看可以吗？",
+          "state": {"modeBefore": "COLLECT", "modeAfter": "COLLECT", "profile": "dropoff", "candidates": [["订单上的收货地址", "rejected"], ["门口", "offered"], ["保安室", "available"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 3,
+          "caller": "门口也放不下了",
+          "schemaStatus": "produced",
+          "raw": "{\"candidate_events\":[{\"candidate\":1,\"op\":\"reject\"}]}",
+          "enginePath": "model_nlu",
+          "speechKey": "offer_candidate",
+          "reply": "可以放在保安室，您看可以吗？",
+          "state": {"modeBefore": "COLLECT", "modeAfter": "COLLECT", "profile": "dropoff", "candidates": [["订单上的收货地址", "rejected"], ["门口", "rejected"], ["保安室", "offered"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 4,
+          "caller": "保安室没人了我进不去",
+          "schemaStatus": "skipped",
+          "raw": null,
+          "enginePath": "lost address before NLU",
+          "speechKey": "alert_requested",
+          "reply": "我为您转接机主，请稍等。",
+          "state": {"modeBefore": "COLLECT", "modeAfter": "OWNER_ALERT_PENDING", "profile": "dropoff", "candidates": [["订单上的收货地址", "rejected"], ["门口", "rejected"], ["保安室", "offered"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "DISPATCHING"}
+        }
+      ]
+    },
+    {
+      "id": "case4",
+      "title": {"zh": "骑手找不到地址", "en": "Rider cannot find the address"},
+      "turns": [
+        {
+          "n": 1,
+          "caller": "你好美团外卖",
+          "schemaStatus": "produced",
+          "raw": "{\"profile_hint\":\"dropoff\",\"biz_hint\":\"takeout\"}",
+          "enginePath": "model_nlu",
+          "speechKey": "offer_platform_address",
+          "reply": "请放在订单上的收货地址。",
+          "state": {"modeBefore": "DISCOVER", "modeAfter": "COLLECT", "profile": "dropoff", "candidates": [["订单上的收货地址", "offered"], ["门口", "available"], ["保安室", "available"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 2,
+          "caller": "这个地方我找不到啊",
+          "schemaStatus": "skipped",
+          "raw": null,
+          "enginePath": "lost address before NLU",
+          "speechKey": "alert_requested",
+          "reply": "我为您转接机主，请稍等。",
+          "state": {"modeBefore": "COLLECT", "modeAfter": "OWNER_ALERT_PENDING", "profile": "dropoff", "candidates": [["订单上的收货地址", "offered"], ["门口", "available"], ["保安室", "available"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "DISPATCHING"}
+        }
+      ]
+    },
+    {
+      "id": "case5",
+      "title": {"zh": "威胁辱骂场景", "en": "Threats and abuse"},
+      "turns": [
+        {
+          "n": 1,
+          "caller": "快让这个傻逼接电话我要杀了他",
+          "schemaStatus": "skipped",
+          "raw": null,
+          "enginePath": "safety verdict before NLU: confirmed_threat",
+          "speechKey": "abuse_warning",
+          "reply": "请注意您的言辞，若继续，本次通话将结束并如实记录给机主。",
+          "state": {"modeBefore": "DISCOVER", "modeAfter": "DISCOVER", "profile": null, "candidates": [], "requests": [], "safety": "WARNED_ABUSE", "alert": "IDLE"}
+        },
+        {
+          "n": 2,
+          "caller": "告诉她这件事情没完我必要杀他全家",
+          "schemaStatus": "skipped",
+          "raw": null,
+          "enginePath": "safety verdict before NLU: confirmed_threat",
+          "speechKey": "safety_end",
+          "reply": "您仍在使用不当言辞，本次通话将结束，来电内容会如实记录给机主。",
+          "state": {"modeBefore": "DISCOVER", "modeAfter": "SAFETY_END", "profile": null, "candidates": [], "requests": [], "safety": "ENDED", "alert": "IDLE"}
+        }
+      ]
+    },
+    {
+      "id": "case6",
+      "title": {"zh": "来电者要求转告机主", "en": "Caller asks to relay a message"},
+      "turns": [
+        {
+          "n": 1,
+          "caller": "你好这里是河马生鲜您的蛋糕到了",
+          "schemaStatus": "produced",
+          "raw": "{\"profile_hint\":\"dropoff\",\"biz_hint\":\"takeout\"}",
+          "enginePath": "model_nlu",
+          "speechKey": "offer_platform_address",
+          "reply": "请放在订单上的收货地址。",
+          "state": {"modeBefore": "DISCOVER", "modeAfter": "COLLECT", "profile": "dropoff", "candidates": [["订单上的收货地址", "offered"], ["门口", "available"], ["保安室", "available"], ["菜鸟驿站", "available"]], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 2,
+          "caller": "好的我放在这里了但是请提醒一下机主啊这里面含有冰淇淋最好半小时之内拿进去",
+          "schemaStatus": "produced",
+          "raw": "{\"request_additions\":[{\"kind\":\"notice\",\"content\":\"最好半小时之内拿进去\"}],\"candidate_events\":[{\"candidate\":0,\"op\":\"accept\"}]}",
+          "enginePath": "model_nlu",
+          "speechKey": "candidate_accepted_with_note",
+          "reply": "好的，地点和您说的事我都记下了。请问还有其他事情吗？没有其他事您可以直接挂断电话。",
+          "state": {"modeBefore": "COLLECT", "modeAfter": "WAIT_CALLER_END", "profile": "dropoff", "candidates": [["订单上的收货地址", "accepted"], ["门口", "available"], ["保安室", "available"], ["菜鸟驿站", "available"]], "requests": [{"kind": "notice", "content": "最好半小时之内拿进去", "deadline": null}], "safety": "NORMAL", "alert": "IDLE"}
+        }
+      ]
+    },
+    {
+      "id": "case7",
+      "title": {"zh": "物业有多件事要转告", "en": "Property office, several matters"},
+      "turns": [
+        {
+          "n": 1,
+          "caller": "你好这里是物业请问他现在有空吗",
+          "schemaStatus": "produced",
+          "raw": "{\"profile_hint\":\"unknown\",\"biz_hint\":\"other\"}",
+          "enginePath": "model_nlu",
+          "speechKey": "clarify_request",
+          "reply": "你可以先说什么事，我会转告机主。",
+          "state": {"modeBefore": "DISCOVER", "modeAfter": "DISCOVER", "profile": null, "candidates": [], "requests": [], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 2,
+          "caller": "请她务必在这周五之前交齐物业费",
+          "schemaStatus": "produced",
+          "raw": "{\"profile_hint\":\"message_capture\",\"biz_hint\":\"property\",\"request_additions\":[{\"kind\":\"todo\",\"content\":\"交齐物业费\",\"deadline\":\"周五\"}]}",
+          "enginePath": "model_nlu",
+          "speechKey": "recorded",
+          "reply": "好的，您说的我记下了。请问还有其他事情吗？没有其他事您可以直接挂断电话。",
+          "state": {"modeBefore": "DISCOVER", "modeAfter": "WAIT_CALLER_END", "profile": "message_capture", "candidates": [], "requests": [{"kind": "todo", "content": "交齐物业费", "deadline": "周五"}], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 3,
+          "caller": "呃然后这周三可能会停水",
+          "schemaStatus": "produced",
+          "raw": "{\"request_additions\":[{\"kind\":\"notice\",\"content\":\"周三可能会停水\"}]}",
+          "enginePath": "model_nlu",
+          "speechKey": "recorded_complete",
+          "reply": "好的，您说的我记下了。没有其他事您可以直接挂断电话。",
+          "state": {"modeBefore": "WAIT_CALLER_END", "modeAfter": "WAIT_CALLER_END", "profile": "message_capture", "candidates": [], "requests": [{"kind": "todo", "content": "交齐物业费", "deadline": "周五"}, {"kind": "notice", "content": "周三可能会停水", "deadline": null}], "safety": "NORMAL", "alert": "IDLE"}
+        }
+      ]
+    },
+    {
+      "id": "case8",
+      "title": {"zh": "同事来电后要求转接", "en": "Colleague, then a transfer request"},
+      "turns": [
+        {
+          "n": 1,
+          "caller": "我是他的同事请转告他明天中午十二点之前一定要上交领导所需的材料",
+          "schemaStatus": "produced",
+          "raw": "{\"profile_hint\":\"message_capture\",\"biz_hint\":\"other\",\"request_additions\":[{\"kind\":\"todo\",\"content\":\"上交领导所需的材料\",\"deadline\":\"明天中午十二点\"}]}",
+          "enginePath": "model_nlu",
+          "speechKey": "recorded",
+          "reply": "好的，您说的我记下了。请问还有其他事情吗？没有其他事您可以直接挂断电话。",
+          "state": {"modeBefore": "DISCOVER", "modeAfter": "WAIT_CALLER_END", "profile": "message_capture", "candidates": [], "requests": [{"kind": "todo", "content": "上交领导所需的材料", "deadline": "明天中午十二点"}], "safety": "NORMAL", "alert": "IDLE"}
+        },
+        {
+          "n": 2,
+          "caller": "嗯算了这件事情非常的紧急可以让他现在马上就接电话吗",
+          "schemaStatus": "produced",
+          "raw": "{\"field_events\":[{\"field\":\"callback_preference\",\"op\":\"set\",\"value\":\"现在马上就接电话\"}],\"caller_signal\":\"request_owner\"}",
+          "enginePath": "model_nlu",
+          "speechKey": "alert_requested",
+          "reply": "我为您转接机主，请稍等。",
+          "state": {"modeBefore": "WAIT_CALLER_END", "modeAfter": "OWNER_ALERT_PENDING", "profile": "message_capture", "candidates": [], "requests": [{"kind": "todo", "content": "上交领导所需的材料", "deadline": "明天中午十二点"}], "callbackPreference": "现在马上就接电话", "safety": "NORMAL", "alert": "DISPATCHING"}
+        }
+      ]
+    }
+  ]
+}

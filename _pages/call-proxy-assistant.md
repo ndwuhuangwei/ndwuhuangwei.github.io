@@ -100,6 +100,181 @@ h1.page__title[itemprop="headline"] { display: none; }
   color: #607d8b;
   margin-top: 3px;
 }
+.cpa-trace-open {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 13px;
+  border: 1px solid #b7d4cf;
+  border-radius: 10px;
+  color: #00695c;
+  background: #eef8f5;
+  cursor: pointer;
+  font-size: 0.76em;
+  font-weight: 700;
+  text-align: left;
+}
+.cpa-trace-open::after {
+  content: "↗";
+  float: right;
+  font-size: 1.1em;
+}
+.cpa-trace-open:hover { border-color: #73aaa1; background: #e3f3ef; }
+.cpa-trace-dialog {
+  width: min(1080px, calc(100% - 24px));
+  max-width: 1080px;
+  max-height: calc(100vh - 32px);
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  color: #172126;
+  background: #f7faf9;
+  box-shadow: 0 28px 90px rgba(13, 29, 31, 0.36);
+}
+.cpa-trace-dialog::backdrop { background: rgba(17, 29, 32, 0.72); backdrop-filter: blur(3px); }
+.cpa-trace-dialog-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 12px 0;
+  background: linear-gradient(#f7faf9 75%, rgba(247, 250, 249, 0));
+}
+.cpa-trace-close {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid #cfd8dc;
+  border-radius: 50%;
+  place-items: center;
+  color: #37474f;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+#cpa-trace-body { padding: 0 26px 24px; font-size: 16px; }
+.cpa-trace-header { margin: -24px 52px 18px 0; }
+.cpa-trace-eyebrow {
+  color: #00796b;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.page__content .cpa-trace-title { margin: 5px 0 0; font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1.2; }
+.cpa-trace-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 18px; align-items: start; }
+.cpa-trace-turns { display: grid; gap: 8px; }
+.cpa-trace-turn-tab {
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid #d8e2df;
+  border-radius: 10px;
+  color: #455a64;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+}
+.cpa-trace-turn-tab > span { display: block; color: #00796b; font-size: 0.78rem; font-weight: 800; }
+.cpa-trace-turn-tab small {
+  display: -webkit-box;
+  margin-top: 3px;
+  overflow: hidden;
+  color: #607d8b;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.cpa-trace-turn-tab.is-active { border-color: #00796b; background: #e5f4f0; box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.1); }
+.cpa-trace-panel { min-width: 0; border: 1px solid #d8e2df; border-radius: 14px; overflow: hidden; background: #fff; }
+.cpa-trace-step { padding: 18px 20px; border-bottom: 1px solid #e1e8e6; }
+.cpa-trace-step:last-child { border-bottom: 0; }
+.page__content .cpa-trace-step-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  color: #00695c;
+  font-size: 0.83rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.cpa-trace-step-number {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  place-items: center;
+  color: #fff;
+  background: #00796b;
+  font-size: 0.72rem;
+}
+.page__content .cpa-trace-quote,
+.page__content .cpa-trace-reply {
+  margin: 0;
+  padding: 14px 16px;
+  border: 0;
+  border-left: 3px solid #80cbc4;
+  color: #263238;
+  background: #f3f8f7;
+  font-size: 1rem;
+  font-style: normal;
+}
+.page__content .cpa-trace-reply { border-left-color: #263238; background: #eef1f2; font-weight: 650; }
+.cpa-trace-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+.cpa-trace-badge--model { color: #00695c; background: #dff2ed; }
+.cpa-trace-badge--rule { color: #8a4b12; background: #fff0d8; }
+.page__content .cpa-trace-subtitle { margin: 14px 0 7px; color: #607d8b; font-size: 0.76rem; letter-spacing: 0.03em; }
+.page__content .cpa-trace-code {
+  max-height: 260px;
+  margin: 0;
+  padding: 14px 15px;
+  overflow: auto;
+  border-radius: 10px;
+  color: #e8f3ef;
+  background: #142124;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.cpa-trace-annotations { display: grid; gap: 7px; }
+.cpa-trace-annotation { display: grid; grid-template-columns: minmax(150px, max-content) 1fr; gap: 10px; align-items: start; font-size: 0.84rem; }
+.cpa-trace-annotation code { color: #00695c; font-weight: 700; word-break: break-word; }
+.cpa-trace-rule { margin: 12px 0 0; padding: 12px 14px; border-left: 3px solid #d79b48; color: #75410f; background: #fff6e7; font-size: 0.9rem; }
+.cpa-trace-engine-copy { margin: 0; font-size: 0.95rem; }
+.cpa-trace-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+.cpa-trace-meta-item { min-width: 0; padding: 9px 10px; border-radius: 8px; background: #f1f5f4; }
+.cpa-trace-meta-item span { display: block; color: #78909c; font-size: 0.7rem; }
+.cpa-trace-meta-item code { display: block; margin-top: 2px; color: #263238; font-size: 0.76rem; overflow-wrap: anywhere; }
+.cpa-trace-state-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.cpa-trace-state { padding: 4px 8px; border: 1px solid #cddbd7; border-radius: 999px; background: #fff; font-size: 0.75rem; }
+.cpa-trace-state--offered { border-color: #e2bd79; color: #7d4b0d; background: #fff7e8; }
+.cpa-trace-state--rejected { border-color: #e4b4b4; color: #9b2f2f; background: #fff2f2; }
+.cpa-trace-state--accepted { border-color: #81b9aa; color: #00695c; background: #e8f6f2; }
+.page__content .cpa-trace-requests { margin: 0; padding-left: 1.2em; font-size: 0.84rem; }
+.cpa-trace-provenance { margin: 14px 0 0; color: #78909c; font-size: 0.75rem; line-height: 1.5; }
+.cpa-trace-loading { min-height: 180px; margin: 0; display: grid; place-items: center; color: #607d8b; }
+.cpa-trace-loading--error { color: #a52828; }
+@media (max-width: 720px) {
+  .cpa-trace-dialog { width: calc(100% - 12px); max-height: calc(100vh - 12px); border-radius: 14px; }
+  #cpa-trace-body { padding: 0 13px 16px; }
+  .cpa-trace-header { margin-right: 46px; }
+  .cpa-trace-layout { grid-template-columns: 1fr; gap: 12px; }
+  .cpa-trace-turns { display: flex; padding: 2px; overflow-x: auto; scroll-snap-type: x proximity; }
+  .cpa-trace-turn-tab { flex: 0 0 150px; scroll-snap-align: start; }
+  .cpa-trace-step { padding: 16px 14px; }
+  .cpa-trace-annotation { grid-template-columns: 1fr; gap: 3px; }
+  .cpa-trace-meta { grid-template-columns: 1fr; }
+}
 .page__content .cpa-intro {
   max-width: 400px;
   margin: 1.6em auto;
@@ -142,7 +317,10 @@ h1.page__title[itemprop="headline"] { display: none; }
 .cpa-back a:focus-visible,
 .cpa-langswitch button:focus-visible,
 .cpa-card video:focus-visible,
-.cpa-intro video:focus-visible {
+.cpa-intro video:focus-visible,
+.cpa-trace-open:focus-visible,
+.cpa-trace-close:focus-visible,
+.cpa-trace-turn-tab:focus-visible {
   outline: 3px solid #1565c0;
   outline-offset: 3px;
 }
@@ -150,6 +328,7 @@ h1.page__title[itemprop="headline"] { display: none; }
 @media (prefers-reduced-motion: no-preference) {
   .cpa-btn { transition: background 0.15s ease; }
   .cpa-langswitch button { transition: background 0.15s ease, color 0.15s ease; }
+  .cpa-trace-open, .cpa-trace-turn-tab { transition: border-color 0.15s ease, background 0.15s ease; }
 }
 </style>
 
@@ -249,6 +428,9 @@ Capturing the downlink audio of a call requires the `CAPTURE_AUDIO_OUTPUT` permi
 Eight real-device recordings covering the full decision boundary: from the shortest closed loop and multi-turn negotiation to handing the conversation back once a request exceeds the assistant's mandate. Videos load only when played; fullscreen is recommended for reading the on-screen dialogue.
 </div>
 
+<p class="cpa-zh-only">每个视频下方都可以打开逐轮原理。来电文字逐帧取自视频；schema、累计状态、引擎动作和回复来自同一批话语在真机生产路径上的重放，不是根据最终回复反推。</p>
+<p class="cpa-en-only" lang="en">Open the turn-by-turn trace below each video. Caller text was recovered frame by frame from the recording; schema, cumulative state, engine action and reply come from replaying those exact utterances through the production path on the phone—not from reverse-engineering the final reply.</p>
+
 <div class="cpa-grid">
   <figure class="cpa-card">
     <figcaption>
@@ -257,6 +439,7 @@ Eight real-device recordings covering the full decision boundary: from the short
       <span class="cpa-card-desc"><span class="cpa-zh-only">最短闭环：助手询问收货地址、记下、提示对方可以挂断</span><span class="cpa-en-only" lang="en">Shortest closed loop: the assistant asks for the delivery address, notes it down, and tells the caller they may hang up</span></span>
     </figcaption>
     <video controls preload="none" playsinline poster="/images/callproxy/case1-takeout.jpg" src="/files/callproxy/case1-takeout.mp4" aria-label="Case 1 视频：正常外卖来电"></video>
+    <button class="cpa-trace-open" type="button" data-case="case1" aria-haspopup="dialog" aria-controls="cpa-trace-dialog"><span class="cpa-zh-only">查看逐轮原理 · 2 轮</span><span class="cpa-en-only" lang="en">View NLU trace · 2 turns</span></button>
   </figure>
   <figure class="cpa-card">
     <figcaption>
@@ -265,14 +448,16 @@ Eight real-device recordings covering the full decision boundary: from the short
       <span class="cpa-card-desc"><span class="cpa-zh-only">机主预置的放置地点逐个给出（门口 → 保安室），直到对方接受</span><span class="cpa-en-only" lang="en">Owner-preset drop-off spots are offered one by one (front door → security office) until the courier accepts</span></span>
     </figcaption>
     <video controls preload="none" playsinline poster="/images/callproxy/case2-courier-address.jpg" src="/files/callproxy/case2-courier-address.mp4" aria-label="Case 2 视频：快递员多轮对话"></video>
+    <button class="cpa-trace-open" type="button" data-case="case2" aria-haspopup="dialog" aria-controls="cpa-trace-dialog"><span class="cpa-zh-only">查看逐轮原理 · 4 轮</span><span class="cpa-en-only" lang="en">View NLU trace · 4 turns</span></button>
   </figure>
   <figure class="cpa-card">
     <figcaption>
       <span class="cpa-card-num">Case 3</span>
-      <span class="cpa-card-title"><span class="cpa-zh-only">预置地址被全部否决</span><span class="cpa-en-only" lang="en">All preset spots rejected</span></span>
-      <span class="cpa-card-desc"><span class="cpa-zh-only">机主授权过的选项已用尽 —— 继续谈就等于替机主做主，助手转接机主</span><span class="cpa-en-only" lang="en">The owner-authorized options are exhausted — negotiating further would mean deciding for the owner, so the assistant transfers the call</span></span>
+      <span class="cpa-card-title"><span class="cpa-zh-only">地址连续受阻后转接</span><span class="cpa-en-only" lang="en">Transfer after repeated location failures</span></span>
+      <span class="cpa-card-desc"><span class="cpa-zh-only">先逐个提出机主授权地点；“进不去”触发前置规则后把沟通权交还机主</span><span class="cpa-en-only" lang="en">Owner-authorized locations are offered in order; “cannot enter” then triggers a pre-NLU handoff rule</span></span>
     </figcaption>
-    <video controls preload="none" playsinline poster="/images/callproxy/case3-address-exhausted.jpg" src="/files/callproxy/case3-address-exhausted.mp4" aria-label="Case 3 视频：预置地址被全部否决"></video>
+    <video controls preload="none" playsinline poster="/images/callproxy/case3-address-exhausted.jpg" src="/files/callproxy/case3-address-exhausted.mp4" aria-label="Case 3 视频：地址连续受阻后转接"></video>
+    <button class="cpa-trace-open" type="button" data-case="case3" aria-haspopup="dialog" aria-controls="cpa-trace-dialog"><span class="cpa-zh-only">查看逐轮原理 · 4 轮</span><span class="cpa-en-only" lang="en">View NLU trace · 4 turns</span></button>
   </figure>
   <figure class="cpa-card">
     <figcaption>
@@ -281,6 +466,7 @@ Eight real-device recordings covering the full decision boundary: from the short
       <span class="cpa-card-desc"><span class="cpa-zh-only">超出转述与记录的受托范围，交还沟通权</span><span class="cpa-en-only" lang="en">Beyond the relay-and-record mandate; the assistant hands the conversation back</span></span>
     </figcaption>
     <video controls preload="none" playsinline poster="/images/callproxy/case4-rider-lost.jpg" src="/files/callproxy/case4-rider-lost.mp4" aria-label="Case 4 视频：骑手找不到地址"></video>
+    <button class="cpa-trace-open" type="button" data-case="case4" aria-haspopup="dialog" aria-controls="cpa-trace-dialog"><span class="cpa-zh-only">查看逐轮原理 · 2 轮</span><span class="cpa-en-only" lang="en">View NLU trace · 2 turns</span></button>
   </figure>
   <figure class="cpa-card">
     <figcaption>
@@ -289,6 +475,7 @@ Eight real-device recordings covering the full decision boundary: from the short
       <span class="cpa-card-desc"><span class="cpa-zh-only">命中安全词表：即刻郑重回应，且刻意不垫语气词</span><span class="cpa-en-only" lang="en">Safety wordlist hit: an immediate, stern response with deliberately no softening filler</span></span>
     </figcaption>
     <video controls preload="none" playsinline poster="/images/callproxy/case5-abuse.jpg" src="/files/callproxy/case5-abuse.mp4" aria-label="Case 5 视频：威胁辱骂场景"></video>
+    <button class="cpa-trace-open" type="button" data-case="case5" aria-haspopup="dialog" aria-controls="cpa-trace-dialog"><span class="cpa-zh-only">查看逐轮原理 · 2 轮</span><span class="cpa-en-only" lang="en">View NLU trace · 2 turns</span></button>
   </figure>
   <figure class="cpa-card">
     <figcaption>
@@ -297,6 +484,7 @@ Eight real-device recordings covering the full decision boundary: from the short
       <span class="cpa-card-desc"><span class="cpa-zh-only">先把事情收下来，转告事项进入摘要</span><span class="cpa-en-only" lang="en">The matter is taken down first; relay items go into the summary</span></span>
     </figcaption>
     <video controls preload="none" playsinline poster="/images/callproxy/case6-message-relay.jpg" src="/files/callproxy/case6-message-relay.mp4" aria-label="Case 6 视频：来电者要求转告机主"></video>
+    <button class="cpa-trace-open" type="button" data-case="case6" aria-haspopup="dialog" aria-controls="cpa-trace-dialog"><span class="cpa-zh-only">查看逐轮原理 · 2 轮</span><span class="cpa-en-only" lang="en">View NLU trace · 2 turns</span></button>
   </figure>
   <figure class="cpa-card">
     <figcaption>
@@ -305,6 +493,7 @@ Eight real-device recordings covering the full decision boundary: from the short
       <span class="cpa-card-desc"><span class="cpa-zh-only">多条待办逐条记录（交物业费、周三停水）</span><span class="cpa-en-only" lang="en">Multiple to-dos recorded item by item (pay the property fee; water outage on Wednesday)</span></span>
     </figcaption>
     <video controls preload="none" playsinline poster="/images/callproxy/case7-property-multi.jpg" src="/files/callproxy/case7-property-multi.mp4" aria-label="Case 7 视频：物业有多件事要转告"></video>
+    <button class="cpa-trace-open" type="button" data-case="case7" aria-haspopup="dialog" aria-controls="cpa-trace-dialog"><span class="cpa-zh-only">查看逐轮原理 · 3 轮</span><span class="cpa-en-only" lang="en">View NLU trace · 3 turns</span></button>
   </figure>
   <figure class="cpa-card">
     <figcaption>
@@ -313,8 +502,16 @@ Eight real-device recordings covering the full decision boundary: from the short
       <span class="cpa-card-desc"><span class="cpa-zh-only">先收信息，再识别出「要求机主本人接听」→ 铃声级强提醒并等待接管</span><span class="cpa-en-only" lang="en">Information is collected first; then "the owner must take this call" is recognized → ring-level alert, waiting for takeover</span></span>
     </figcaption>
     <video controls preload="none" playsinline poster="/images/callproxy/case8-colleague-transfer.jpg" src="/files/callproxy/case8-colleague-transfer.mp4" aria-label="Case 8 视频：同事来电后要求转接"></video>
+    <button class="cpa-trace-open" type="button" data-case="case8" aria-haspopup="dialog" aria-controls="cpa-trace-dialog"><span class="cpa-zh-only">查看逐轮原理 · 2 轮</span><span class="cpa-en-only" lang="en">View NLU trace · 2 turns</span></button>
   </figure>
 </div>
+
+<dialog class="cpa-trace-dialog" id="cpa-trace-dialog" aria-label="NLU trace / 逐轮原理">
+  <div class="cpa-trace-dialog-topbar"><button class="cpa-trace-close" id="cpa-trace-close" type="button" aria-label="关闭">×</button></div>
+  <div id="cpa-trace-body"></div>
+</dialog>
+
+<noscript><p class="cpa-zh-only">逐轮原理需要启用 JavaScript 查看。</p><p class="cpa-en-only" lang="en">JavaScript is required to view the turn-by-turn trace.</p></noscript>
 
 ## <span class="cpa-zh-only">关键指标</span><span class="cpa-en-only" lang="en">Key Numbers</span>
 
@@ -464,6 +661,7 @@ Because the OPPO K13x only uses two threads, the Xiaomi 14 is pinned to 2 thread
     zhBtn.setAttribute('aria-pressed', String(!en));
     enBtn.setAttribute('aria-pressed', String(en));
     try { localStorage.setItem(KEY, en ? 'en' : 'zh'); } catch (e) {}
+    document.dispatchEvent(new CustomEvent('cpa-language-change', { detail: en ? 'en' : 'zh' }));
   }
   zhBtn.addEventListener('click', function () { apply('zh'); });
   enBtn.addEventListener('click', function () { apply('en'); });
@@ -472,3 +670,4 @@ Because the OPPO K13x only uses two threads, the Xiaomi 14 is pinned to 2 thread
   apply(saved === 'en' ? 'en' : 'zh');
 })();
 </script>
+<script src="/assets/js/callproxy-nlu-traces.js"></script>
